@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
+            android:name=".Register_Login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
