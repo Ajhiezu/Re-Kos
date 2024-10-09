@@ -124,6 +124,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <CheckBox
@@ -179,19 +180,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/buttonGoogle"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:background="@drawable/text_field_login"
-                    android:drawableStart="@drawable/google"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:text="Google"
-                    android:textSize="14sp" />
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonGoogle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/text_field_login"
+                        android:drawableLeft="@drawable/google"
+                        android:drawablePadding="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="100dp"
+                        android:text="Google"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
             <Space

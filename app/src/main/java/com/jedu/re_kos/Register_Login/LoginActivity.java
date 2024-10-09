@@ -1,6 +1,9 @@
 package com.jedu.re_kos.Register_Login;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +15,24 @@ import com.jedu.re_kos.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Button buttonLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        //buttonLogin
+        buttonLogin = findViewById(R.id.buttonLogin);
+
+        //setOnclick
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //menuju ke registrasi
+                Intent intent = new Intent(LoginActivity.this, RegisterasiActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }
