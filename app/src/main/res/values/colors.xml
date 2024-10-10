@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="biru_navbar">#1BA0E2</color>
+    <color name="abuabu_navbar">#A2A2A1</color>
 </resources>

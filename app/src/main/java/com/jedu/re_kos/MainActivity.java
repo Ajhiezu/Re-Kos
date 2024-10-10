@@ -2,23 +2,55 @@ package com.jedu.re_kos;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.jedu.re_kos.Menu.CariFragment;
+import com.jedu.re_kos.Menu.ChatFragment;
+import com.jedu.re_kos.Menu.KosSayaFragment;
+import com.jedu.re_kos.Menu.ProfilFragment;
+import com.jedu.re_kos.databinding.ActivityMainBinding;
+import com.jedu.re_kos.R;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Set the default fragment when the activity is created
+        replaceFragment(new CariFragment());
+
+        // Handle navigation item selection
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.Cari) {
+                replaceFragment(new CariFragment());
+            } else if (itemId == R.id.Chat) {
+                replaceFragment(new ChatFragment());
+            } else if (itemId == R.id.kosSaya) {
+                replaceFragment(new KosSayaFragment());
+            } else if (itemId == R.id.Profil) {
+                replaceFragment(new ProfilFragment());
+            }
+
+            return true;
         });
+    }
+
+    // Method to replace fragments
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, fragment);
+        fragmentTransaction.commit();
     }
 }

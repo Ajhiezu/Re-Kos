@@ -25,6 +25,13 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding {
+            enable = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -32,11 +39,12 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.tbuonomo:dotsindicator:4.3")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
