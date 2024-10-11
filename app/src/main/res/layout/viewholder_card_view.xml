@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="112dp"
+    android:layout_height="151dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/credit_card_bg"
+    android:elevation="3dp">
+
+    <ImageView
+        android:id="@+id/gambarkos"
+        android:layout_width="112dp"
+        android:layout_height="75dp"
+        android:background="@drawable/card_view_gambar_kos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/gambar_kos" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gambarkos" />
+
+    <TextView
+        android:id="@+id/tag_kos"
+        android:layout_width="52dp"
+        android:layout_height="15dp"
+        android:text="Tag Kos"
+        android:gravity="center"
+        android:textSize="9sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="#545454"
+        android:background="@drawable/text_field_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gambarkos" />
+
+    <TextView
+        android:id="@+id/namakos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/robotoregular"
+        android:text="Nama Kos"
+        android:textColor="#545454"
+        android:textSize="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tag_kos" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="5dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namakos"
+        app:srcCompat="@drawable/baseline_location" />
+
+    <TextView
+        android:id="@+id/lokasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lokasi"
+        android:textSize="5sp"
+        android:fontFamily="@font/robotobold"
+        android:layout_marginLeft="2dp"
+        android:textColor="#545454"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/namakos" />
+
+    <TextView
+        android:id="@+id/fasilitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fasilitas"
+        android:textSize="6sp"
+        android:fontFamily="@font/robotoregular"
+        android:textColor="#DADADA"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <ImageView
+        android:id="@+id/bintang1"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
+        app:srcCompat="@drawable/baseline_star_24" />
+
+    <ImageView
+        android:id="@+id/bintang2"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintStart_toEndOf="@+id/bintang1"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
+        app:srcCompat="@drawable/baseline_star_24" />
+    <ImageView
+        android:id="@+id/bintang3"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintStart_toEndOf="@+id/bintang2"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
+        app:srcCompat="@drawable/baseline_star_24" />
+    <ImageView
+        android:id="@+id/bintang4"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintStart_toEndOf="@+id/bintang3"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
+        app:srcCompat="@drawable/baseline_star_24" />
+    <ImageView
+        android:id="@+id/bintang5"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintStart_toEndOf="@+id/bintang4"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
+        app:srcCompat="@drawable/baseline_star_24" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        android:textSize="5dp"
+        android:fontFamily="@font/robotobold"
+        android:textColor="#545454"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toEndOf="@+id/bintang5"
+        app:layout_constraintTop_toBottomOf="@+id/fasilitas" />
+
+    <TextView
+        android:id="@+id/harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IDR 500,000"
+        android:textSize="7sp"
+        android:textColor="#E52424"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/robotomedium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bintang1" />
+
+    <TextView
+        android:id="@+id/perbulan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/ Bulan"
+        android:textSize="5sp"
+        android:textColor="#303030"
+        android:fontFamily="@font/robotoregular"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/harga"
+        app:layout_constraintTop_toBottomOf="@+id/bintang2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
