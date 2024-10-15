@@ -24,7 +24,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -34,19 +37,57 @@
                             android:id="@+id/imageView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/logo_pojok"
+                            android:src="@drawable/profil_pojok"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
                             android:id="@+id/imageView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/notifikasi"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/baseline_notifications"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="70dp"
+                            android:layout_marginTop="10dp"
+                            tools:layout_editor_absoluteX="70dp"
+                            tools:layout_editor_absoluteY="10dp">
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotobold"
+                                android:text="Hi, Gita Rohana"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotoregular"
+                                android:text="Mau Cari Kost-kostan?"
+                                android:textColor="#B2B2B2" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/notifikasi_merah"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView7"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -55,27 +96,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginLeft="38dp"
-                    android:layout_marginRight="38dp">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="#ENAKNYANGEKOST"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/robotomedium"
-                        android:textColor="#1E1E1E"
-                        android:layout_marginTop="24dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cari dan sewa Kost Mudah"
-                        android:fontFamily="@font/robotolight"
-                        android:textSize="15sp"/>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp">
 
                     <EditText
                         android:id="@+id/editTextText"
@@ -84,7 +108,7 @@
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:drawableLeft="@drawable/baseline_search_24"
-                        android:hint="Search Boarding House"
+                        android:hint="Cari kost anda"
                         android:textColorHint="#5F5F5F"
                         android:textColor="#5F5F5F"
                         android:drawablePadding="10dp"
@@ -149,8 +173,9 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginEnd="38dp">
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp">
 
                     <Spinner
                         android:id="@+id/spinner2"
@@ -161,10 +186,43 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="203dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:background="@drawable/background_ungu">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imageView12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bintang_bintang"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="5dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotobold"
+                                android:text="Check what’s popular in Re-kost!"
+                                android:textColor="@color/white"
+                                android:textSize="17sp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="5dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/kos_view"
@@ -187,7 +245,7 @@
                         android:text="Difavoritkan"
                         android:textSize="16dp"
                         android:textColor="#1E1E1E"
-                        android:layout_marginLeft="38dp"
+                        android:layout_marginLeft="16dp"
                         android:fontFamily="@font/robotomedium"/>
 
                     <LinearLayout
