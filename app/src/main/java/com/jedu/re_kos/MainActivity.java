@@ -1,8 +1,10 @@
 package com.jedu.re_kos;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //warna navigasi bar
+        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.biru_navbar));
 
         // Set the default fragment when the activity is created
         replaceFragment(new CariFragment());

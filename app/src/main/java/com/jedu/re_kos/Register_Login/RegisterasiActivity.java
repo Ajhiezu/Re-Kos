@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,6 +23,9 @@ public class RegisterasiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerasi);
+
+        //warna navigasi bar
+        getWindow().setStatusBarColor(ContextCompat.getColor(RegisterasiActivity.this, R.color.biru_navbar));
 
         //buttonLogin
         buttonRegister = findViewById(R.id.buttonCreateAccount);
