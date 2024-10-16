@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ReKos" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.ReKos" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         
         <item name="buttonStyle">@color/biru_navbar</item>
         <!-- Customize your light theme here. -->
