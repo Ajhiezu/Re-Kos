@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.jedu.re_kos.R;
 
-public class DeailKosActivity extends AppCompatActivity {
+public class DetailKosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
