@@ -1,26 +1,42 @@
 package com.jedu.re_kos.Detail;
 
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import com.jedu.re_kos.Adapter.DetailKosAdapter;
+import com.jedu.re_kos.Domain.DetailKosDomain;
+import com.jedu.re_kos.databinding.ActivityDeailKosBinding;
 
-import com.jedu.re_kos.R;
+import java.util.ArrayList;
 
 public class DetailKosActivity extends AppCompatActivity {
+
+    private ActivityDeailKosBinding binding;
+    private DetailKosAdapter adapter;
+    private ArrayList<DetailKosDomain> kosList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_deail_kos);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Inflate layout menggunakan ViewBinding
+        binding = ActivityDeailKosBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Inisialisasi RecyclerView
+       // initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        // Siapkan data untuk ditampilkan
+        kosList = new ArrayList<>();
+        kosList.add(new DetailKosDomain("baseline_bathtub_24", "Fasilitas 1"));
+
+        // Atur LayoutManager dan adapter untuk RecyclerView
+        binding.fasilitasKos.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new DetailKosAdapter(kosList);
+        binding.fasilitasKos.setAdapter(adapter);
     }
 }

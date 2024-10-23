@@ -90,25 +90,26 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@drawable/bg_putih_detail_kos">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Kost Aisyah Plaju, Palembang"
-                        android:textSize="18sp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="15dp"
+                        android:fontFamily="@font/robotomedium"
+                        android:text="Kost Aisyah Plaju, Palembang"
                         android:textColor="#2C3333"
-                        android:fontFamily="@font/robotomedium"/>
+                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -274,8 +275,10 @@
                                     android:orientation="horizontal">
 
                                     <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/fasilitas_kos"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"/>
+                                        android:layout_height="match_parent"
+                                         />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -316,13 +319,13 @@
                                         android:id="@+id/textView23"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:textColor="#B2B2B2"
-                                        android:textSize="14sp"
                                         android:layout_marginLeft="16dp"
                                         android:layout_marginTop="5dp"
+                                        android:layout_weight="1"
                                         android:fontFamily="@font/robotoregular"
-                                        android:text="Kebijakan Properti" />
+                                        android:text="Kebijakan Properti"
+                                        android:textColor="#B2B2B2"
+                                        android:textSize="14sp" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -339,7 +342,7 @@
                                         android:fontFamily="@font/robotomedium"
                                         android:text="Deskripsi Properti"
                                         android:textColor="#2C3333"
-                                        android:textSize="18sp"  />
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:id="@+id/textView25"
@@ -354,6 +357,7 @@
                                         android:textSize="15sp" />
 
                                 </LinearLayout>
+
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -363,19 +367,72 @@
                                         android:id="@+id/textView26"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:textColor="#B2B2B2"
-                                        android:textSize="14sp"
                                         android:layout_marginLeft="16dp"
                                         android:layout_marginTop="5dp"
+                                        android:layout_weight="1"
                                         android:fontFamily="@font/robotoregular"
-                                        android:text="Kebijakan Properti" />
+                                        android:text="Kebijakan Properti"
+                                        android:textColor="#B2B2B2"
+                                        android:textSize="14sp" />
                                 </LinearLayout>
 
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:elevation="15dp"
+                    android:background="@drawable/bg_putih_detail_kos">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/button4"
+                            android:layout_width="150dp"
+                            android:layout_height="37dp"
+                            android:background="@drawable/button_ajukan_sewa"
+                            android:fontFamily="@font/robotomedium"
+                            android:gravity="center"
+                            android:layout_marginLeft="200dp"
+                            android:layout_marginRight="16dp"
+                            android:text="Ajukan Sewa"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/button2"
+                            android:layout_width="150dp"
+                            android:layout_height="37dp"
+                            android:background="@drawable/button_tanya_pemilik"
+                            android:fontFamily="@font/robotomedium"
+                            android:gravity="center"
+                            android:text="Tanya Pemilik"
+                            android:textColor="#6A6A6A"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="200dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
