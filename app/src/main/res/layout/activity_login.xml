@@ -113,6 +113,7 @@
                         app:endIconMode="password_toggle">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:autofillHints="password"
@@ -125,11 +126,12 @@
                     <Button
                         android:id="@+id/buttonLogin"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginTop="21dp"
                         android:background="@drawable/button_login"
                         android:fontFamily="@font/robotomedium"
                         android:text="Login"
+                        android:gravity="center"
                         android:textSize="16sp"
                         android:textColor="@color/white" />
 
@@ -205,7 +207,7 @@
                         <Button
                             android:id="@+id/buttonGoogle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="50dp"
                             android:background="@drawable/text_field_login"
                             android:drawableLeft="@drawable/google"
                             android:drawablePadding="20dp"
@@ -223,6 +225,43 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="100dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Don't have account?"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="55dp"
+                            android:textColor="#4A4A4A"
+                            android:fontFamily="@font/robotoregular"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewSignUp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sign Up"
+                            android:textSize="14sp"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="#2C67FF"
+                            android:fontFamily="@font/robotoregular"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView11"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

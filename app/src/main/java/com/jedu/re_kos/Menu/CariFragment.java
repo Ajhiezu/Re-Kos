@@ -4,12 +4,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.jedu.re_kos.Adapter.kosAdapter;
 import com.jedu.re_kos.Domain.kosDomain;
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 public class CariFragment extends Fragment {
 
     private FragmentCariBinding binding;
+    String[] item = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
 
     public CariFragment() {
         // Required empty public constructor
@@ -31,6 +35,22 @@ public class CariFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment using ViewBinding
         binding = FragmentCariBinding.inflate(inflater, container, false);
+
+        // Inisialisasi AutoCompleteTextView
+        autoCompleteTextView = binding.autoCompleteTextView;
+        adapterItems = new ArrayAdapter<>(getContext(), R.layout.list_items, item);
+
+        // Set adapter ke AutoCompleteTextView
+        autoCompleteTextView.setAdapter(adapterItems);
+
+        // Set listener untuk AutoCompleteTextView
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(getContext(), selectedItem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Inisialisasi RecyclerView
         initRecyclerView();
@@ -52,11 +72,10 @@ public class CariFragment extends Fragment {
         binding.kosView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.kosView.setAdapter(new kosAdapter(items));
 
-        // Atur layoutManager dan adapter untuk RecyclerView
+        // Atur layoutManager dan adapter untuk RecyclerView Favorit
         binding.kosFavorit.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.kosFavorit.setAdapter(new kosAdapter(items));
     }
-
 
     @Override
     public void onDestroyView() {

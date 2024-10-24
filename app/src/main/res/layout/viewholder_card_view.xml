@@ -2,21 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="112dp"
-    android:layout_height="151dp"
+    android:layout_width="142dp"
+    android:layout_height="191dp"
     android:layout_margin="8dp"
     android:background="@drawable/credit_card_bg"
     android:elevation="3dp">
 
     <ImageView
         android:id="@+id/gambarkos"
-        android:layout_width="112dp"
-        android:layout_height="75dp"
+        android:layout_width="142dp"
+        android:layout_height="85dp"
+        android:scaleType="centerCrop"
         android:background="@drawable/card_view_gambar_kos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/gambar_kos" />
+        />
 
     <View
         android:id="@+id/view"
@@ -48,16 +49,17 @@
         android:layout_marginLeft="8dp"
         android:fontFamily="@font/robotoregular"
         android:text="Nama Kos"
+        android:layout_marginTop="3dp"
         android:textColor="#545454"
-        android:textSize="6dp"
+        android:textSize="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tag_kos" />
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="5dp"
-        android:layout_height="6dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="9dp"
+        android:layout_height="9dp"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namakos"
@@ -68,10 +70,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lokasi"
-        android:textSize="5sp"
+        android:textSize="8sp"
         android:fontFamily="@font/robotobold"
         android:layout_marginLeft="2dp"
         android:textColor="#545454"
+        android:layout_marginTop="2dp"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/namakos" />
 
@@ -80,9 +83,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fasilitas"
-        android:textSize="6sp"
+        android:textSize="8sp"
         android:fontFamily="@font/robotoregular"
         android:textColor="#DADADA"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -92,6 +96,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas"
         app:srcCompat="@drawable/baseline_star_24" />
@@ -101,6 +106,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/bintang1"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas"
         app:srcCompat="@drawable/baseline_star_24" />
@@ -109,6 +115,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/bintang2"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas"
         app:srcCompat="@drawable/baseline_star_24" />
@@ -117,6 +124,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/bintang3"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas"
         app:srcCompat="@drawable/baseline_star_24" />
@@ -125,6 +133,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/bintang4"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas"
         app:srcCompat="@drawable/baseline_star_24" />
@@ -134,11 +143,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0.0"
-        android:textSize="5dp"
+        android:textSize="7dp"
         android:fontFamily="@font/robotobold"
         android:textColor="#545454"
         android:layout_marginLeft="3dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/bintang5"
         app:layout_constraintTop_toBottomOf="@+id/fasilitas" />
 
@@ -147,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="IDR 500,000"
-        android:textSize="7sp"
+        android:textSize="12sp"
         android:textColor="#E52424"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="3dp"
@@ -160,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/ Bulan"
-        android:textSize="5sp"
+        android:textSize="10sp"
         android:textColor="#303030"
         android:fontFamily="@font/robotoregular"
         android:layout_marginLeft="2dp"
