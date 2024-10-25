@@ -1,28 +1,182 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    tools:context=".fragment_profil">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- Logo -->
+
+    <!-- Profile Picture -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/profil_pojok"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_background"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/logo_pojok" />
-        </LinearLayout>
-    </ScrollView>
+    <!-- Full Name -->
+    <TextView
+        android:id="@+id/fullNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Lengkap"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/profileImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Example@gmail.com"
+        android:inputType="textEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Gender EditText -->
+    <EditText
+        android:id="@+id/genderEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Laki-Laki"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Date of Birth EditText -->
+    <EditText
+        android:id="@+id/birthdateEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Tanggal Lahir"
+        android:inputType="date"
+        app:layout_constraintTop_toBottomOf="@+id/genderEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Occupation EditText -->
+    <EditText
+        android:id="@+id/occupationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Mahasiswa"
+        app:layout_constraintTop_toBottomOf="@+id/birthdateEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Institution EditText -->
+    <EditText
+        android:id="@+id/institutionEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Politeknik Negeri Jember"
+        app:layout_constraintTop_toBottomOf="@+id/occupationEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Address EditText -->
+    <EditText
+        android:id="@+id/addressEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Bondowoso"
+        app:layout_constraintTop_toBottomOf="@+id/institutionEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Continue Button -->
+
+    <!-- Buttons (Lanjutkan membuka layanan Kost, Riwayat Transaksi, Logout Akun) -->
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:text=">"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressEditText" />
+
+    <Button
+        android:id="@+id/openKostButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Lanjutkan membuka layanan Kost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continueButton"
+        app:layout_constraintWidth_percent="0.85" />
+
+    <Button
+        android:id="@+id/transactionHistoryButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Riwayat Transaksi"
+        app:layout_constraintTop_toBottomOf="@+id/openKostButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Logout Akun"
+        app:layout_constraintTop_toBottomOf="@+id/transactionHistoryButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

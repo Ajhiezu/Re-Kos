@@ -1,0 +1,180 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Image Grid -->
+    <GridLayout
+        android:id="@"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp">
+
+        <!-- Image 1 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house1"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 2 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house2"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 3 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house3"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 4 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house4"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 5 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house5"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 6 -->
+                    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house6"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 7 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house7"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 8 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house8"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+
+        <!-- Image 9 -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/house9"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_corner"/>
+    </GridLayout>
+
+    <!-- Main Heading -->
+    <TextView
+        android:id="@+id/mainHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Find Your Sweet & Dream Place"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/imageGrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center"/>
+
+    <!-- Subheading -->
+    <TextView
+        android:id="@+id/subHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get the opportunity to stay that you dream of at an affordable price"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@+id/mainHeading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:gravity="center"/>
+
+    <!-- Indicator (Dots) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/subHeading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <!-- Active Dot -->
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/active_dot"/>
+
+        <!-- Inactive Dot 1 -->
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/inactive_dot"/>
+
+        <!-- Inactive Dot 2 -->
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/inactive_dot"/>
+    </LinearLayout>
+
+    <!-- Let's Go Button -->
+    <Button
+        android:id="@+id/letsGoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="Let's Go"
+        android:backgroundTint="@color/blue"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
