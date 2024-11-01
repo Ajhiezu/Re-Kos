@@ -1,4 +1,4 @@
-package com.jedu.re_kos.Register_Login;
+package com.jedu.re_kos.Notifikasi;
 
 import android.os.Bundle;
 
@@ -10,13 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.jedu.re_kos.R;
 
-public class SlidePageActivity extends AppCompatActivity {
+public class NotifikasiActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_slide_page);
+        setContentView(R.layout.activity_notifikasi);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
