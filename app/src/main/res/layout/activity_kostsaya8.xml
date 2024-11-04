@@ -90,8 +90,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                androandroid:layout_marginBottom="5dp"id:text="Data Ketersedian"
-
+                android:layout_marginBottom="5dp"
+                android:text="Data Ketersediaan"
                 android:textSize="16sp"
                 android:paddingTop="16dp" />
 
