@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- res/drawable/rounded_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Border width and color -->
+    <stroke
+        android:width="2dp"
+        android:color="#D1D1D1" />
 
-</selector>
+    <!-- Corner radius for rounded corners -->
+    <corners android:radius="12dp" />
+</shape>
