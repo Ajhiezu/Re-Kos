@@ -13,37 +13,6 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
-            android:name=".Menu.profil2"
-            android:exported="false" />
-        <activity
-            android:name=".Menu.profil"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.kostsaya8"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.kostsaya7"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.kostsaya6"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.kostsaya5"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.kostsaya4"
-            android:exported="false" />
-        <activity
-            android:name=".Kos_Saya.KosSaya3Activity"
-            android:exported="false" />
-        <activity
-            android:name=".ChatActivity"
-            android:exported="false" />
-        <activity
-            android:name=".onborading"
-            android:exported="false"
-            android:theme="@style/Theme.ReKos" />
-        <activity
             android:name=".Detail.DeailKosActivity"
             android:exported="false" />
         <activity

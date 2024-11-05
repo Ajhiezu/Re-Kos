@@ -1,6 +1,7 @@
 package com.jedu.re_kos.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
+import com.jedu.re_kos.Detail.DetailKosActivity;
 import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
 
@@ -51,7 +53,9 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
     holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            // Intent untuk pindah ke DetailActivity
+            Intent intent = new Intent(context, DetailKosActivity.class);
+            context.startActivity(intent);
         }
     });
     }
