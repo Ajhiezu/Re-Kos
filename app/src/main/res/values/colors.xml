@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="biru_navbar">#1BA0E2</color>
     <color name="abuabu_navbar">#A2A2A1</color>
+    <color name="red">#C30000</color>
+    <color name="blue">#0062E2</color>
+
 </resources>
