@@ -84,7 +84,7 @@
                         android:textSize="14sp" />
 
                     <EditText
-                        android:id="@+id/editTextEmail"
+                        android:id="@+id/editEmail"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="10dp"
@@ -113,6 +113,7 @@
                         app:endIconMode="password_toggle">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editPassword"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:autofillHints="password"
