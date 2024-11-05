@@ -17,9 +17,15 @@ import com.jedu.re_kos.databinding.ActivityMainBinding;
 import com.jedu.re_kos.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CariFragment.OnProfileClickListener{
 
     ActivityMainBinding binding;
+
+    @Override
+    public void onProfileClicked() {
+        binding.bottomNavigationView.setSelectedItemId(R.id.Profil);
+        replaceFragment(new ProfilFragment());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.jedu.re_kos.R;
 public class LoginActivity extends AppCompatActivity {
 
     private Button buttonLogin;
+    private TextView SignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,19 @@ public class LoginActivity extends AppCompatActivity {
 
         //buttonLogin
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        // Temukan TextView berdasarkan id
+        SignUp = findViewById(R.id.textViewSignUp);
+
+        //setOnclick
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //menuju ke registrasi
+                Intent intent = new Intent(LoginActivity.this, RegisterasiActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //setOnclick
         buttonLogin.setOnClickListener(new View.OnClickListener() {

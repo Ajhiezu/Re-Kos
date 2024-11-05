@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
-import com.jedu.re_kos.Detail.DetailKosActivity;
+import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
 
@@ -54,7 +54,7 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
         @Override
         public void onClick(View v) {
             // Intent untuk pindah ke DetailActivity
-            Intent intent = new Intent(context, DetailKosActivity.class);
+            Intent intent = new Intent(context, ButtonSewaActivity.class);
             context.startActivity(intent);
         }
     });
