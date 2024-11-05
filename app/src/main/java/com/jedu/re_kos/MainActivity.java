@@ -12,13 +12,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jedu.re_kos.Menu.CariFragment;
 import com.jedu.re_kos.Menu.ChatFragment;
+import com.jedu.re_kos.Menu.DashboardFragment;
 import com.jedu.re_kos.Menu.KosSayaFragment;
 import com.jedu.re_kos.Menu.ProfilFragment;
 import com.jedu.re_kos.databinding.ActivityMainBinding;
 import com.jedu.re_kos.viewmodel.DataViewModel;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CariFragment.OnProfileClickListener{
     private ViewModel viewModel;
     ActivityMainBinding binding;
 
@@ -60,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onProfileClicked() {
+        replaceFragment(new ProfilFragment());
+        binding.bottomNavigationView.setSelectedItemId(R.id.Profil);
     }
 }
