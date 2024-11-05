@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Menu.CariFragment"
-    android:id="@+id/Dashboard"
     android:background="@color/white">
 
 

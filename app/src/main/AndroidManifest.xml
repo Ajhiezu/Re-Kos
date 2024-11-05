@@ -12,11 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
+        <activity android:name=".Detail.ButtonSewaActivity"
+            android:exported="false"/>
+        <activity android:name=".Detail.AjukanSewaActivity"
+            android:exported="false"/>
+        <activity android:name=".Notifikasi.NotifikasiActivity"
+            android:exported="false"/>
         <activity
-            android:name=".Register_Login.SlidePageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Detail.DetailKosActivity"
+            android:name=".Splash_Screen.OnBoardingActivity"
             android:exported="false" />
         <activity
             android:name=".Register_Login.RegisterasiActivity"

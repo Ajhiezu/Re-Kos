@@ -3,4 +3,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select">Pilih Kota</string>
+    <string name="selectPeriode">Pilih Periode</string>
+
+
+    //heading
+    <string name="heading_one">Let\'s Find Your Sweet &amp; Dream Place</string>
+
+    //deskripsi
+    <string name="deskripsi_properti1">Seluruh fasilitas kost, hanya diperuntukkan bagi Penyewa kost/penyewa kamar, bukan untuk umum
+Penyewa kost dilarang menerima tamu dan/atau membawa teman ke kamar kost. Sebaiknya menerima tamu atau teman adalah di tempat terbuka atau tempat umum lainnya, seperti warung atau café/resto.
+Penyewa kost tidak diperkenankan merokok di dalam kamar maupun di lingkungan rumah kost.</string>
+    <string name="deskripsi_properti2">Seluruh fasilitas kost, hanya diperuntukkan bagi Penyewa kost/penyewa kamar, bukan untuk umum
+Penyewa kost dilarang menerima tamu dan/atau membawa teman ke kamar kost. Sebaiknya menerima tamu atau teman adalah di tempat terbuka atau tempat umum lainnya, seperti warung atau café/resto.
+Penyewa kost tidak diperkenankan merokok di dalam kamar maupun di lingkungan rumah kost.</string>
+    <string name="deskripsi_one">Get the opportunity to stay that you dream of at an affordable price</string>
 </resources>

@@ -42,7 +42,6 @@ public class DetailKosFragment extends Fragment {
 
     private TextView textViewDeskripsiProperti1, textViewLihatSemua1;
     private TextView textViewDeskripsiProperti2, textViewLihatSemua2;
-    private  TextView getTextViewLihatSemua3;
     private boolean isExpanded1 = false;
     private boolean isExpanded2 = false;
     private boolean isExpanded3 = false;

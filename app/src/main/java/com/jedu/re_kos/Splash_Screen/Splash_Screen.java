@@ -9,14 +9,8 @@ import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.Register_Login.LoginActivity;
-import com.jedu.re_kos.Register_Login.OnboardingActivity;
 
 public class Splash_Screen extends AppCompatActivity {
 
@@ -36,7 +30,7 @@ public class Splash_Screen extends AppCompatActivity {
         //Menunda selama 6 detik sebelum pindah ke MainActivity
         new Handler(Looper.myLooper()).postDelayed(() -> {
             //pindah ke MainActivity
-            Intent intent = new Intent(Splash_Screen.this, OnboardingActivity.class);
+            Intent intent = new Intent(Splash_Screen.this, OnBoardingActivity.class);
             startActivity(intent);
             finish();
         },3000);
