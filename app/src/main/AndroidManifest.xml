@@ -13,24 +13,6 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
-            android:name=".Notifikasi.NotifikasiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Register_Login.MainScreenActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Register_Login.OnboardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Detail.ButtonSewaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Detail.PembayaranActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Detail.AjukanSewaActivity"
-            android:exported="false" />
-        <activity
             android:name=".Register_Login.SlidePageActivity"
             android:exported="false" />
         <activity
