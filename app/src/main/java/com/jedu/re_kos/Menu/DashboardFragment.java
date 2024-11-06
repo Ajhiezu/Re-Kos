@@ -29,11 +29,12 @@ import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
+import com.jedu.re_kos.databinding.FragmentDashboardBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CariFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     public interface OnProfileClickListener {
         void onProfileClicked();
@@ -41,7 +42,7 @@ public class CariFragment extends Fragment {
 
     private OnProfileClickListener callback;
 
-    private FragmentCariBinding binding;
+    private @NonNull FragmentDashboardBinding binding;
     private ImageView profil,notifikasi;
     String[] item = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
     AutoCompleteTextView autoCompleteTextView;
@@ -49,7 +50,7 @@ public class CariFragment extends Fragment {
     ViewPager2 viewPager;
     private Handler slideHandler = new Handler();
 
-    public CariFragment() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 
@@ -57,7 +58,7 @@ public class CariFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment using ViewBinding
-        binding = FragmentCariBinding.inflate(inflater, container, false);
+        binding = FragmentDashboardBinding.inflate(inflater, container, false);
         viewPager = binding.viewPage;
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
