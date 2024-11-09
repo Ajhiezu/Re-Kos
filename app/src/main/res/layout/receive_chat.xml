@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="#EAF4FF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="left"
             android:orientation="vertical"
             android:padding="8dp">
 
@@ -25,7 +25,7 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#009688"
+                android:background="@drawable/reciveshape"
                 android:padding="10dp"
                 android:text="TextView"
                 android:textAlignment="textStart"

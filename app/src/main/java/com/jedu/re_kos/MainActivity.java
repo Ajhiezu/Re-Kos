@@ -12,7 +12,6 @@ import com.jedu.re_kos.Menu.ChatFragment;
 import com.jedu.re_kos.Menu.KosSayaFragment;
 import com.jedu.re_kos.Menu.ProfilFragment;
 import com.jedu.re_kos.databinding.ActivityMainBinding;
-import com.jedu.re_kos.R;
 
 
 public class MainActivity extends AppCompatActivity {

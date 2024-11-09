@@ -2,4 +2,23 @@
     <string name="app_name">Re-Kos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="titles">
+        <item>Title 1</item>
+        <item>Title 2</item>
+        <item>Title 3</item>
+        <!-- Tambahkan item lainnya sesuai kebutuhan -->
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>Description 1</item>
+        <item>Description 2</item>
+        <item>Description 3</item>
+        <!-- Tambahkan item lainnya sesuai kebutuhan -->
+    </string-array>
+    <string-array name="time">
+        <item>Time 1</item>
+        <item>Time 2</item>
+        <item>Time 3</item>
+        <!-- Tambahkan item lainnya sesuai kebutuhan -->
+    </string-array>
 </resources>

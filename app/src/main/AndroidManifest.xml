@@ -13,16 +13,19 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
+            android:name=".PesanActivity"
+            android:exported="false" />
+        <activity
             android:name=".Register_Login.RegisterasiActivity"
             android:exported="false" />
         <activity
             android:name=".Register_Login.LoginActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- android:name=".Splash_Screen.Splash_Screen" -->
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Splash_Screen.Splash_Screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
