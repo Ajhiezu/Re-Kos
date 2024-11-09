@@ -3,19 +3,24 @@ package com.jedu.re_kos;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.jedu.re_kos.Menu.CariFragment;
 import com.jedu.re_kos.Menu.ChatFragment;
+import com.jedu.re_kos.Menu.DashboardFragment;
 import com.jedu.re_kos.Menu.KosSayaFragment;
 import com.jedu.re_kos.Menu.ProfilFragment;
 import com.jedu.re_kos.databinding.ActivityMainBinding;
+import com.jedu.re_kos.viewmodel.DataViewModel;
 
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements CariFragment.OnProfileClickListener{
+    private ViewModel viewModel;
     ActivityMainBinding binding;
 
     @Override
@@ -23,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
+        //warna navigasi bar
+        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.biru_navbar));
 
         // Set the default fragment when the activity is created
         replaceFragment(new CariFragment());
@@ -51,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onProfileClicked() {
+        replaceFragment(new ProfilFragment());
+        binding.bottomNavigationView.setSelectedItemId(R.id.Profil);
     }
 }

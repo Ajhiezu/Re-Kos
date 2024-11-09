@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
-        <activity
+         <activity
             android:name=".PesanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Detail.DeailKosActivity"
             android:exported="false" />
         <activity
             android:name=".Register_Login.RegisterasiActivity"

@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Warna background transparan -->
+    <solid android:color="@android:color/transparent"/>
+
+    <!-- Garis outline warna biru dan ketebalan 2dp -->
+    <stroke
+        android:width="2dp"
+        android:color="#2196F3" />
+
+    <!-- Radius untuk sudut melengkung -->
+    <corners android:radius="12dp"/>
+</shape>

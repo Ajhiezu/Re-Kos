@@ -24,29 +24,69 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/imageView6"
+                            android:id="@+id/imageViewProfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/logo_pojok"
+                            android:src="@drawable/profil_pojok"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
-                            android:id="@+id/imageView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/notifikasi"
+                            android:id="@+id/notifikasi"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/baseline_notifications"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="70dp"
+                            android:layout_marginTop="10dp"
+                            tools:layout_editor_absoluteX="70dp"
+                            tools:layout_editor_absoluteY="10dp">
+
+                            <TextView
+                                android:id="@+id/NamaUsername"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotobold"
+                                android:text="Hi, Gita Rohana"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotoregular"
+                                android:text="Mau Cari Kost-kostan?"
+                                android:textColor="#B2B2B2" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/notifikasi_masuk"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@drawable/notifikasi_merah"
+                            app:layout_constraintBottom_toTopOf="@+id/notifikasi"
+                            app:layout_constraintEnd_toEndOf="@+id/notifikasi" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -55,36 +95,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginLeft="38dp"
-                    android:layout_marginRight="38dp">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="#ENAKNYANGEKOST"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/robotomedium"
-                        android:textColor="#1E1E1E"
-                        android:layout_marginTop="24dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cari dan sewa Kost Mudah"
-                        android:fontFamily="@font/robotolight"
-                        android:textSize="15sp"/>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp">
 
                     <EditText
-                        android:id="@+id/editTextText"
+                        android:id="@+id/Search"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="10dp"
                         android:ems="10"
                         android:drawableLeft="@drawable/baseline_search_24"
-                        android:hint="Search Boarding House"
+                        android:hint="Cari kost anda"
                         android:textColorHint="#5F5F5F"
                         android:textColor="#5F5F5F"
                         android:drawablePadding="10dp"
@@ -104,17 +127,6 @@
                         android:layout_height="182dp"
                         android:layout_weight="1">
 
-                        <ProgressBar
-                            android:id="@+id/progressBar"
-                            style="?android:attr/progressBarStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/viewPage"
                             android:layout_width="match_parent"
@@ -126,19 +138,17 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                            android:id="@+id/dotindicator"
+                        <LinearLayout
+                            android:id="@+id/dotslide"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:dotsColor="@color/abuabu_navbar"
-                            app:dotsCornerRadius="8dp"
-                            app:dotsSize="13dp"
-                            app:dotsSpacing="4dp"
-                            app:dotsWidthFactor="2.5"
+                            android:layout_marginBottom="40dp"
+                            android:orientation="horizontal"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:selectedDotColor="@color/biru_navbar" />
+                            app:layout_constraintStart_toStartOf="@id/viewPage">
+
+                        </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,22 +159,69 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginEnd="38dp">
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp">
 
-                    <Spinner
-                        android:id="@+id/spinner2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/textfield_search"/>
+                        android:layout_height="match_parent"
+                        android:hint="@string/select"
+                        android:textColorHint="#5F5F5F"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        >
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:inputType="none"
+                            android:textColor="#5F5F5F"
+                            android:backgroundTint="@android:color/transparent"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="203dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     android:background="@drawable/background_ungu">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imageView12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bintang_bintang"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginLeft="10dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/robotobold"
+                                android:text="Check what’s popular in Re-kost!"
+                                android:textColor="@color/white"
+                                android:textSize="17sp"
+                                android:layout_marginLeft="10dp"
+                                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/kos_view"
@@ -187,7 +244,7 @@
                         android:text="Difavoritkan"
                         android:textSize="16dp"
                         android:textColor="#1E1E1E"
-                        android:layout_marginLeft="38dp"
+                        android:layout_marginLeft="16dp"
                         android:fontFamily="@font/robotomedium"/>
 
                     <LinearLayout
@@ -207,9 +264,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp" />
                 </LinearLayout>
 
             </LinearLayout>
