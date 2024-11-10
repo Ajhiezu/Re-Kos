@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private DataViewModel viewModel;
     private Button buttonLogin;
     private EditText editEmail, editPassword;
+    private TextView signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,14 @@ public class LoginActivity extends AppCompatActivity {
 
         //buttonLogin
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        //menuju ke sign up
+        signup = findViewById(R.id.signup);
+        signup.setOnClickListener(v -> {
+            //menuju ke registrasi
+            Intent intent = new Intent(LoginActivity.this, RegisterasiActivity.class);
+            startActivity(intent);
+        });
 
         //editText
         editEmail = findViewById(R.id.editEmail);

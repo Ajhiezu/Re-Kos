@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.jedu.re_kos.Detail.AjukanSewaActivity;
+import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 
@@ -52,6 +54,7 @@ public class RegisterasiActivity extends AppCompatActivity {
                 //menuju ke registrasi
                 Intent intent = new Intent(RegisterasiActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
