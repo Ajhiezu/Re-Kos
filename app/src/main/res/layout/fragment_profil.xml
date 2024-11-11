@@ -20,11 +20,12 @@
 
             <!-- Foto Profil -->
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/profil_img"
                 android:layout_gravity="center_horizontal"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/profil_img" />
 
             <!-- Nama Lengkap -->
             <TextView

@@ -25,4 +25,8 @@ public class RetrofitInstance {
         }
         return retrofit;
     }
+
+    public static <S> S createService(Class<S> serviceClass) {
+        return getRetrofitInstance().create(serviceClass);
+    }
 }

@@ -18,12 +18,12 @@
          <activity
             android:name=".PesanActivity"
             android:exported="false" />
-        <activity
-            android:name=".Detail.DeailKosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Detail.DeailKosActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Detail.DeailKosActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Detail.DeailKosActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Register_Login.RegisterasiActivity"
             android:exported="false" />
