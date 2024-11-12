@@ -28,7 +28,6 @@ import java.util.Calendar;
 
 import com.bumptech.glide.Glide;
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.model.DataModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 
 public class ProfilFragment extends Fragment {
@@ -40,17 +39,6 @@ public class ProfilFragment extends Fragment {
     private Button lanjut;
 
 
-
-    private final ActivityResultLauncher<String> imagePickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.GetContent(),
-            uri -> {
-                if (uri != null) {
-                    saveImageUri(uri);   // Save the selected Uri
-                    uploadImage(uri);    // Call the upload function
-                    Glide.with(this).load(uri).into(imageView); // Display the selected image
-                }
-            }
-    );
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,11 +47,22 @@ public class ProfilFragment extends Fragment {
         imageView = root.findViewById(R.id.imageView);
         ImageViewModel = new ViewModelProvider(this).get(ImageUploadViewModel.class);
 
-        imageView.setOnClickListener(view -> showImageOptionsDialog());
+        ImageViewModel.getImageData().observe(getViewLifecycleOwner(), bitmap -> {
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);  // Set the image to the ImageView
+            }
+        });
 
-        // Load image from local storage or server
-        loadImage();
+        // Observe error messages and display them as a Toast
+        ImageViewModel.getError().observe(getViewLifecycleOwner(), errorMessage -> {
+            if (errorMessage != null) {
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        // Fetch the image for the current user (replace with the actual user ID)
+        String userId = "2024113378"; // Replace with dynamic user ID
+        ImageViewModel.fetchImage(userId);
 
 
         lanjut = root.findViewById(R.id.lanjut);
@@ -103,63 +102,63 @@ public class ProfilFragment extends Fragment {
         datePickerDialog.show();
     }
 
-    private void loadImage() {
-        // Check if there's a locally saved URI
-        String savedUriString = loadImageUri();
-        if (savedUriString != null) {
-            Uri savedUri = Uri.parse(savedUriString);
-            Glide.with(this).load(savedUri).into(imageView);
-        } else {
-            // No saved URI, fetch from server
-            String userId = getUserId(); // Retrieve the user ID
-            ImageViewModel.fetchImage(userId); // Fetch image from server
+//    private void loadImage() {
+//        // Check if there's a locally saved URI
+//        String savedUriString = loadImageUri();
+//        if (savedUriString != null) {
+//            Uri savedUri = Uri.parse(savedUriString);
+//            Glide.with(this).load(savedUri).into(imageView);
+//        } else {
+//            // No saved URI, fetch from server
+//            String userId = getUserId(); // Retrieve the user ID
+//            ImageViewModel.fetchImage(userId); // Fetch image from server
+//
+//            // Observe the image data from ViewModel
+//            ImageViewModel.getImageData().observe(getViewLifecycleOwner(), responseBody -> {
+//                if (responseBody != null) {
+//                    // Load the image from the response
+//                    Uri serverImageUri = Uri.parse(responseBody.getImageUrl()); // Assume `getImageUrl()` returns a valid URL
+//                    Glide.with(this).load(serverImageUri).into(imageView);
+//
+//                    // Save URI to SharedPreferences for future sessions
+//                    saveImageUri(serverImageUri);
+//                }
+//            });
+//
+//            // Observe errors if any
+//            ImageViewModel.getError().observe(getViewLifecycleOwner(), error -> {
+//                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
+//            });
+//        }
+//    }
 
-            // Observe the image data from ViewModel
-            ImageViewModel.getImageData().observe(getViewLifecycleOwner(), responseBody -> {
-                if (responseBody != null) {
-                    // Load the image from the response
-                    Uri serverImageUri = Uri.parse(responseBody.getImageUrl()); // Assume `getImageUrl()` returns a valid URL
-                    Glide.with(this).load(serverImageUri).into(imageView);
-
-                    // Save URI to SharedPreferences for future sessions
-                    saveImageUri(serverImageUri);
-                }
-            });
-
-            // Observe errors if any
-            ImageViewModel.getError().observe(getViewLifecycleOwner(), error -> {
-                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show();
-            });
-        }
-    }
-
-    private void showImageOptionsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Change Profile Picture");
-        builder.setItems(new CharSequence[]{"Choose New Image", "Cancel"}, (dialog, which) -> {
-            if (which == 0) {
-                // Open the image picker
-                imagePickerLauncher.launch("image/*");
-            } else if (which == 1) {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
+//    private void showImageOptionsDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+//        builder.setTitle("Change Profile Picture");
+//        builder.setItems(new CharSequence[]{"Choose New Image", "Cancel"}, (dialog, which) -> {
+//            if (which == 0) {
+//                // Open the image picker
+//                imagePickerLauncher.launch("image/*");
+//            } else if (which == 1) {
+//                dialog.dismiss();
+//            }
+//        });
+//        builder.show();
+//    }
 
     // Function to upload the image (simplified example)
-    private void uploadImage(Uri imageUri) {
-        ImageViewModel.uploadProfileImage(imageUri, getUserId());
-
-        ImageViewModel.getUploadStatus().observe(getViewLifecycleOwner(), isSuccess -> {
-            if (isSuccess) {
-                Toast.makeText(requireContext(), "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
-                saveImageUri(imageUri);
-            } else {
-                Toast.makeText(requireContext(), "Failed to upload image.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void uploadImage(Uri imageUri) {
+//        ImageViewModel.uploadProfileImage(imageUri, getUserId());
+//
+//        ImageViewModel.getUploadStatus().observe(getViewLifecycleOwner(), isSuccess -> {
+//            if (isSuccess) {
+//                Toast.makeText(requireContext(), "Image uploaded successfully!", Toast.LENGTH_SHORT).show();
+//                saveImageUri(imageUri);
+//            } else {
+//                Toast.makeText(requireContext(), "Failed to upload image.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
 
     private String loadImageUri() {
@@ -176,8 +175,7 @@ public class ProfilFragment extends Fragment {
 
 
     private String getUserId() {
-        DataModel data = new DataModel();
-        String id = Integer.toString(data.getId());
+        String id = "2024113378";
         return id;
     }
 }

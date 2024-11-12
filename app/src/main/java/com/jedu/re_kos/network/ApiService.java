@@ -25,9 +25,8 @@ public interface ApiService {
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @FormUrlEncoded
-    @POST("getImageFile") // Replace with the actual endpoint
-    Call<ProfileImageResponse> getUserProfileImage(@Path("userId") String userId);
+    @GET("imgProfile/{userId}") // Replace with the actual endpoint
+    Call<ResponseBody> getUserProfileImage(@Path("userId") String userId);
 
     @Multipart
     @POST("upload")
