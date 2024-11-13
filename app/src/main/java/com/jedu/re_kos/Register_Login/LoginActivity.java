@@ -54,27 +54,28 @@ public class LoginActivity extends AppCompatActivity {
             String password = editPassword.getText().toString().trim();
 
             viewModel.login(email, password).observe(this, loginResponse -> {
-//                if (loginResponse != null && loginResponse.getEmail() != null) {
-//                    // Login successful
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                } else {
-//                    // Login failed
-//                    Toast.makeText(this, "Email atau password salah", Toast.LENGTH_SHORT).show();
-//                }
-                if (loginResponse != null) {
-                    // Handle successful login
-                    if (loginResponse.getStatus().equals("success")) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    } else {
-                        // Show login error message
-                        Log.e("LOGIN_ERROR", loginResponse.getMessage());
-                    }
+                if (loginResponse != null && loginResponse.getData().getEmail() != null) {
+                    // Login successful
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
                 } else {
-                    // Handle failure to get a response
-                    Log.e("LOGIN_ERROR", "Failed to get response from API");
+                    // Login failed
+                    Toast.makeText(this, "Email atau password salah", Toast.LENGTH_SHORT).show();
                 }
+//                if (loginResponse != null) {
+//                    // Handle successful login
+//                    if (loginResponse.getStatus().equals("success")) {
+//
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    } else {
+//                        // Show login error message
+//                        Log.e("LOGIN_ERROR", loginResponse.getMessage());
+//                    }
+//                } else {
+//                    // Handle failure to get a response
+//                    Log.e("LOGIN_ERROR", "Failed to get response from API");
+//                }
             });
         });
     }
