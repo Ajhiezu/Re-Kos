@@ -12,18 +12,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.jedu.re_kos.R;
 
-public class KosSaya3Activity extends AppCompatActivity {
-    private Button lanjutkan;
+public class KosSaya2Activity extends AppCompatActivity {
+
+    private Button lanjut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_kos_saya2);
 
-        setContentView(R.layout.activity_kos_saya3);
-        lanjutkan = findViewById(R.id.lanjutkan);
-        lanjutkan.setOnClickListener(view -> {
-            Intent intent = new Intent(KosSaya3Activity.this, kostsaya4.class);
+        lanjut = findViewById(R.id.lanjut);
+        lanjut.setOnClickListener(view -> {
+            Intent intent = new Intent(KosSaya2Activity.this, KosSaya3Activity.class);
             startActivities(new Intent[]{intent});
             finish();
         });

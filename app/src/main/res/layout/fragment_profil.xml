@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Menu.ProfilFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,11 +20,12 @@
 
             <!-- Foto Profil -->
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/profil_img"
                 android:layout_gravity="center_horizontal"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/profil_img" />
 
             <!-- Nama Lengkap -->
             <TextView
@@ -44,6 +47,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,21 +57,24 @@
                     android:padding="12dp"
                     android:layout_marginTop="8dp"/>
 
-                <EditText
+                <Spinner
+                    android:id="@+id/spinner_gender"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Laki-Laki"
+                    android:layout_height="48dp"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
                     android:layout_marginTop="8dp"/>
 
                 <EditText
+                    android:id="@+id/editText_birthdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tanggal Lahir"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:focusable="false"
+                    android:clickable="true"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -113,6 +120,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/lanjut"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -123,11 +131,8 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
-
-
             </LinearLayout>
 
-            <!-- Tombol Riwayat Transaksi -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,18 +149,16 @@
             <!-- Tombol Logout Akun -->
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:background="@drawable/rounded_button_outline"
+                android:drawableStart="@drawable/logout"
                 android:padding="12dp"
                 android:text="Logout Akun"
-                android:textStyle="bold"
-                android:drawableStart="@drawable/logout"
-                android:background="@drawable/rounded_button_outline"
                 android:textColor="#4E4E4E"
-                android:layout_marginTop="8dp"/>
-
-
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
