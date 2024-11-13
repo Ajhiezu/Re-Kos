@@ -1,14 +1,23 @@
 package com.jedu.re_kos.Menu;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.jedu.re_kos.Adapter.chatAdapter;
+import com.jedu.re_kos.Model.Chat;
 import com.jedu.re_kos.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +25,8 @@ import com.jedu.re_kos.R;
  * create an instance of this fragment.
  */
 public class ChatFragment extends Fragment {
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +72,26 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
+
+        // Ambil data dari strings.xml
+        Resources res = getResources();
+        String[] titles = res.getStringArray(R.array.titles);
+        String[] descriptions = res.getStringArray(R.array.descriptions);
+        String[] time = res.getStringArray(R.array.time);
+
+        // Buat list item dari array string
+        List<Chat> items = new ArrayList<>();
+        for (int i = 0; i < titles.length; i++) {
+            items.add(new Chat(titles[i], descriptions[i], time[i]));
+        }
+
+        // Inisialisasi RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.recycleviewChat);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new chatAdapter(items));
+
+        return view;
     }
+
 }

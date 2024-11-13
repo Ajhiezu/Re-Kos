@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -13,19 +16,49 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
-            android:name=".Detail.DetailKosActivity"
+            android:name=".Detail.DeailKosActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Detail.DeailKosActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Detail.DeailKosActivity"-->
+<!--            android:exported="false" />-->
+        <activity android:name=".Detail.ButtonSewaActivity"
+            android:exported="false"/>
+        <activity android:name=".Notifikasi.NotifikasiActivity"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.KosSaya2Activity"
+            android:exported="false"/>
+        <activity android:name=".Detail.AjukanSewaActivity"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.KosSaya3Activity"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.kostsaya4"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.kostsaya5"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.kostsaya6"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.kostsaya7"
+            android:exported="false"/>
+        <activity android:name=".Kos_Saya.kostsaya8"
+            android:exported="false"/>
+        <activity android:name=".Menu.profil2"
+            android:exported="false"/>
         <activity
             android:name=".Register_Login.RegisterasiActivity"
             android:exported="false" />
         <activity
-            android:name=".Register_Login.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- android:name=".Splash_Screen.Splash_Screen" -->
+        <activity android:name=".Splash_Screen.Splash_Screen"
+            android:exported="false"/>
         <activity
-            android:name=".Splash_Screen.Splash_Screen"
+            android:name=".Register_Login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
