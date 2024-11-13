@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
         <activity
-            android:name=".Detail.DeailKosActivity"
+            android:name=".Detail.DetailKosActivity"
             android:exported="false" />
         <activity
             android:name=".Register_Login.RegisterasiActivity"

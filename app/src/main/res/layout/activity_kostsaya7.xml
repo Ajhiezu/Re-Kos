@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Kos_Saya.kostsaya7">
@@ -48,7 +49,7 @@
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
@@ -57,33 +58,32 @@
                     android:id="@+id/button_selesai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#339AF0"
                     android:text="Selesai atur ketersediaan"
                     android:textColor="#FFFFFF"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
                     android:layout_marginEnd="8dp"
-                    android:drawablePadding="8dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="14sp"
-                    android:background="@drawable/rounded_blue_button" />
+                    android:textSize="10sp"
+                    android:background="@drawable/rounded_blue_button"
+                    android:drawablePadding="8dp" />
 
                 <Button
-                    android:id="@+id/button_lanjutkan"
+                    android:id="@+id/lanjut"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#333333"
+                    android:layout_height="48dp"
                     android:text="Lanjutkan"
                     android:textColor="#FFFFFF"
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="10dp"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:drawableRight="@drawable/ic_arrow_forward"
                     android:drawablePadding="8dp"
                     android:background="@drawable/rounded_dark_button" />
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
