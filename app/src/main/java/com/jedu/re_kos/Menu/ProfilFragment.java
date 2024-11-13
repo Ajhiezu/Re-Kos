@@ -28,9 +28,11 @@ import java.util.Calendar;
 
 import com.bumptech.glide.Glide;
 import com.jedu.re_kos.R;
+import com.jedu.re_kos.model.DataModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 
 public class ProfilFragment extends Fragment {
+    private DataModel dataModel;
     private ImageUploadViewModel ImageViewModel;
     private ImageView imageView;
     private static final String PREFS_NAME = "UserProfile";
@@ -175,7 +177,7 @@ public class ProfilFragment extends Fragment {
 
 
     private String getUserId() {
-        String id = "2024113378";
+        String id = Integer.toString(dataModel.getId());
         return id;
     }
 }
