@@ -7,6 +7,7 @@ public class LoginResponse {
     private String message;
     private DataModel data;
 
+    // Getters and Setters
     public String getStatus() {
         return status;
     }
@@ -31,3 +32,4 @@ public class LoginResponse {
         this.data = data;
     }
 }
+

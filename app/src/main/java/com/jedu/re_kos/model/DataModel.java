@@ -1,16 +1,12 @@
 package com.jedu.re_kos.model;
 
-import com.google.gson.annotations.SerializedName;
 
 public class DataModel {
-    @SerializedName("email")
     private String email;
-    @SerializedName("id")
     private int id;
-    @SerializedName("role")
     private String role;
 
-    // Getters and setters
+    // Getters and Setters
     public String getEmail() {
         return email;
     }
@@ -35,3 +31,4 @@ public class DataModel {
         this.role = role;
     }
 }
+
