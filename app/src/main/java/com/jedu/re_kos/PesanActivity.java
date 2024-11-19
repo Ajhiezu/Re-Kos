@@ -34,7 +34,25 @@ public class PesanActivity extends AppCompatActivity {
         // Sample data
         List<Chat> userList = new ArrayList<>();
         userList.add(new Chat("1","19.00", "Halo", "2"));
-        userList.add(new Chat("2","20.00", "Test", "1"));// Ensure parameters match
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
+        userList.add(new Chat("1","19.00", "Halo", "2"));
+        userList.add(new Chat("2","20.00", "Test", "1"));
 
         // Set adapter
         pesanAdapter adapter = new pesanAdapter(userList, "1");
