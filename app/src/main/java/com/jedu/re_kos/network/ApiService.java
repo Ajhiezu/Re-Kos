@@ -29,9 +29,9 @@ public interface ApiService {
     Call<ResponseBody> getUserProfileImage(@Path("userId") String userId);
 
     @Multipart
-    @POST("upload")
+    @POST("upload") // Adjust this endpoint as needed
     Call<ResponseBody> uploadImage(
-            @Part("userId") RequestBody userId,
-            @Part MultipartBody.Part file
+            @Part MultipartBody.Part file,
+            @Part("user_id") RequestBody userId
     );
 }

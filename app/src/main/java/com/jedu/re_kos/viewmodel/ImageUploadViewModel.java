@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -13,6 +14,9 @@ import com.jedu.re_kos.model.ProfileImageResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 import com.jedu.re_kos.repository.ImageRepository;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +33,7 @@ public class ImageUploadViewModel extends ViewModel {
 //    private final ImageRepository imageRepository;
     private MutableLiveData<Bitmap> imageData = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
-//    private final MutableLiveData<Boolean> uploadStatus = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> uploadStatus = new MutableLiveData<>();
 
 //    public ImageUploadViewModel(ImageRepository repository) {
 //        this.imageRepository = repository;
@@ -65,34 +69,43 @@ public class ImageUploadViewModel extends ViewModel {
         return error;
     }
 
-//    public void uploadProfileImage(Uri imageUri, String userId) {
-//        ApiService apiService = RetrofitInstance.createService(ApiService.class);
-//
-//        // Prepare file part
-//        File file = new File(imageUri.getPath());
-//        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-//        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-//
-//        // Prepare user ID part
-//        RequestBody userIdPart = RequestBody.create(MultipartBody.FORM, userId);
-//
-//        // Make the network call
-//        apiService.uploadImage(userIdPart, body).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                if (response.isSuccessful()) {
-//                    uploadStatus.setValue(true);
-//                } else {
-//                    uploadStatus.setValue(false);
-//                    error.setValue("Upload failed: " + response.message());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                uploadStatus.setValue(false);
-//                error.setValue(t.getMessage());
-//            }
-//        });
-//    }
+    public void uploadImage(File imageFile, int userId) {
+        ApiService apiService = RetrofitInstance.createService(ApiService.class);
+
+        // Create RequestBody for the image file and userId
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", imageFile.getName(), requestBody);
+        RequestBody userIdBody = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(userId));
+
+        Call<ResponseBody> call = apiService.uploadImage(part, userIdBody);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String responseString = response.body().string();
+                        JSONObject jsonResponse = new JSONObject(responseString);
+                        String status = jsonResponse.getString("status");
+                        String message = jsonResponse.getString("message");
+                        Log.d("Illham", message);
+//                        if ("success".equals(status)) {
+//                            fetchImage(userId);
+//                        } else {
+//                            Log.e("UploadError", "Failed to upload image: " + status);
+//                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // Handle failure
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("TAG", "onFailure: "+t.getMessage());
+            }
+        });
+    }
 }
