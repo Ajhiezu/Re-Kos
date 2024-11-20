@@ -70,9 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                     // Login successful
                     DataModel dataModel = loginResponse.getData();
                     int idUser = loginResponse.getData().getId();
+                    int idKos = loginResponse.getData().getId_kos();
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("user_id", idUser);
+                    editor.putInt("kost_id", idKos);
                     editor.apply();
 
                     Log.d("login", String.valueOf(dataModel.getId()));
