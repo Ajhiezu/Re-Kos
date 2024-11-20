@@ -54,7 +54,7 @@ public class ProfilFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
 
         imageView = root.findViewById(R.id.imageView);
-        imageViewModel = new ViewModelProvider(this).get(ImageUploadViewModel.class);
+        imageViewModel = new ViewModelProvider(requireActivity()).get(ImageUploadViewModel.class);
 
         imageViewModel.getImageData().observe(getViewLifecycleOwner(), bitmap -> {
             if (bitmap != null) {
@@ -70,9 +70,14 @@ public class ProfilFragment extends Fragment {
         });
 
         int userId = getUserId();
-        Log.d("id", String.valueOf(userId));
+        Log.d("id", "asu");
         imageViewModel.fetchImage(String.valueOf(userId));
 
+        if (dataModel != null && dataModel.getId() != 0) {
+            Log.d("Email in Profil", String.valueOf(dataModel.getId()));
+        } else {
+            Log.d("Email in Profil", "Email is empty or dataModel is null");
+        }
 
         imageView.setOnClickListener(v -> showImageDialog());
 

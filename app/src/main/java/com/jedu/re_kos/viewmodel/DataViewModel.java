@@ -10,11 +10,16 @@ import com.jedu.re_kos.repository.DataRepository;
 
 public class DataViewModel extends ViewModel {
     private final DataRepository repository;
-    private MutableLiveData<DataModel> data;
+    private MutableLiveData<DataModel> dataModel = new MutableLiveData<>();
 
     public DataViewModel() {
         repository = new DataRepository();
     }
+
+    public void setData(DataModel data) {
+        dataModel.setValue(data);
+    }
+
 
     public LiveData<LoginResponse> login(String email, String password) {
         return repository.login(email, password);

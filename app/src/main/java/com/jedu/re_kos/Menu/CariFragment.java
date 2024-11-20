@@ -2,6 +2,7 @@ package com.jedu.re_kos.Menu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
+import com.jedu.re_kos.model.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,12 @@ public class CariFragment extends Fragment {
 
         // Inflate the layout for this fragment using ViewBinding
         binding = FragmentCariBinding.inflate(inflater, container, false);
+        DataModel dataModel = new DataModel();
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", 0);
+
+        dataModel.setId(userId);
+
         viewPager = binding.viewPage;
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
@@ -91,6 +99,8 @@ public class CariFragment extends Fragment {
                 slideHandler.postDelayed(slideRunnable,2000);
             }
         });
+
+
 
         // Temukan ImageView berdasarkan id
         profil = binding.imageViewProfil;
