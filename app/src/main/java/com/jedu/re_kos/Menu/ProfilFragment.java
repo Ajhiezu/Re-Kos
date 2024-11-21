@@ -70,7 +70,8 @@ public class ProfilFragment extends Fragment {
         });
 
         int userId = getUserId();
-        Log.d("id", "asu");
+        Log.d("id", dataModel.getEmail());
+        Log.d("id", String.valueOf(userId));
         imageViewModel.fetchImage(String.valueOf(userId));
 
         if (dataModel != null && dataModel.getId() != 0) {
