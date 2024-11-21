@@ -16,8 +16,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
+import com.jedu.re_kos.model.DataModel;
 import com.jedu.re_kos.viewmodel.DataViewModel;
 import com.jedu.re_kos.model.LoginResponse;
+
+import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
     private DataViewModel viewModel;
@@ -63,14 +66,18 @@ public class LoginActivity extends AppCompatActivity {
             String password = editPassword.getText().toString().trim();
 
             viewModel.login(email, password).observe(this, loginResponse -> {
-                if (loginResponse.getStatus().equals("success") && loginResponse.getData().getId() != 0) {
+                if (loginResponse.getStatus().equals("success") && loginResponse.getData() != null) {
                     // Login successful
+                    DataModel dataModel = loginResponse.getData();
                     int idUser = loginResponse.getData().getId();
+                    int idKos = loginResponse.getData().getId_kos();
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("user_id", idUser);
+                    editor.putInt("kost_id", idKos);
                     editor.apply();
 
+                    Log.d("login", String.valueOf(dataModel.getId()));
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -79,5 +86,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
+    }
+
+    private void setData(String Email, int ID, String role) {
+        DataModel dataModel = new DataModel();
+        dataModel.setEmail(Email);
+        dataModel.setId(ID);
+        dataModel.setRole(role);
+
+        // Save the data in the ViewModel
+        this.viewModel.setData(dataModel);
     }
 }
