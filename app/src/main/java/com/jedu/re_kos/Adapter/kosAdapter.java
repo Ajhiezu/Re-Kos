@@ -2,6 +2,7 @@ package com.jedu.re_kos.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.Domain.kosDomain;
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
-    ArrayList<kosDomain> items;
+    List <KosModel.KostData> kos;
     Context context;
     ViewholderCardViewBinding binding;
 
-    public kosAdapter(ArrayList<kosDomain> items) {
-        this.items = items;
+    public kosAdapter(List <KosModel.KostData> kos) {
+        this.kos = kos; notifyDataSetChanged();
     }
 
     @NonNull
@@ -33,22 +36,26 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
         context = parent.getContext();
         return new Viewholder(binding);
     }
-
+    public void setKostList(List<KosModel.KostData> kos) {
+        this.kos = kos;
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+KosModel.KostData kost = kos.get(position);
+//    binding.tagKos.setText(kost.get().);
+        Log.d("TAG", "onBindViewHolder: " + kost.getNama_kos());
+    binding.namakos.setText(kost.getNama_kos());
+    binding.lokasi.setText(kost.getAlamat());
+    binding.fasilitas.setText(kost.getFasilitas_kamar());
+    binding.rating.setText(String.valueOf(kost.getRata_rata_rating()));
+    binding.harga.setText("IDR" + kost.getHarga());
 
-    binding.tagKos.setText(items.get(position).getTagkos());
-    binding.namakos.setText(items.get(position).getNamaKos());
-    binding.lokasi.setText(items.get(position).getLokasi());
-    binding.fasilitas.setText(items.get(position).getFasilitas());
-    binding.rating.setText(String.valueOf(items.get(position).getRating()));
-    binding.harga.setText("IDR" + items.get(position).getHarga());
-
-    int drawableResource = holder.itemView.getResources().getIdentifier(items.get(position).getImage(),"drawable",holder.itemView.getContext().getPackageName());
-    Glide.with(context)
-            .load(drawableResource)
-            .transform(new GranularRoundedCorners(30,30,0,0))
-            .into(binding.gambarkos);
+//    int drawableResource = holder.itemView.getResources().getIdentifier(items.get(position).getImage(),"drawable",holder.itemView.getContext().getPackageName());
+//    Glide.with(context)
+//            .load(drawableResource)
+//            .transform(new GranularRoundedCorners(30,30,0,0))
+//            .into(binding.gambarkos);
 
     holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -62,7 +69,7 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return kos.size();
     }
 
     public class Viewholder extends RecyclerView.ViewHolder{

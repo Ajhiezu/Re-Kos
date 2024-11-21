@@ -1,5 +1,6 @@
 package com.jedu.re_kos.network;
 
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.model.DataModel;
 import com.jedu.re_kos.model.LoginRequest;
 import com.jedu.re_kos.model.LoginResponse;
@@ -21,7 +22,8 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("data/{id}")
     Call<DataModel> getDataById(@Path("id") int id);
-
+@GET("kos")
+Call<KosModel.KostData> kos();
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
