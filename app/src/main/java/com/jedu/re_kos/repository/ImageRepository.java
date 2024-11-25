@@ -7,6 +7,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.jedu.re_kos.network.ApiService;
+
+import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,12 +48,37 @@ public class ImageRepository {
         });
     }
 
-    // Expose LiveData for image and error
-    public LiveData<Bitmap> getImageData() {
-        return imageData;
+    public void uploadImage(File imageFile, String userId, UploadCallback callback) {
+        // Prepare data and call API to upload image
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"), imageFile);
+        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), requestBody);
+        RequestBody userIdPart = RequestBody.create(MediaType.parse("text/plain"), userId);
+
+        apiService.uploadImage(imagePart, userIdPart).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess();
+                } else {
+                    callback.onError(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
     }
 
-    public LiveData<String> getError() {
-        return error;
+    // Callback interfaces for success/failure handling
+    public interface ImageCallback {
+        void onSuccess(Bitmap bitmap);
+        void onError(String errorMessage);
+    }
+
+    public interface UploadCallback {
+        void onSuccess();
+        void onError(String errorMessage);
     }
 }

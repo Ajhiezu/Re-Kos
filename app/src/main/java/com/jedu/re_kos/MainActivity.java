@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity implements CariFragment.OnPr
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
-
         //warna navigasi bar
         getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.biru_navbar));
 
