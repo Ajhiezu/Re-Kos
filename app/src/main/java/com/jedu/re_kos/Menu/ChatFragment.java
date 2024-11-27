@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jedu.re_kos.Adapter.chatAdapter;
-import com.jedu.re_kos.Model.Chat;
+import com.jedu.re_kos.model.Chat;
 import com.jedu.re_kos.R;
 
 import java.util.ArrayList;

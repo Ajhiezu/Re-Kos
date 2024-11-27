@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
-        <activity
-            android:name=".Detail.DeailKosActivity"
-            android:exported="false" />
 <!--        <activity-->
 <!--            android:name=".Detail.DeailKosActivity"-->
 <!--            android:exported="false" />-->
