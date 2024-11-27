@@ -2,10 +2,12 @@ package com.jedu.re_kos.Menu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -13,6 +15,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +29,22 @@ import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
 import com.jedu.re_kos.Domain.kosDomain;
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
+import com.jedu.re_kos.factory.ViewModelFactory;
+import com.jedu.re_kos.repository.KosRepository;
+import com.jedu.re_kos.viewmodel.KosViewModel;
+import com.jedu.re_kos.model.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CariFragment extends Fragment {
-
+    private kosAdapter adapter;
+    private KosViewModel viewModel;
+    private KosModel kosModel;
     public interface OnProfileClickListener {
         void onProfileClicked();
     }
@@ -56,8 +66,16 @@ public class CariFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
+
         // Inflate the layout for this fragment using ViewBinding
         binding = FragmentCariBinding.inflate(inflater, container, false);
+        DataModel dataModel = new DataModel();
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", 0);
+
+        dataModel.setId(userId);
+
         viewPager = binding.viewPage;
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
@@ -91,6 +109,7 @@ public class CariFragment extends Fragment {
                 slideHandler.postDelayed(slideRunnable,2000);
             }
         });
+
 
         // Temukan ImageView berdasarkan id
         profil = binding.imageViewProfil;
@@ -126,8 +145,24 @@ public class CariFragment extends Fragment {
         });
 
         // Inisialisasi RecyclerView
-        initRecyclerView();
+//        initRecyclerView();
+        // Inisialisasi RecyclerView
+        RecyclerView recyclerView = binding.getRoot().findViewById(R.id.kos_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new kosAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
 
+        // Inisialisasi ViewModel
+//        ApiService apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
+        KosRepository repository = new KosRepository();
+        viewModel = new ViewModelProvider(this, new ViewModelFactory(repository)).get(KosViewModel.class);
+
+        // Observasi data dari ViewModel
+        viewModel.getKos().observe(getActivity(), kostDetails -> {
+            if (kostDetails != null) {
+                adapter.setKostList(List.of(kostDetails));
+            }
+        });
         return binding.getRoot();
     }
 
@@ -173,11 +208,11 @@ public class CariFragment extends Fragment {
 
         // Atur layoutManager dan adapter untuk RecyclerView
         binding.kosView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        binding.kosView.setAdapter(new kosAdapter(items));
+//        binding.kosView.setAdapter(new kosAdapter(items));
 
         // Atur layoutManager dan adapter untuk RecyclerView Favorit
         binding.kosFavorit.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        binding.kosFavorit.setAdapter(new kosAdapter(items));
+//        binding.kosFavorit.setAdapter(new kosAdapter(items));
     }
 
     @Override

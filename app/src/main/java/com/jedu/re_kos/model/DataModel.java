@@ -5,6 +5,7 @@ public class DataModel {
     private String email;
     private int id;
     private String role;
+    private int id_kos;
 
     // Getters and Setters
     public String getEmail() {
@@ -29,6 +30,14 @@ public class DataModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getId_kos() {
+        return id_kos;
+    }
+
+    public void setId_kos(int id_kos) {
+        this.id_kos = id_kos;
     }
 }
 
