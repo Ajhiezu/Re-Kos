@@ -1,6 +1,6 @@
 package com.jedu.re_kos.network;
 
-import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.model.LoginRequest;
 import com.jedu.re_kos.model.LoginResponse;
 import com.jedu.re_kos.model.request.UpdateRequest;
@@ -38,5 +38,7 @@ public interface ApiService {
             @Part("user_id") RequestBody userId
     );
 
+    @GET("kos")
     Call<KosModel.KostData> kos();
+
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.repository.KosRepository;
 
 public class KosViewModel extends ViewModel {

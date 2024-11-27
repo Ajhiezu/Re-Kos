@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.Domain.kosDomain;
-import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
 
 import java.util.ArrayList;
