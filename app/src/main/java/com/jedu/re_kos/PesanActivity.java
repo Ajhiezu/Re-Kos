@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jedu.re_kos.Adapter.pesanAdapter;
-import com.jedu.re_kos.Model.Chat;
+import com.jedu.re_kos.model.Chat;
 
 import java.util.ArrayList;
 import java.util.List;

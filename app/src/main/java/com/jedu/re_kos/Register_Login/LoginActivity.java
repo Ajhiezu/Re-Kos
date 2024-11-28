@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.jedu.re_kos.Detail.AjukanSewaActivity;
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Model.DataModel;

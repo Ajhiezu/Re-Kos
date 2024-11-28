@@ -32,7 +32,7 @@ import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
 import com.jedu.re_kos.Domain.kosDomain;
-import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.SemuaKosActivity;

@@ -1,4 +1,4 @@
-package com.jedu.re_kos.Model;
+package com.jedu.re_kos.model;
 
 public class Chat {
     private String title;
