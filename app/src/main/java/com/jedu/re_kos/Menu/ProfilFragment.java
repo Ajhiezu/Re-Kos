@@ -37,7 +37,6 @@ import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
 
 public class ProfilFragment extends Fragment {
-    private DataModel dataModel;
     private UserModel userModel;
     private ImageUploadViewModel imageViewModel;
     private UserViewModel userViewModel;

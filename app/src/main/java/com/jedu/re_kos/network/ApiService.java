@@ -4,6 +4,7 @@ import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.model.LoginRequest;
 import com.jedu.re_kos.model.LoginResponse;
 import com.jedu.re_kos.model.request.UpdateRequest;
+import com.jedu.re_kos.model.response.DetailResponse;
 import com.jedu.re_kos.model.response.UpdateRespon;
 import com.jedu.re_kos.model.response.UserResponse;
 
@@ -40,5 +41,8 @@ public interface ApiService {
 
     @GET("kos")
     Call<KosModel.KostData> kos();
+
+    @GET("detail/{id}")
+    Call<DetailResponse>getDetailKos(@Path("id") int id);
 
 }

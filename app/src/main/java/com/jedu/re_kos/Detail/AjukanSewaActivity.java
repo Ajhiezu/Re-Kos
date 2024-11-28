@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,12 +21,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.FotoKosAdapter;
 import com.jedu.re_kos.Menu.CariFragment;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.ActivityAjukanSewaBinding;
+import com.jedu.re_kos.model.DetailModel;
+import com.jedu.re_kos.viewmodel.DetailViewModel;
 
 import java.util.Calendar;
 
@@ -40,8 +45,10 @@ public class AjukanSewaActivity extends AppCompatActivity {
     TextView[] dots;
     private ImageView imageViewPreview;
     FotoKosAdapter fotoKosAdapter;
-    private TextView editTextTanggalPemesanan;
+    private TextView editTextTanggalPemesanan,namakos;
     private static final int FILE_SELECT_CODE = 1;
+    private DetailModel detailModel;
+    private DetailViewModel detailViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,47 @@ public class AjukanSewaActivity extends AppCompatActivity {
         // Inisialisasi binding
         binding = ActivityAjukanSewaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //findbyid
+        detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
+        namakos = findViewById(R.id.NamaKos);
+        int id_kos = getIntent().getIntExtra("id_kos", -1);
+
+        // Pastikan id_kos valid
+        if (id_kos != -1) {
+            Log.d("ButtonSewaActivity", "ID Kos: " + id_kos);
+
+            // Panggil ViewModel untuk mengambil detail kos berdasarkan id_kos
+            detailViewModel.getDetail(id_kos).observe(this, detailResponse -> {
+                if (detailResponse != null) {
+                    if ("success".equals(detailResponse.getStatus())) {
+                        DetailModel detailModel = detailResponse.getDetailModel();
+                        if (detailModel != null) {
+                            // Isi data ke tampilan
+                            namakos.setText(detailModel.getNama_kos() != null ? detailModel.getNama_kos() : "");
+                        } else {
+                            Log.e("DETAIL_MODEL", "DetailModel is null");
+                        }
+                    }
+                }
+            });
+        } else {
+            Log.e("ButtonSewaActivity", "Invalid ID Kos");
+        }
+
+        //getdetail
+//        detailViewModel.getDetail(2024115250).observe(this, detailResponse -> {
+//            if (detailResponse != null) {
+//                if ("success".equals(detailResponse.getStatus())) {
+//                    DetailModel detailModel = detailResponse.getDetailModel();
+//                    if (detailModel != null) {
+//                        namakos.setText(detailModel.getNama_kos() != null ? detailModel.getNama_kos() : "");
+//                    } else {
+//                        Log.e("DETAIL_MODEL", "DetailModel is null");
+//                    }
+//                }
+//            }
+//        });
 
         editTextTanggalPemesanan = findViewById(R.id.editTextTanggalPemesanan);
         // Nonaktifkan fokus dan tetap dapat diklik
