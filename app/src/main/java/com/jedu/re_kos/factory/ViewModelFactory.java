@@ -16,7 +16,7 @@ public class ViewModelFactory  implements  ViewModelProvider.Factory{
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(KosViewModel.class)) {
-            return (T) new KosViewModel(repository);
+//            return (T) new KosViewModel(repository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }
