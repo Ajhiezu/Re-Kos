@@ -2,180 +2,190 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="142dp"
-    android:layout_height="191dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="@drawable/credit_card_bg"
     android:elevation="3dp">
 
-    <ImageView
-        android:id="@+id/gambarkos"
-        android:layout_width="142dp"
-        android:layout_height="85dp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/card_view_gambar_kos"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.0">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gambarkos" />
+        <ImageView
+            android:id="@+id/gambarkos"
+            android:layout_width="0dp"
+            android:layout_height="85dp"
+            android:background="@drawable/card_view_gambar_kos"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tag_kos"
-        android:layout_width="52dp"
-        android:layout_height="15dp"
-        android:text="Tag Kos"
-        android:gravity="center"
-        android:textSize="9sp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="8dp"
-        android:textColor="#545454"
-        android:background="@drawable/text_field_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gambarkos" />
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gambarkos" />
 
-    <TextView
-        android:id="@+id/namakos"
+        <TextView
+            android:id="@+id/tag_kos"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/text_field_login"
+            android:text="Tag Kos"
+            android:textColor="#545454"
+            android:textSize="9sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/namakos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="Nama Kos"
+            android:textColor="#545454"
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tag_kos" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namakos"
+            app:srcCompat="@drawable/baseline_location" />
+
+        <TextView
+            android:id="@+id/lokasi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/robotobold"
+            android:maxLines="2"
+            android:text="Lokasi"
+            android:textColor="#545454"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/namakos" />
+
+        <ImageView
+            android:id="@+id/bintang1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lokasi"
+            app:srcCompat="@drawable/baseline_star_24" />
+
+        <ImageView
+            android:id="@+id/bintang2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toEndOf="@+id/bintang1"
+            app:layout_constraintTop_toTopOf="@+id/bintang1"
+            app:srcCompat="@drawable/baseline_star_24" />
+
+        <ImageView
+            android:id="@+id/bintang3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toEndOf="@+id/bintang2"
+            app:layout_constraintTop_toTopOf="@+id/bintang2"
+            app:srcCompat="@drawable/baseline_star_24" />
+
+        <ImageView
+            android:id="@+id/bintang4"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toEndOf="@+id/bintang3"
+            app:layout_constraintTop_toTopOf="@+id/bintang3"
+            app:srcCompat="@drawable/baseline_star_24" />
+
+        <ImageView
+            android:id="@+id/bintang5"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toEndOf="@+id/bintang4"
+            app:layout_constraintTop_toTopOf="@+id/bintang4"
+            app:srcCompat="@drawable/baseline_star_24" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/robotobold"
+            android:text="0.0"
+            android:textColor="#545454"
+            android:textSize="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bintang5"
+            app:layout_constraintTop_toTopOf="@+id/bintang5" />
+
+        <TextView
+            android:id="@+id/harga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="IDR 500,000"
+            android:textColor="#E52424"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating" />
+
+        <TextView
+            android:id="@+id/perbulan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/robotoregular"
+            android:text="/ Bulan"
+            android:textColor="#303030"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/harga"
+            app:layout_constraintTop_toTopOf="@+id/harga" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:fontFamily="@font/robotoregular"
-        android:text="Nama Kos"
-        android:layout_marginTop="3dp"
-        android:textColor="#545454"
-        android:textSize="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tag_kos" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="9dp"
-        android:layout_height="9dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namakos"
-        app:srcCompat="@drawable/baseline_location" />
-
-    <TextView
-        android:id="@+id/lokasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lokasi"
-        android:textSize="8sp"
-        android:fontFamily="@font/robotobold"
-        android:layout_marginLeft="2dp"
-        android:textColor="#545454"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/namakos" />
-
-    <TextView
-        android:id="@+id/fasilitas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fasilitas"
-        android:textSize="8sp"
-        android:fontFamily="@font/robotoregular"
-        android:textColor="#DADADA"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-    <ImageView
-        android:id="@+id/bintang1"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
-        app:srcCompat="@drawable/baseline_star_24" />
-
-    <ImageView
-        android:id="@+id/bintang2"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bintang1"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
-        app:srcCompat="@drawable/baseline_star_24" />
-    <ImageView
-        android:id="@+id/bintang3"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bintang2"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
-        app:srcCompat="@drawable/baseline_star_24" />
-    <ImageView
-        android:id="@+id/bintang4"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bintang3"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
-        app:srcCompat="@drawable/baseline_star_24" />
-    <ImageView
-        android:id="@+id/bintang5"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bintang4"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas"
-        app:srcCompat="@drawable/baseline_star_24" />
-
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0.0"
-        android:textSize="7dp"
-        android:fontFamily="@font/robotobold"
-        android:textColor="#545454"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bintang5"
-        app:layout_constraintTop_toBottomOf="@+id/fasilitas" />
-
-    <TextView
-        android:id="@+id/harga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IDR 500,000"
-        android:textSize="12sp"
-        android:textColor="#E52424"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/robotomedium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bintang1" />
-
-    <TextView
-        android:id="@+id/perbulan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="/ Bulan"
-        android:textSize="10sp"
-        android:textColor="#303030"
-        android:fontFamily="@font/robotoregular"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toEndOf="@+id/harga"
-        app:layout_constraintTop_toBottomOf="@+id/bintang2" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="129dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

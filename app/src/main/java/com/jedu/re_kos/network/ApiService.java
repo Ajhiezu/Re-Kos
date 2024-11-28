@@ -1,10 +1,9 @@
 package com.jedu.re_kos.network;
 
 import com.jedu.re_kos.Model.KosModel;
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.LoginRequest;
-import com.jedu.re_kos.model.LoginResponse;
-import com.jedu.re_kos.model.ProfileImageResponse;
+import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.Model.LoginRequest;
+import com.jedu.re_kos.Model.LoginResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -22,8 +21,9 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("data/{id}")
     Call<DataModel> getDataById(@Path("id") int id);
-@GET("kos")
-Call<KosModel.KostData> kos();
+    @GET("kos")Call<KosModel> kos();
+    @GET("best")Call<KosModel> bestkos();
+    @GET("terdekat")Call<KosModel> kosterdekat();
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
@@ -36,4 +36,8 @@ Call<KosModel.KostData> kos();
             @Part MultipartBody.Part file,
             @Part("user_id") RequestBody userId
     );
+
+    @FormUrlEncoded
+    @POST("allkos")
+    Call<KosModel> AllKos(@Field("lokasi") String lokasi, @Field("hargaawal") String harga_awal, @Field("hargaakhir") String harga_akhir);
 }

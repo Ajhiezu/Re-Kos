@@ -13,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.jedu.re_kos.Detail.ButtonSewaActivity;
-import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
@@ -47,16 +46,16 @@ KosModel.KostData kost = kos.get(position);
         Log.d("TAG", "onBindViewHolder: " + kost.getNama_kos());
     binding.namakos.setText(kost.getNama_kos());
     binding.lokasi.setText(kost.getAlamat());
-    binding.fasilitas.setText(kost.getFasilitas_kamar());
     binding.rating.setText(String.valueOf(kost.getRata_rata_rating()));
     binding.harga.setText("IDR" + kost.getHarga());
 
-//    int drawableResource = holder.itemView.getResources().getIdentifier(items.get(position).getImage(),"drawable",holder.itemView.getContext().getPackageName());
-//    Glide.with(context)
-//            .load(drawableResource)
-//            .transform(new GranularRoundedCorners(30,30,0,0))
-//            .into(binding.gambarkos);
-
+//
+//    int drawableResource = holder.itemView.getResources().getIdentifier(kost.getGambar(),"drawable",holder.itemView.getContext().getPackageName());
+   Glide.with(context)
+     .load("http://192.168.100.78/web_rekost/public/uploads/" + kost.getId_kos() + "/foto_depan.jpg")
+     .transform(new RoundedCornersTransformation(35, 0, RoundedCornersTransformation.CornerType.TOP)) // Melengkung hanya di sudut atas
+     .into(binding.gambarkos);
+        Log.d("TAG", "onBindViewHolder:"+kost.getId_kos());
     holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.model.ProfileImageResponse;
+import com.jedu.re_kos.Model.ProfileImageResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 import com.jedu.re_kos.repository.ImageRepository;

@@ -157,30 +157,69 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_lokasi"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="153dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="3dp"
+        android:hint="Pilih Lokasi"
+        android:textColorHint="#5F5F5F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:inputType="none"
+            android:textColor="#5F5F5F" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_harga"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="152dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:hint="Pilih Harga"
+        android:textColorHint="#5F5F5F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txt_lokasi"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextViewHarga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:inputType="none"
+            android:textColor="#5F5F5F" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Button
+                        android:id="@+id/button"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="@string/select"
-                        android:textColorHint="#5F5F5F"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        >
+                        android:layout_height="wrap_content"
+                        android:text="Button" />
 
-                        <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:inputType="none"
-                            android:textColor="#5F5F5F"
-                            android:backgroundTint="@android:color/transparent"
-                            />
-                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -241,7 +280,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Difavoritkan"
+                        android:text="Best Kos"
                         android:textSize="16dp"
                         android:textColor="#1E1E1E"
                         android:layout_marginLeft="16dp"
@@ -258,7 +297,42 @@
                             android:layout_height="match_parent">
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/kosFavorit"
+                                android:id="@+id/BestKos"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txtKosTerdekat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Terdekat dari Kampus/Kantor"
+                        android:textSize="16dp"
+                        android:textColor="#1E1E1E"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/robotomedium"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/kos_terdekat"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>

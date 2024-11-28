@@ -22,8 +22,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,9 +30,8 @@ import androidx.lifecycle.ViewModelProvider;
 import java.io.File;
 import java.util.Calendar;
 
-import com.bumptech.glide.Glide;
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.model.DataModel;
+import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 
 public class ProfilFragment extends Fragment {
