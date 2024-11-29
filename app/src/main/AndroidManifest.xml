@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".Detail.DeailKosActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Detail.DeailKosActivity"-->
-<!--            android:exported="false" />-->
+
+        <!-- Menambahkan metadata untuk Google Sign-In -->
+        <meta-data
+            android:name="com.google.android.gms.auth.api.signin.CLIENT_ID"
+            android:value="@string/default_web_client_id" />
+
+        <!-- Aktivitas lainnya -->
         <activity android:name=".Detail.ButtonSewaActivity"
             android:exported="false"/>
         <activity android:name=".Notifikasi.NotifikasiActivity"
@@ -48,10 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- android:name=".Splash_Screen.Splash_Screen" -->
+            android:exported="false" />
         <activity android:name=".Splash_Screen.Splash_Screen"
             android:exported="false"/>
         <activity
@@ -59,10 +57,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>

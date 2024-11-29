@@ -38,5 +38,5 @@ public interface ApiService {
             @Part("user_id") RequestBody userId
     );
 
-    Call<KosModel.KostData> kos();
+//    Call<KosModel.KostData> kos();
 }
