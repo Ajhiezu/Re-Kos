@@ -24,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.jedu.re_kos.Detail.AjukanSewaActivity;
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.model.DataModel;

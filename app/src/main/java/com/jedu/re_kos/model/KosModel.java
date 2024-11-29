@@ -2,12 +2,12 @@
 
 // YApi QuickType插件生成，具体参考文档:https://plugins.jetbrains.com/plugin/18847-yapi-quicktype/documentation
 
-package com.jedu.re_kos.Model;
+package com.jedu.re_kos.model;
 import java.util.List;
 
 public class KosModel {
     private String status;
-    private KostData data;
+     private List<KostData> data;
 
     // Getter dan Setter
     public String getStatus() {
@@ -18,11 +18,11 @@ public class KosModel {
         this.status = status;
     }
 
-    public KostData getData() {
+    public List<KostData> getData() {
         return data;
     }
 
-    public void setData(KostData data) {
+    public void setData(List<KostData> data) {
         this.data = data;
     }
 
@@ -49,7 +49,6 @@ public class KosModel {
         private String tipe_kamar;
         private Integer kamar_tersedia;
         private String waktu_penyewaan;
-        private Integer id_Kos;
         private Double rata_rata_rating;
 
         // Getter dan Setter
@@ -229,13 +228,6 @@ public class KosModel {
             this.waktu_penyewaan = waktu_penyewaan;
         }
 
-        public Integer getId_Kos() {
-            return id_Kos;
-        }
-
-        public void setId_Kos(Integer id_Kos) {
-            this.id_Kos = id_Kos;
-        }
 
         public Double getRata_rata_rating() {
             return rata_rata_rating;
@@ -246,5 +238,3 @@ public class KosModel {
         }
     }
 }
-
-

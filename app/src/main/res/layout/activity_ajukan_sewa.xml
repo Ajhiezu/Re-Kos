@@ -97,13 +97,13 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/NamaKos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Kost Aisyah Plaju, Palembang"
+                        android:text="Nama Kos"
                         android:textColor="#2C3333"
                         android:textSize="18sp" />
 

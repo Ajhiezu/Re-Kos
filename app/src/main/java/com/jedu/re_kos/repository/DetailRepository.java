@@ -4,9 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.LoginRequest;
 import com.jedu.re_kos.model.LoginResponse;
+import com.jedu.re_kos.model.response.DetailResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 
@@ -19,40 +18,35 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataRepository {
-    private final ApiService apiService;
+public class DetailRepository {
+    private ApiService apiService;
 
-    public DataRepository() {
+    public DetailRepository(){
         apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
     }
 
-    //login
-    public MutableLiveData<LoginResponse> login(String email, String password) {
-        MutableLiveData<LoginResponse> loginResponse = new MutableLiveData<>();
-        LoginRequest loginRequest = new LoginRequest(email, password);
+    public MutableLiveData<DetailResponse> getDetail(int id){
+        MutableLiveData<DetailResponse> detailResponse = new MutableLiveData<>();
 
-        apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
+        apiService.getDetailKos(id).enqueue(new Callback<DetailResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.isSuccessful()) {
-                    loginResponse.setValue(response.body());
-                } else {
-                    // Handle error response
-                    handleErrorResponse(response, loginResponse);
+            public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
+                if(response.isSuccessful()){
+                    detailResponse.setValue(response.body());
+                }else {
+                    handleErrorResponse(response, detailResponse);
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("API_FAILURE", t.getMessage());
-                loginResponse.setValue(null);
+            public void onFailure(Call<DetailResponse> call, Throwable t) {
+                detailResponse.setValue(null);
             }
         });
-
-        return loginResponse;
+        return detailResponse;
     }
 
-    private void handleErrorResponse(Response<LoginResponse> response, MutableLiveData<LoginResponse> loginResponse) {
+    private void handleErrorResponse(Response<DetailResponse> response, MutableLiveData<DetailResponse> detailResponse) {
         try {
             String errorBody = response.errorBody().string();
             // Log the raw error body
@@ -61,20 +55,20 @@ public class DataRepository {
             // Check if the errorBody is a valid JSON
             if (isValidJson(errorBody)) {
                 // Handle valid JSON error response
-                LoginResponse errorResponse = new LoginResponse();
+                DetailResponse errorResponse = new DetailResponse();
                 errorResponse.setStatus("error");
                 errorResponse.setMessage("Error: " + new JSONObject(errorBody).optString("message"));
-                loginResponse.setValue(errorResponse);
+                detailResponse.setValue(errorResponse);
             } else {
                 // Handle unexpected format (e.g., plain string)
-                LoginResponse errorResponse = new LoginResponse();
+                DetailResponse errorResponse = new DetailResponse();
                 errorResponse.setStatus("error");
                 errorResponse.setMessage("Unexpected error: " + errorBody);
-                loginResponse.setValue(errorResponse);
+                detailResponse.setValue(errorResponse);
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            loginResponse.setValue(null);
+            detailResponse.setValue(null);
         }
     }
 
@@ -88,4 +82,5 @@ public class DataRepository {
         }
         return true;
     }
+
 }
