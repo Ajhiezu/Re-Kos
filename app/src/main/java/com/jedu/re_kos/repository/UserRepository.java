@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.jedu.re_kos.model.DataModel;
 import com.jedu.re_kos.model.request.UpdateRequest;
 import com.jedu.re_kos.model.response.UpdateRespon;
 import com.jedu.re_kos.model.response.UserResponse;
@@ -33,18 +34,30 @@ public class UserRepository {
         apiService.getDataById(id).enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful() && response.body() != null) {
+                    // Set data yang diterima dari server ke LiveData
                     userResponse.setValue(response.body());
                 } else {
-                    handleErrorResponse(response, userResponse);
+                    // Tangani error jika response tidak berhasil
+                    // Handle failure case (non-successful response or empty body)
+                    Log.e("USER_REPO", "Response failed or empty body");
+                    UserResponse errorResponse = new UserResponse();
+                    errorResponse.setStatus("error");
+                    errorResponse.setMessage("API request failed or returned no data");
+                    userResponse.setValue(errorResponse);  // Ensure we set a default error response
                 }
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                Log.e("USER_REPO", "Request failed: " + t.getMessage());
+                UserResponse errorResponse = new UserResponse();
+                errorResponse.setStatus("error");
+                errorResponse.setMessage("Network failure");
+                userResponse.setValue(errorResponse);
             }
         });
+
         return userResponse;
     }
 
