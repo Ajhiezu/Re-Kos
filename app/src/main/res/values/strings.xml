@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Re-Kos</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="default_web_client_id">941579406365-pq89i9cp4ekchbn9e7pocev7m8uhbvak.apps.googleusercontent.com</string>
-
+    <string name="server_client_id">941579406365-pq89i9cp4ekchbn9e7pocev7m8uhbvak.apps.googleusercontent.com</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select">Pilih Kota</string>
     <string name="selectGender">Jenis Kelamin</string>

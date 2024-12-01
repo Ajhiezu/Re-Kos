@@ -51,7 +51,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("com.google.firebase:firebase-auth:23.1.0")
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
 
     implementation ("com.tbuonomo:dotsindicator:4.3")
