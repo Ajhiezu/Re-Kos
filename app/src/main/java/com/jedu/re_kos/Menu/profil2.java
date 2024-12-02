@@ -1,8 +1,6 @@
 package com.jedu.re_kos.Menu;
 
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -11,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -29,13 +26,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.model.UserModel;
-import com.jedu.re_kos.model.request.UpdateRequest;
+import com.jedu.re_kos.Model.UserModel;
+import com.jedu.re_kos.Model.request.UpdateRequest;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 
 public class profil2 extends AppCompatActivity {
@@ -132,10 +128,6 @@ public class profil2 extends AppCompatActivity {
                 return;
             }
             UpdateRequest updateRequest = new UpdateRequest(id_user,updatenama,updatejenisKelamin,updatetanggalLahir,updatepekerjaan,updateinstansi,updatealamat,updatenumberPhone);
-
-//            if (updateRequest.getName() != null){
-//                Toast.makeText(this, "Aman Sih", Toast.LENGTH_SHORT).show();
-//            }
 
             userViewModel.updateUser(updateRequest).observe(this, updateRespon->{
                 if (updateRespon.getStatus().equals("success")) {

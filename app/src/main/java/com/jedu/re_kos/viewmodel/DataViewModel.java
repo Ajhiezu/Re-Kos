@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.LoginResponse;
+import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.Model.LoginResponse;
 import com.jedu.re_kos.repository.DataRepository;
 
 public class DataViewModel extends ViewModel {

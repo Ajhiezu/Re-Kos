@@ -1,4 +1,4 @@
-package com.jedu.re_kos.model;
+package com.jedu.re_kos.Model;
 
 public class UserModel {
     private int id_user;
