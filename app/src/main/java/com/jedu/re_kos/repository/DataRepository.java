@@ -4,9 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.LoginRequest;
-import com.jedu.re_kos.model.LoginResponse;
+import com.jedu.re_kos.Model.LoginRequest;
+import com.jedu.re_kos.Model.LoginResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 

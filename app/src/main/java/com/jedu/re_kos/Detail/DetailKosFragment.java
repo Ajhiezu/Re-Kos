@@ -83,7 +83,7 @@ public class DetailKosFragment extends Fragment {
 
         SlideViewPager = view.findViewById(R.id.imageKos);
         DotLayout = view.findViewById(R.id.dotslideKos);
-        fotoKosAdapter = new FotoKosAdapter(requireContext());
+        //fotoKosAdapter = new FotoKosAdapter(requireContext());
 
         SlideViewPager.setAdapter(fotoKosAdapter);
 

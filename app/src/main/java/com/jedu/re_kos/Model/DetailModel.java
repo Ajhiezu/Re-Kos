@@ -1,4 +1,4 @@
-package com.jedu.re_kos.model;
+package com.jedu.re_kos.Model;
 
 public class DetailModel {
     private int id_kos;
@@ -7,6 +7,25 @@ public class DetailModel {
     private Double rating_kamar;
     private int kamar_tersedia;
     private int harga_bulan;
+    private int id_kamar;
+
+    public int getId_kamar() {
+        return id_kamar;
+    }
+
+    public void setId_kamar(int id_kamar) {
+        this.id_kamar = id_kamar;
+    }
+
+    public int getJumlah_rating() {
+        return jumlah_rating;
+    }
+
+    public void setJumlah_rating(int jumlah_rating) {
+        this.jumlah_rating = jumlah_rating;
+    }
+
+    private int jumlah_rating;
 
     public int getHarga_minggu() {
         return harga_minggu;

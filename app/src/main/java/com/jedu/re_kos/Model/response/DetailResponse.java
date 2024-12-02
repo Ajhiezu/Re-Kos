@@ -1,6 +1,6 @@
-package com.jedu.re_kos.model.response;
+package com.jedu.re_kos.Model.response;
 
-import com.jedu.re_kos.model.DetailModel;
+import com.jedu.re_kos.Model.DetailModel;
 
 import java.util.List;
 

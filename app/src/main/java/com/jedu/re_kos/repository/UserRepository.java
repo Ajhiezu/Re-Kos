@@ -5,10 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.request.UpdateRequest;
-import com.jedu.re_kos.model.response.UpdateRespon;
-import com.jedu.re_kos.model.response.UserResponse;
+import com.jedu.re_kos.Model.request.UpdateRequest;
+import com.jedu.re_kos.Model.response.UpdateRespon;
+import com.jedu.re_kos.Model.response.UserResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,9 +19,7 @@
         <activity
             android:name=".SemuaKosActivity"
             android:exported="false" />
-        <activity
-            android:name=".Detail.DeailKosActivity"
-            android:exported="false" /> <!-- <activity -->
+       <!-- <activity -->
         <!-- android:name=".Detail.DeailKosActivity" -->
         <!-- android:exported="false" /> -->
         <!-- <activity -->
@@ -65,28 +64,6 @@
 <!--        <activity-->
 <!--            android:name=".Detail.DeailKosActivity"-->
 <!--            android:exported="false" />-->
-        <activity android:name=".Detail.ButtonSewaActivity"
-            android:exported="false"/>
-        <activity android:name=".Notifikasi.NotifikasiActivity"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.KosSaya2Activity"
-            android:exported="false"/>
-        <activity android:name=".Detail.AjukanSewaActivity"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.KosSaya3Activity"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.kostsaya4"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.kostsaya5"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.kostsaya6"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.kostsaya7"
-            android:exported="false"/>
-        <activity android:name=".Kos_Saya.kostsaya8"
-            android:exported="false"/>
-        <activity android:name=".Menu.profil2"
-            android:exported="false"/>
         <activity
             android:name=".Register_Login.RegisterasiActivity"
             android:exported="false" />

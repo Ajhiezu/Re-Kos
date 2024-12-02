@@ -1,14 +1,14 @@
 package com.jedu.re_kos.network;
 
-import com.jedu.re_kos.model.KosModel;
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.LoginRequest;
-import com.jedu.re_kos.model.LoginResponse;
-import com.jedu.re_kos.model.KosModel;
-import com.jedu.re_kos.model.request.UpdateRequest;
-import com.jedu.re_kos.model.response.DetailResponse;
-import com.jedu.re_kos.model.response.UpdateRespon;
-import com.jedu.re_kos.model.response.UserResponse;
+import com.jedu.re_kos.Model.ImageKosResponse;
+import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.Model.LoginRequest;
+import com.jedu.re_kos.Model.LoginResponse;
+import com.jedu.re_kos.Model.request.UpdateRequest;
+import com.jedu.re_kos.Model.response.DetailResponse;
+import com.jedu.re_kos.Model.response.PembayaranResponse;
+import com.jedu.re_kos.Model.response.UpdateRespon;
+import com.jedu.re_kos.Model.response.UserResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -31,9 +31,23 @@ public interface ApiService {
     @GET("best")Call<KosModel> bestkos();
     @GET("terdekat")Call<KosModel> kosterdekat();
 
+    @GET("getImageKos/{id}")
+    Call<ImageKosResponse> getImageKos(@Path("id") String id);
+
 
     @POST("update")
     Call<UpdateRespon> updateUser(@Body UpdateRequest updateRequest);
+
+    @Multipart
+    @POST("pembayaran")
+    Call<PembayaranResponse> konfirmPay(
+            @Part("id_user") RequestBody idUser,
+            @Part("id_kamar") RequestBody idKamar,
+            @Part("id_kos") RequestBody idKos,
+            @Part("harga") RequestBody harga,
+            @Part("waktu_penyewaan") RequestBody waktuSewa,
+            @Part MultipartBody.Part buktiPembayaran
+    );
 
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);

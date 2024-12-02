@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.jedu.re_kos.model.LoginResponse;
-import com.jedu.re_kos.model.response.DetailResponse;
+import com.jedu.re_kos.Model.response.DetailResponse;
+import com.jedu.re_kos.Model.response.PembayaranResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 
@@ -14,6 +14,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,6 +46,34 @@ public class DetailRepository {
             }
         });
         return detailResponse;
+    }
+
+    public MutableLiveData<PembayaranResponse> konfirmPay(
+            RequestBody idUser,
+            RequestBody idKamar,
+            RequestBody idKos,
+            RequestBody harga,
+            RequestBody waktuSewa,
+            MultipartBody.Part buktiPembayaran
+    ) {
+        MutableLiveData<PembayaranResponse> pembayaranResponse = new MutableLiveData<>();
+        apiService.konfirmPay(idUser,idKamar, idKos, harga, waktuSewa, buktiPembayaran)
+                .enqueue(new Callback<PembayaranResponse>() {
+                    @Override
+                    public void onResponse(Call<PembayaranResponse> call, Response<PembayaranResponse> response) {
+                        if (response.isSuccessful()) {
+                            pembayaranResponse.postValue(response.body());
+                        } else {
+                            Log.e("Api Error", "Error respon: " + response.errorBody().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PembayaranResponse> call, Throwable t) {
+                        Log.e("Pembayaran", "Gagal melakukan pembayaran", t);
+                    }
+                });
+        return pembayaranResponse;
     }
 
     private void handleErrorResponse(Response<DetailResponse> response, MutableLiveData<DetailResponse> detailResponse) {

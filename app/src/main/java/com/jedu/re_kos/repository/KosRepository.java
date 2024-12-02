@@ -4,16 +4,13 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.gson.Gson;
-import com.jedu.re_kos.model.KosModel;
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

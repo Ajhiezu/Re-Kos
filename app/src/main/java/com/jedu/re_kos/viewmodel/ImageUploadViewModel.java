@@ -2,24 +2,18 @@ package com.jedu.re_kos.viewmodel;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.model.ProfileImageResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
-import com.jedu.re_kos.repository.ImageRepository;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

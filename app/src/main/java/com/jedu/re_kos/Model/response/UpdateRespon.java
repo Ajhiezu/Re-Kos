@@ -1,4 +1,4 @@
-package com.jedu.re_kos.model.response;
+package com.jedu.re_kos.Model.response;
 
 public class UpdateRespon {
     public String getStatus() {

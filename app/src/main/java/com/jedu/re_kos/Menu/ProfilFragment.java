@@ -31,8 +31,8 @@ import java.io.File;
 
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Register_Login.LoginActivity;
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.UserModel;
+import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.Model.UserModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
 

@@ -14,14 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.jedu.re_kos.Detail.AjukanSewaActivity;
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.model.DataModel;
+import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.viewmodel.DataViewModel;
-import com.jedu.re_kos.model.LoginResponse;
-
-import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
     private DataViewModel viewModel;

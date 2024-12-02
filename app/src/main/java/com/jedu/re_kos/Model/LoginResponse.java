@@ -1,11 +1,9 @@
-package com.jedu.re_kos.model;
-
-import com.google.gson.annotations.SerializedName;
+package com.jedu.re_kos.Model;
 
 public class LoginResponse {
     private String status;
     private String message;
-    private com.jedu.re_kos.model.DataModel data;
+    private com.jedu.re_kos.Model.DataModel data;
 
     // Getters and Setters
     public String getStatus() {
@@ -24,11 +22,11 @@ public class LoginResponse {
         this.message = message;
     }
 
-    public com.jedu.re_kos.model.DataModel getData() {
+    public com.jedu.re_kos.Model.DataModel getData() {
         return data;
     }
 
-    public void setData(com.jedu.re_kos.model.DataModel data) {
+    public void setData(com.jedu.re_kos.Model.DataModel data) {
         this.data = data;
     }
 }
