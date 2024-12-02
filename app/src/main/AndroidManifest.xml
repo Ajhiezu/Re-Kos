@@ -16,9 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
+
+        <!-- Menambahkan metadata untuk Google Sign-In -->
+        <meta-data
+            android:name="com.google.android.gms.auth.api.signin.CLIENT_ID"
+            android:value="@string/default_web_client_id" />
+
+        <!-- Aktivitas lainnya -->
         <activity
             android:name=".SemuaKosActivity"
             android:exported="false" />
+
        <!-- <activity -->
         <!-- android:name=".Detail.DeailKosActivity" -->
         <!-- android:exported="false" /> -->
@@ -81,10 +89,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>

@@ -28,18 +28,13 @@ public class ImageUploadViewModel extends ViewModel {
     private MutableLiveData<Bitmap> imageData = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
     private final MutableLiveData<Boolean> uploadStatus = new MutableLiveData<>();
-
-//    public ImageUploadViewModel(ImageRepository repository) {
-//        this.imageRepository = repository;
-//    }
-
+    
     public void fetchImage(String userId) {
         ApiService apiService = RetrofitInstance.createService(ApiService.class);
         apiService.getUserProfileImage(userId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Convert ResponseBody to Bitmap
                     Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream());
                     imageData.setValue(bitmap);  // Set the Bitmap in LiveData
                 } else {
@@ -81,13 +76,11 @@ public class ImageUploadViewModel extends ViewModel {
                         String responseString = response.body().string();
                         JSONObject jsonResponse = new JSONObject(responseString);
                         String status = jsonResponse.getString("status");
-                        String message = jsonResponse.getString("message");
-                        Log.d("Illham", message);
-//                        if ("success".equals(status)) {
-//                            fetchImage(userId);
-//                        } else {
-//                            Log.e("UploadError", "Failed to upload image: " + status);
-//                        }
+                        if ("success".equals(status)) {
+                            fetchImage(String.valueOf(userId));
+                        } else {
+                            Log.e("UploadError", "Failed to upload image: " + status);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
