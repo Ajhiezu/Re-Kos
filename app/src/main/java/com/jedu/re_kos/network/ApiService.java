@@ -25,7 +25,6 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     @GET("data/{id}")
-    //Call<DataModel> getDataById(@Path("id") int id);
     Call<UserResponse> getDataById(@Path("id") int id);
     @GET("kos")Call<KosModel> kos();
     @GET("best")Call<KosModel> bestkos();

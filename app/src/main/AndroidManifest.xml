@@ -26,14 +26,6 @@
             android:name=".SemuaKosActivity"
             android:exported="false" />
         <activity
-            android:name=".Detail.DetailKosActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".Detail.DeailKosActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".Detail.DeailKosActivity" -->
-        <!-- android:exported="false" /> -->
-        <activity
             android:name=".Detail.ButtonSewaActivity"
             android:exported="false" />
         <activity
