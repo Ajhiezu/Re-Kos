@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -34,13 +36,15 @@ import com.jedu.re_kos.Adapter.ViewPageAdapter;
 import com.jedu.re_kos.Menu.CariFragment;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Register_Login.RegisterasiActivity;
+import com.jedu.re_kos.model.DetailModel;
+import com.jedu.re_kos.viewmodel.DetailViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DetailKosFragment extends Fragment {
 
-    private TextView textViewDeskripsiProperti1, textViewLihatSemua1;
+    private TextView textViewDeskripsiProperti1, textViewLihatSemua1, namakos,lokasi,rating,riview,tersedia,harga;
     private TextView textViewDeskripsiProperti2, textViewLihatSemua2;
     private boolean isExpanded1 = false;
     private boolean isExpanded2 = false;
@@ -52,6 +56,8 @@ public class DetailKosFragment extends Fragment {
     private RecyclerView recyclerView;
     private FasilitasKosAdapter fasilitasKosAdapter;
     private List<Fasilitas> fasilitasList;
+    private DetailModel detailModel;
+    private DetailViewModel detailViewModel;
 
     @Nullable
     @Override
@@ -64,26 +70,72 @@ public class DetailKosFragment extends Fragment {
 
         // Isi data fasilitas
         fasilitasList = new ArrayList<>();
-        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
-        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("WiFi", R.drawable.wifi));
+//        fasilitasList.add(new Fasilitas("Parkir", R.drawable.wifi));
+//        fasilitasList.add(new Fasilitas("AC", R.drawable.ac));
+//        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("WiFi", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("Parkir", R.drawable.baseline_bathtub_24));
+//        fasilitasList.add(new Fasilitas("AC", R.drawable.baseline_bathtub_24));
         // Tambahkan data lainnya sesuai kebutuhan
 
         fasilitasKosAdapter = new FasilitasKosAdapter(fasilitasList);
         recyclerView.setAdapter(fasilitasKosAdapter);
 
         SlideViewPager = view.findViewById(R.id.imageKos);
+        //findbyid
+        detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
+        namakos=view.findViewById(R.id.namakosdetail);
+        lokasi = view.findViewById(R.id.textViewLokasi);
+        rating = view.findViewById(R.id.textView13);
+        riview = view.findViewById(R.id.textView15);
+        tersedia = view.findViewById(R.id.textView16);
+        harga = view.findViewById(R.id.textView17);
+
+
         DotLayout = view.findViewById(R.id.dotslideKos);
         fotoKosAdapter = new FotoKosAdapter(requireContext());
+
+
+        detailViewModel.getDetail(2024115250).observe(getViewLifecycleOwner(), detailResponse -> {
+            if (detailResponse != null) {
+                if ("success".equals(detailResponse.getStatus())) {
+                    DetailModel detailModel = detailResponse.getDetailModel();
+                    if (detailModel != null) {
+                        namakos.setText(detailModel.getNama_kos() != null ? detailModel.getNama_kos() : "");
+                        lokasi.setText(detailModel.getAlamat() != null ? detailModel.getAlamat() : "");
+                        rating.setText(detailModel.getRating_kamar() != null ? String.valueOf(detailModel.getRating_kamar()) : "");
+                        if (detailModel != null) {
+                            int jumlahRating = detailModel.getJumlah_rating();
+                            riview.setText(jumlahRating > 0 ? "(" + jumlahRating + " review)" : "(No reviews)");
+                        } else {
+                            riview.setText("(No reviews)");
+                        }
+
+                        if (detailModel != null) {
+                            int harga_bulan = detailModel.getHarga_bulan();
+                            harga.setText(harga_bulan > 0 ? "RP. " + harga_bulan : "(No Harga)");
+                        } else {
+                            harga.setText("(No Harga)");
+                        }
+                        tersedia.setText(detailModel.getKamar_tersedia() != 0 ? String.valueOf(detailModel.getKamar_tersedia()) : "Tidak tersedia");
+                        textViewDeskripsiProperti1.setText(detailModel.getPeraturan_kos() != null ? detailModel.getPeraturan_kos():"");
+                        textViewDeskripsiProperti2.setText(detailModel.getKos_deskripsi() != null ? detailModel.getKos_deskripsi():"");
+
+                        fasilitasList = detailModel.getFasilitasList();
+                        fasilitasKosAdapter.setFasilitasList(fasilitasList);
+                        fasilitasKosAdapter.notifyDataSetChanged();
+                    } else {
+                        Log.e("DETAIL_MODEL", "DetailModel is null");
+                    }
+                }
+            }
+        });
 
         SlideViewPager.setAdapter(fotoKosAdapter);
 
