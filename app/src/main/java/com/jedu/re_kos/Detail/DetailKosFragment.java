@@ -99,7 +99,7 @@ public class DetailKosFragment extends Fragment {
 
 
         DotLayout = view.findViewById(R.id.dotslideKos);
-        fotoKosAdapter = new FotoKosAdapter(requireContext());
+        //fotoKosAdapter = new FotoKosAdapter(requireContext());
 
 
         detailViewModel.getDetail(2024115250).observe(getViewLifecycleOwner(), detailResponse -> {

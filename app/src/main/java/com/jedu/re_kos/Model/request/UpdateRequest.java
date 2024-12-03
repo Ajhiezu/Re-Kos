@@ -1,8 +1,4 @@
-package com.jedu.re_kos.model.request;
-
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+package com.jedu.re_kos.Model.request;
 
 public class UpdateRequest {
     private String name;

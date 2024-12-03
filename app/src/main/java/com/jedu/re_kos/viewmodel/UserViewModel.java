@@ -3,10 +3,9 @@ package com.jedu.re_kos.viewmodel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.model.UserModel;
-import com.jedu.re_kos.model.request.UpdateRequest;
-import com.jedu.re_kos.model.response.UpdateRespon;
-import com.jedu.re_kos.model.response.UserResponse;
+import com.jedu.re_kos.Model.request.UpdateRequest;
+import com.jedu.re_kos.Model.response.UpdateRespon;
+import com.jedu.re_kos.Model.response.UserResponse;
 import com.jedu.re_kos.repository.UserRepository;
 
 public class UserViewModel extends ViewModel {

@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -24,23 +23,19 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
 import com.jedu.re_kos.Domain.kosDomain;
-import com.jedu.re_kos.model.KosModel;
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.SemuaKosActivity;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
 //import com.jedu.re_kos.factory.ViewModelFactory;
-import com.jedu.re_kos.repository.KosRepository;
 import com.jedu.re_kos.viewmodel.KosViewModel;
-import com.jedu.re_kos.model.DataModel;
+import com.jedu.re_kos.Model.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;

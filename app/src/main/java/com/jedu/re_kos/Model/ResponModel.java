@@ -1,4 +1,4 @@
-package com.jedu.re_kos.model;
+package com.jedu.re_kos.Model;
 
 import java.util.List;
 

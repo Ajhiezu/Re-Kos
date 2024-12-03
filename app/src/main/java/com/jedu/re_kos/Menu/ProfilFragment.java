@@ -31,8 +31,8 @@ import java.io.File;
 
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Register_Login.LoginActivity;
-import com.jedu.re_kos.model.DataModel;
-import com.jedu.re_kos.model.UserModel;
+import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.Model.UserModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
 
@@ -133,27 +133,6 @@ public class ProfilFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
-            Uri imageUri = data.getData();
-            if (imageUri != null) {
-                imageView.setImageURI(imageUri);  // Display the selected image in ImageView
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-                // Convert URI to file and upload it
-                String imagePath = getRealPathFromURI(imageUri);
-                if (imagePath != null) {
-                    File imageFile = new File(imagePath);
-                    int userId = getUserId();
-                    // Call the uploadImage method using the ViewModel instance
-                    imageViewModel.uploadImage(imageFile, userId);
-                }
-            }
-        }
-    }
-
     private void showImageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle("Image Options");
@@ -165,9 +144,6 @@ public class ProfilFragment extends Fragment {
                 case 0: // View Image
                     showFullScreenImage();
                     break;
-//                case 1: // Upload New Image
-//                    pickImage();
-//                    break;
             }
         });
 
@@ -183,12 +159,6 @@ public class ProfilFragment extends Fragment {
         fullScreenDialog.setContentView(fullScreenImageView);
         fullScreenDialog.show();
     }
-
-//    private void pickImage() {
-//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
-//    }
-
 
     private String getRealPathFromURI(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
