@@ -52,12 +52,15 @@ public class DetailRepository {
             RequestBody idUser,
             RequestBody idKamar,
             RequestBody idKos,
+            RequestBody totalKamar,
+            RequestBody durasi,
             RequestBody harga,
+            RequestBody tanggalPenyewaan,
             RequestBody waktuSewa,
             MultipartBody.Part buktiPembayaran
     ) {
         MutableLiveData<PembayaranResponse> pembayaranResponse = new MutableLiveData<>();
-        apiService.konfirmPay(idUser,idKamar, idKos, harga, waktuSewa, buktiPembayaran)
+        apiService.konfirmPay(idUser,idKamar, idKos,totalKamar, durasi,harga,tanggalPenyewaan, waktuSewa, buktiPembayaran)
                 .enqueue(new Callback<PembayaranResponse>() {
                     @Override
                     public void onResponse(Call<PembayaranResponse> call, Response<PembayaranResponse> response) {

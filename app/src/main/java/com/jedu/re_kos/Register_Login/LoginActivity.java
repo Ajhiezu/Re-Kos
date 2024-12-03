@@ -23,7 +23,7 @@ import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.viewmodel.DataViewModel;
-import com.jedu.re_kos.model.LoginResponse;
+import com.jedu.re_kos.Model.LoginResponse;
 
 public class LoginActivity extends AppCompatActivity {
     private DataViewModel viewModel;

@@ -44,7 +44,10 @@ public interface ApiService {
             @Part("id_user") RequestBody idUser,
             @Part("id_kamar") RequestBody idKamar,
             @Part("id_kos") RequestBody idKos,
+            @Part("totalkamar") RequestBody totalKamar,
+            @Part("durasi") RequestBody durasi,
             @Part("harga") RequestBody harga,
+            @Part("tanggal_penyewaan") RequestBody tanggalPenyewaan,
             @Part("waktu_penyewaan") RequestBody waktuSewa,
             @Part MultipartBody.Part buktiPembayaran
     );
