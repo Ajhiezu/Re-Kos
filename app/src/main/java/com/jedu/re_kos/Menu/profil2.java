@@ -182,6 +182,8 @@ public class profil2 extends AppCompatActivity {
             Uri imageUri = data.getData();
 
             filepath = imageUri;
+
+            imgprofil.setImageURI(imageUri);
         }
     }
 
