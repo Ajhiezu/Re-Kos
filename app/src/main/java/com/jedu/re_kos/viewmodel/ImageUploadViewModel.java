@@ -28,6 +28,11 @@ public class ImageUploadViewModel extends ViewModel {
     private MutableLiveData<Bitmap> imageData = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
     private final MutableLiveData<Boolean> uploadStatus = new MutableLiveData<>();
+    String status;
+
+    public String getStatus(){
+        return this.status;
+    }
     
     public void fetchImage(String userId) {
         ApiService apiService = RetrofitInstance.createService(ApiService.class);
@@ -75,7 +80,7 @@ public class ImageUploadViewModel extends ViewModel {
                     try {
                         String responseString = response.body().string();
                         JSONObject jsonResponse = new JSONObject(responseString);
-                        String status = jsonResponse.getString("status");
+                        status = jsonResponse.getString("status");
                         if ("success".equals(status)) {
                             fetchImage(String.valueOf(userId));
                         } else {
