@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.jedu.re_kos.Adapter.chatAdapter;
 import com.jedu.re_kos.Model.Chat;

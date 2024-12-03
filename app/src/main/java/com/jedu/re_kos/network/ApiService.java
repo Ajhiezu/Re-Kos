@@ -1,10 +1,14 @@
 package com.jedu.re_kos.network;
 
+import com.jedu.re_kos.Model.ImageKosResponse;
 import com.jedu.re_kos.Model.KosModel;
-import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.Model.LoginRequest;
 import com.jedu.re_kos.Model.LoginResponse;
-import com.jedu.re_kos.Model.ProfileImageResponse;
+import com.jedu.re_kos.Model.request.UpdateRequest;
+import com.jedu.re_kos.Model.response.DetailResponse;
+import com.jedu.re_kos.Model.response.PembayaranResponse;
+import com.jedu.re_kos.Model.response.UpdateRespon;
+import com.jedu.re_kos.Model.response.UserResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -21,8 +25,29 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     @GET("data/{id}")
-    Call<DataModel> getDataById(@Path("id") int id);
-@GET("kos")Call<KosModel> kos();
+    Call<UserResponse> getDataById(@Path("id") int id);
+    @GET("kos")Call<KosModel> kos();
+    @GET("best")Call<KosModel> bestkos();
+    @GET("terdekat")Call<KosModel> kosterdekat();
+
+    @GET("getImageKos/{id}")
+    Call<ImageKosResponse> getImageKos(@Path("id") String id);
+
+
+    @POST("update")
+    Call<UpdateRespon> updateUser(@Body UpdateRequest updateRequest);
+
+    @Multipart
+    @POST("pembayaran")
+    Call<PembayaranResponse> konfirmPay(
+            @Part("id_user") RequestBody idUser,
+            @Part("id_kamar") RequestBody idKamar,
+            @Part("id_kos") RequestBody idKos,
+            @Part("harga") RequestBody harga,
+            @Part("waktu_penyewaan") RequestBody waktuSewa,
+            @Part MultipartBody.Part buktiPembayaran
+    );
+
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
@@ -35,4 +60,15 @@ public interface ApiService {
             @Part MultipartBody.Part file,
             @Part("user_id") RequestBody userId
     );
+
+//    @GET("kos")
+//    Call<KosModel.KostData> kos();
+
+    @GET("detail/{id}")
+    Call<DetailResponse>getDetailKos(@Path("id") int id);
+
+    @FormUrlEncoded
+    @POST("allkos")
+    Call<KosModel> AllKos(@Field("lokasi") String lokasi, @Field("hargaawal") String harga_awal, @Field("hargaakhir") String harga_akhir);
+
 }

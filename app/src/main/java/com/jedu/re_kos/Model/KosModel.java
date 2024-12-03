@@ -49,7 +49,6 @@ public class KosModel {
         private String tipe_kamar;
         private Integer kamar_tersedia;
         private String waktu_penyewaan;
-        private Integer id_Kos;
         private Double rata_rata_rating;
 
         // Getter dan Setter
@@ -229,13 +228,6 @@ public class KosModel {
             this.waktu_penyewaan = waktu_penyewaan;
         }
 
-        public Integer getId_Kos() {
-            return id_Kos;
-        }
-
-        public void setId_Kos(Integer id_Kos) {
-            this.id_Kos = id_Kos;
-        }
 
         public Double getRata_rata_rating() {
             return rata_rata_rating;
@@ -246,5 +238,3 @@ public class KosModel {
         }
     }
 }
-
-

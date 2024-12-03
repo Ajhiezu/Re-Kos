@@ -19,16 +19,18 @@
             android:orientation="vertical" >
 
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageView"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginTop="24dp"
                 android:layout_gravity="center_horizontal"
                 android:padding="8dp"
-                android:src="@drawable/profil_img" />
+                app:shapeAppearanceOverlay="@style/CircularImage" />
 
 
             <TextView
+                android:id="@+id/namalengkap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Lengkap"
@@ -48,66 +50,83 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp">
 
-                <EditText
+                <TextView
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Example@gmail.com"
-                    android:inputType="textEmailAddress"
+                    android:inputType="none"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_gender"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:hint="Jenis Kelamin"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/editText_birthdate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tanggal Lahir"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"
                     android:focusable="false"
                     android:clickable="true"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mahasiswa"
+                    android:hint="Pekerjaan"
+                    android:inputType="none"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/instansi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Politeknik Negeri Jember"
+                    android:hint="Instansi"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Bondowoso"
+                    android:hint="Alamat"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:inputType="none"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/nomortelephon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="087282837384738"
-                    android:inputType="phone"
+                    android:hint="No Telephon"
+                    android:inputType="none"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/black"
+                    android:layout_marginTop="14dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,11 +140,17 @@
 
                         <Button
                             android:id="@+id/lanjut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="48dp"
                             android:layout_gravity="end"
+                            android:layout_marginTop="14dp"
+                            android:text="Edit"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textColor="@color/white"
                             android:background="@drawable/rounded_dark_button"
-                            android:drawableEnd="@drawable/ic_arrow_forward"
+                            android:drawableRight="@drawable/ic_arrow_forward"
+                            android:drawablePadding="-20dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -145,9 +170,17 @@
                 android:background="@drawable/rounded_button_outline"
                 android:textColor="#4E4E4E"
                 android:layout_marginTop="16dp"/>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center" />
+
 
             <!-- Tombol Logout Akun -->
             <Button
+                android:id="@+id/button_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -156,6 +189,7 @@
                 android:background="@drawable/rounded_button_outline"
                 android:drawableStart="@drawable/logout"
                 android:padding="12dp"
+                android:layout_marginBottom="24dp"
                 android:text="Logout Akun"
                 android:textColor="#4E4E4E"
                 android:textStyle="bold" />

@@ -18,23 +18,15 @@
             android:orientation="vertical" >
 
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_profil"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/profil_img"
+                android:layout_marginTop="24dp"
                 android:layout_gravity="center_horizontal"
-                android:padding="8dp" />
+                android:padding="8dp"
+                app:shapeAppearanceOverlay="@style/CircularImage" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Lengkap"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:textColor="#4E4E4E"
-                android:layout_marginTop="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,70 +34,110 @@
                 android:orientation="vertical"
                 android:background="@drawable/rounded_border"
                 android:padding="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="26dp">
                 <EditText
+                    android:id="@+id/nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Lengkap"
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/rounded_edit_text"
+                    android:padding="12dp"
+                    android:textColor="#2C3333"
+                    android:textColorHint="#B2B2B2"
+                    android:layout_marginTop="14dp"/>
+                <EditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Example@gmail.com"
                     android:inputType="textEmailAddress"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Laki-Laki"
-                    android:background="@drawable/rounded_edit_text"
-                    android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_height="match_parent"
+                    android:hint="@string/selectGender"
+                    android:layout_marginTop="14dp"
+                    android:textColorHint="#5F5F5F"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    >
+
+                    <AutoCompleteTextView
+                        android:id="@+id/gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:inputType="none"
+                        android:textColor="#5F5F5F"
+                        android:backgroundTint="@android:color/transparent"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <EditText
+                    android:id="@+id/tanggalLahir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tanggal Lahir"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
                 <EditText
+                    android:id="@+id/pekerjaan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mahasiswa"
+                    android:hint="Pekerjaan"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
                 <EditText
+                    android:id="@+id/instansi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Politeknik Negeri Jember"
+                    android:hint="Instansi"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
                 <EditText
+                    android:id="@+id/alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Bondowoso"
+                    android:hint="Alamat"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
                 <EditText
+                    android:id="@+id/notelephone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="087282837384738"
+                    android:hint="No Telephone"
                     android:inputType="phone"
                     android:background="@drawable/rounded_edit_text"
                     android:padding="12dp"
-                    android:layout_marginTop="8dp"/>
+                    android:textColorHint="#B2B2B2"
+                    android:textColor="#2C3333"
+                    android:layout_marginTop="14dp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -122,30 +154,32 @@
 
                         <Button
                             android:id="@+id/button_batal"
-                            android:layout_width="wrap_content"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/button_red"
                             android:text="Batal"
+                            android:layout_marginTop="14dp"
                             android:textColor="@android:color/white"
                             android:paddingStart="16dp"
                             android:paddingEnd="16dp"
+                            android:gravity="center"
                             android:padding="12dp"
-                            android:minHeight="48dp"
-                            android:minWidth="80dp" />
+                            />
 
                         <Button
                             android:id="@+id/button_simpan"
-                            android:layout_width="wrap_content"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_blue"
                             android:text="Simpan"
+                            android:gravity="center"
+                            android:layout_marginTop="14dp"
                             android:textColor="@android:color/white"
                             android:paddingStart="16dp"
                             android:paddingEnd="16dp"
                             android:padding="12dp"
-                            android:minHeight="48dp"
-                            android:minWidth="80dp" />
+                           />
 
                     </LinearLayout>
 

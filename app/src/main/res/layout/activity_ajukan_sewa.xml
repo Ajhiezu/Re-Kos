@@ -97,13 +97,13 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/NamaKos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Kost Aisyah Plaju, Palembang"
+                        android:text="Nama Kos"
                         android:textColor="#2C3333"
                         android:textSize="18sp" />
 
@@ -139,8 +139,8 @@
                                         app:srcCompat="@drawable/baseline_location" />
 
                                     <TextView
-                                        android:id="@+id/textViewLokasi"
-                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lokasiajukansewa"
+                                        android:layout_width="150dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="10dp"
                                         android:fontFamily="@font/robotoregular"
@@ -149,7 +149,7 @@
                                         android:textSize="16dp" />
 
                                     <TextView
-                                        android:id="@+id/textView17"
+                                        android:id="@+id/hargaajukansewa"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
@@ -177,7 +177,7 @@
                                         app:srcCompat="@drawable/baseline_star_24" />
 
                                     <TextView
-                                        android:id="@+id/textView13"
+                                        android:id="@+id/ratingajukansewa"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="3dp"
@@ -188,7 +188,7 @@
                                         android:textSize="16dp" />
 
                                     <TextView
-                                        android:id="@+id/textView15"
+                                        android:id="@+id/reviewajukansewa"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="5dp"
@@ -198,7 +198,7 @@
                                         android:textSize="16dp" />
 
                                     <TextView
-                                        android:id="@+id/textView18"
+                                        android:id="@+id/waktupenyewaanajukansewa"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginRight="16dp"
@@ -224,7 +224,7 @@
                                         app:srcCompat="@drawable/baseline_check_circle_24" />
 
                                     <TextView
-                                        android:id="@+id/textView16"
+                                        android:id="@+id/tersediaajukansewa"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="4dp"
@@ -367,19 +367,19 @@
                                 android:layout_height="match_parent">
 
                                 <TextView
-                                    android:id="@+id/textView12"
+                                    android:id="@+id/txthargarinci"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="16dp"
                                     android:fontFamily="@font/robotomedium"
-                                    android:text="Kos 1 Bulan"
+                                    android:text="Harga Kos"
                                     android:textColor="#868686"
                                     android:textSize="14sp"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <TextView
-                                    android:id="@+id/textView27"
+                                    android:id="@+id/rincianhargakos"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="16dp"
@@ -387,6 +387,7 @@
                                     android:text="Rp 1.000.000"
                                     android:textColor="#797979"
                                     android:textSize="14sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
                             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -420,7 +421,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="16dp"
                                     android:fontFamily="@font/robotomedium"
-                                    android:text="Rp 5.000"
+                                    android:text="Rp 2500"
                                     android:textColor="#797979"
                                     android:textSize="14sp"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -439,12 +440,12 @@
                                 android:layout_height="match_parent">
 
                                 <TextView
-                                    android:id="@+id/textView30"
+                                    android:id="@+id/totalharga"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="16dp"
                                     android:fontFamily="@font/robotobold"
-                                    android:text="Kos 1 Bulan"
+                                    android:text="Total"
                                     android:textColor="#000000"
                                     android:textSize="14sp"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -467,6 +468,14 @@
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:id="@+id/imageViewPreview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="visible" />
+
                     <Button
                         android:id="@+id/buttonPilihPembayaran"
                         android:layout_width="match_parent"
@@ -480,7 +489,7 @@
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="16dp"/>
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/btnkonfirmasi"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:text="Konfirmasi Pesanan"

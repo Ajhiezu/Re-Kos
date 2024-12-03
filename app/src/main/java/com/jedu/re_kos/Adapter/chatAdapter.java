@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.Model.Chat;
 import com.jedu.re_kos.PesanActivity;
 import com.jedu.re_kos.R;
