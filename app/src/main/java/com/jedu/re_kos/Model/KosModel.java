@@ -7,7 +7,7 @@ import java.util.List;
 
 public class KosModel {
     private String status;
-    private KostData data;
+     private List<KostData> data;
 
     // Getter dan Setter
     public String getStatus() {
@@ -18,11 +18,11 @@ public class KosModel {
         this.status = status;
     }
 
-    public KostData getData() {
+    public List<KostData> getData() {
         return data;
     }
 
-    public void setData(KostData data) {
+    public void setData(List<KostData> data) {
         this.data = data;
     }
 

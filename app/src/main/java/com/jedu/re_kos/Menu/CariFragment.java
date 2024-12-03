@@ -25,6 +25,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
@@ -33,10 +34,10 @@ import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
-import com.jedu.re_kos.factory.ViewModelFactory;
+//import com.jedu.re_kos.factory.ViewModelFactory;
 import com.jedu.re_kos.repository.KosRepository;
 import com.jedu.re_kos.viewmodel.KosViewModel;
-import com.jedu.re_kos.model.DataModel;
+import com.jedu.re_kos.Model.DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,25 +145,19 @@ public class CariFragment extends Fragment {
             }
         });
 
+
         // Inisialisasi RecyclerView
-//        initRecyclerView();
-        // Inisialisasi RecyclerView
+        KosViewModel kosViewModel = new KosViewModel();
         RecyclerView recyclerView = binding.getRoot().findViewById(R.id.kos_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         adapter = new kosAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
-
-        // Inisialisasi ViewModel
-//        ApiService apiService = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
-        KosRepository repository = new KosRepository();
-        viewModel = new ViewModelProvider(this, new ViewModelFactory(repository)).get(KosViewModel.class);
-
-        // Observasi data dari ViewModel
-        viewModel.getKos().observe(getActivity(), kostDetails -> {
-            if (kostDetails != null) {
-                adapter.setKostList(List.of(kostDetails));
+        kosViewModel.getKosLiveData().observe(getViewLifecycleOwner(), data -> {
+            if (data != null) {
+                adapter.setKostList(data);
             }
         });
+
         return binding.getRoot();
     }
 

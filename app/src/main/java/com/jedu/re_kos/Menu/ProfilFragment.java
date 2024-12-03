@@ -34,7 +34,7 @@ import java.util.Calendar;
 
 import com.bumptech.glide.Glide;
 import com.jedu.re_kos.R;
-import com.jedu.re_kos.model.DataModel;
+import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 
 public class ProfilFragment extends Fragment {
