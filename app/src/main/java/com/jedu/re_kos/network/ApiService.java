@@ -38,7 +38,7 @@ public interface ApiService {
     @POST("update")
     Call<UpdateRespon> updateUser(@Body UpdateRequest updateRequest);
 
-    @Headers({"Accept: application/json", "Content-Type: multipart/form-data"})
+//    @Headers({"Accept: application/json", "Content-Type: multipart/form-data"})
     @Multipart
     @POST("pembayaran")
     Call<PembayaranResponse> konfirmPay(
