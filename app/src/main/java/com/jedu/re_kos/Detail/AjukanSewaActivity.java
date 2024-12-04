@@ -94,7 +94,6 @@ public class AjukanSewaActivity extends AppCompatActivity {
         tersedia = findViewById(R.id.tersediaajukansewa);
         harga = findViewById(R.id.hargaajukansewa);
         waktuPenyewaan = findViewById(R.id.waktupenyewaanajukansewa);
-        int idKos = getIntent().getIntExtra("id_kos", -1);
         SlideViewPager = findViewById(R.id.imageKos);
         DotLayout = findViewById(R.id.dotslideKos);
         rincianharga = findViewById(R.id.rincianhargakos);
@@ -106,6 +105,7 @@ public class AjukanSewaActivity extends AppCompatActivity {
         editTextTanggalPemesananDay = findViewById(R.id.editTextTanggalPemesananDay);
         TextTanggalPemesananDay = findViewById(R.id.textView20Day);
         durasiSewa = findViewById(R.id.autoCompleteTextView);
+        int idKos = getIntent().getIntExtra("id_kos", -1);
 
         if (idKos != -1) {
             // Panggil detailViewModel.getDetail dengan id_kos
@@ -215,6 +215,9 @@ public class AjukanSewaActivity extends AppCompatActivity {
                                     Toast.makeText(AjukanSewaActivity.this, "Gagal memuat gambar", Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+
+
                         } else {
                             Log.e("DETAIL_MODEL", "DetailModel is null");
                         }
@@ -288,22 +291,22 @@ public class AjukanSewaActivity extends AppCompatActivity {
                 if (validateInputs()) {
                     // Ambil data input
                     int id_user = getUserId();
-                    long idKamar = generateIdKamar();
-                    String hargaString = rincianharga.getText().toString().trim().replace("Rp", "").replace(",", "").replace(" ", "");
-                    int harga = Integer.parseInt(hargaString);
+                    Log.e("id_user", String.valueOf(id_user));
                     int id_kos = getIntent().getIntExtra("id_kos", -1);
+                    String harga = (String) total.getText();
                     String waktu_sewa = editTextTanggalPemesanan.getText().toString().trim();
-                    int JumlahKamar = Integer.parseInt(jumlahkos.getText().toString());
-                    String Durasi = durasiSewa.getText().toString().trim();
+                    int jumlahKamar = Integer.parseInt(jumlahkos.getText().toString());
+                    String durasi = durasiSewa.getText().toString().trim();
 
                     // Hitung jumlah hari berdasarkan durasi
-                    int hari = 0;
-                    if (Durasi.equalsIgnoreCase("Harian")) {
-                        hari = 1;
-                    } else if (Durasi.equalsIgnoreCase("Mingguan")) {
-                        hari = 7;
-                    } else if (Durasi.equalsIgnoreCase("Bulanan")) {
-                        hari = 30;
+                    int hari = durasi.equalsIgnoreCase("Harian") ? 1 :
+                            durasi.equalsIgnoreCase("Mingguan") ? 7 :
+                                    durasi.equalsIgnoreCase("Bulanan") ? 30 : 0;
+
+                    // Validasi durasi
+                    if (hari == 0) {
+                        Toast.makeText(this, "Durasi tidak valid", Toast.LENGTH_SHORT).show();
+                        return;
                     }
 
                     // Hitung tanggal berdasarkan hari
@@ -321,38 +324,61 @@ public class AjukanSewaActivity extends AppCompatActivity {
                         return; // Keluar jika format tanggal salah
                     }
 
-                    // Konversi file URI ke MultipartBody.Part
-                    MultipartBody.Part buktiPembayaran = prepareFilePart("buktiPembayaran", selectedFileUri);
+                    // Ambil ID kamar dari ViewModel
+                    detailViewModel.getDetail(id_kos).observe(this, detailResponse -> {
+                        if (detailResponse != null && "success".equals(detailResponse.getStatus())) {
+                            DetailModel detailModel = detailResponse.getDetailModel();
+                            if (detailModel != null) {
+                                int idKamar = detailModel.getId_kamar();
 
-                    // RequestBody untuk data lainnya
-                    RequestBody idUserPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_user));
-                    RequestBody idKamarPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(idKamar));
-                    RequestBody hargaPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(harga));
-                    RequestBody idKosPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_kos));
-                    RequestBody totalKamar = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(JumlahKamar));
-                    RequestBody durasiPart = RequestBody.create(MediaType.parse("text/plain"), Durasi);
-                    RequestBody tanggalPart = RequestBody.create(MediaType.parse("text/plain"), tanggalAkhirString);
-                    RequestBody waktuSewaPart = RequestBody.create(MediaType.parse("text/plain"), waktu_sewa);
+                                // Konversi file URI ke MultipartBody.Part
+                                MultipartBody.Part buktiPembayaran = prepareFilePart("buktiPembayaran", selectedFileUri);
 
-                    // Kirim permintaan pembayaran ke server
-                    detailViewModel.konfirmPay(idUserPart, idKamarPart, idKosPart, totalKamar, durasiPart, hargaPart, tanggalPart, waktuSewaPart, buktiPembayaran)
-                            .observe(this, pembayaranResponse -> {
-                                if (pembayaranResponse != null && "success".equals(pembayaranResponse.getStatus())) {
-                                    // Tampilkan notifikasi sukses
-                                    Toast.makeText(this, "Pembayaran berhasil dikonfirmasi!", Toast.LENGTH_SHORT).show();
-                                    // Pindah ke layar utama
-                                    Intent intent = new Intent(this, MainActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    // Tampilkan pesan kesalahan
-                                    Toast.makeText(this, "Gagal mengonfirmasi pembayaran. Coba lagi!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                // RequestBody untuk data lainnya
+                                RequestBody idUserPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_user));
+                                Log.e("idUser", String.valueOf(id_user));
+                                RequestBody idKamarPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(idKamar));
+                                Log.e("idKamar", String.valueOf(idKamar));
+                                RequestBody hargaPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(harga));
+                                Log.e("harga", String.valueOf(harga));
+                                RequestBody idKosPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_kos));
+                                Log.e("idkos", String.valueOf(id_kos));
+                                RequestBody totalKamar = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(jumlahKamar));
+                                Log.e("totalkamar", String.valueOf(jumlahKamar));
+                                RequestBody durasiPart = RequestBody.create(MediaType.parse("text/plain"), durasi);
+                                Log.e("durasi", (durasi));
+                                RequestBody tanggalPart = RequestBody.create(MediaType.parse("text/plain"), tanggalAkhirString);
+                                Log.e("tanggalpart", (tanggalAkhirString));
+                                RequestBody waktuSewaPart = RequestBody.create(MediaType.parse("text/plain"), waktu_sewa);
+                                Log.e("waktusewa", (waktu_sewa));
+
+                                // Kirim permintaan pembayaran ke server
+                                detailViewModel.konfirmPay(idUserPart, idKamarPart, idKosPart, totalKamar, durasiPart, hargaPart, tanggalPart, waktuSewaPart, buktiPembayaran)
+                                        .observe(this, pembayaranResponse -> {
+                                            if (pembayaranResponse != null && "success".equals(pembayaranResponse.getStatus())) {
+                                                // Tampilkan notifikasi sukses
+                                                Toast.makeText(this, "Pembayaran berhasil dikonfirmasi!", Toast.LENGTH_SHORT).show();
+                                                // Pindah ke layar utama
+                                                Intent intent = new Intent(this, MainActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                // Tampilkan pesan kesalahan
+                                                Toast.makeText(this, pembayaranResponse != null ? pembayaranResponse.getMessage() : "Kesalahan server", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            } else {
+                                Toast.makeText(this, "Detail kamar tidak ditemukan", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Gagal mengambil detail kamar", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             } else {
                 Toast.makeText(this, "Harap pilih dan unggah bukti pembayaran terlebih dahulu!", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
         // Temukan ImageView berdasarkan id
@@ -375,27 +401,6 @@ public class AjukanSewaActivity extends AppCompatActivity {
             // Memulai activity share
             startActivity(Intent.createChooser(shareIntent, "Bagikan melalui"));
         });
-    }
-
-    private long generateIdKamar() {
-        // Mendapatkan tanggal saat ini dalam format yyyyMMdd
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String tanggalSekarang = sdf.format(new Date());
-
-        // Format angka dengan padding tiga digit
-        String angka = String.format("%03d", counter);
-
-        // Gabungkan tanggal dan angka
-        String idKamarString = tanggalSekarang + angka;
-
-        // Perbarui counter dan reset jika melebihi batas maksimal
-        counter++;
-        if (counter > MAX_ID) {
-            counter = 1;
-        }
-
-        // Return sebagai long
-        return Long.parseLong(idKamarString);
     }
 
 private void toggleTanggalVisibility(boolean isVisible) {
