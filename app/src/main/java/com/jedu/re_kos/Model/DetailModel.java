@@ -13,7 +13,6 @@ public class DetailModel {
     private Double rating_kamar;
     private int kamar_tersedia;
     private int harga_bulan;
-<<<<<<< HEAD:app/src/main/java/com/jedu/re_kos/model/DetailModel.java
     private int harga_minggu;
     private int harga_hari;
     private String waktu_penyewaan;
@@ -21,7 +20,7 @@ public class DetailModel {
     private String peraturan_kos;
     private String fasilitas_kos;
     private String kos_deskripsi;
-=======
+
     private int id_kamar;
 
     public int getId_kamar() {
@@ -32,15 +31,6 @@ public class DetailModel {
         this.id_kamar = id_kamar;
     }
 
-    public int getJumlah_rating() {
-        return jumlah_rating;
-    }
-
-    public void setJumlah_rating(int jumlah_rating) {
-        this.jumlah_rating = jumlah_rating;
-    }
-
->>>>>>> refs/remotes/origin/main:app/src/main/java/com/jedu/re_kos/Model/DetailModel.java
     private int jumlah_rating;
 
     // Getters dan Setters

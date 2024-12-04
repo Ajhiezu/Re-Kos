@@ -36,7 +36,7 @@ import com.jedu.re_kos.Adapter.ViewPageAdapter;
 import com.jedu.re_kos.Menu.CariFragment;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Register_Login.RegisterasiActivity;
-import com.jedu.re_kos.model.DetailModel;
+import com.jedu.re_kos.Model.DetailModel;
 import com.jedu.re_kos.viewmodel.DetailViewModel;
 
 import java.util.ArrayList;
