@@ -293,7 +293,8 @@ public class AjukanSewaActivity extends AppCompatActivity {
                     int id_user = getUserId();
                     Log.e("id_user", String.valueOf(id_user));
                     int id_kos = getIntent().getIntExtra("id_kos", -1);
-                    String harga = (String) total.getText();
+                    String harga = total.getText().toString().replace("Rp ", "").trim();
+                    int hargaInt = Integer.parseInt(harga);
                     String waktu_sewa = editTextTanggalPemesanan.getText().toString().trim();
                     int jumlahKamar = Integer.parseInt(jumlahkos.getText().toString());
                     String durasi = durasiSewa.getText().toString().trim();
@@ -339,7 +340,7 @@ public class AjukanSewaActivity extends AppCompatActivity {
                                 Log.e("idUser", String.valueOf(id_user));
                                 RequestBody idKamarPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(idKamar));
                                 Log.e("idKamar", String.valueOf(idKamar));
-                                RequestBody hargaPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(harga));
+                                RequestBody hargaPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(hargaInt));
                                 Log.e("harga", String.valueOf(harga));
                                 RequestBody idKosPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_kos));
                                 Log.e("idkos", String.valueOf(id_kos));
