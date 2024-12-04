@@ -66,7 +66,7 @@ public class AjukanSewaActivity extends AppCompatActivity {
     private TextView editTextTanggalPemesanan,namakos,alamat,rating,review,tersedia,harga,waktuPenyewaan,rincianharga,fee,total,TextTanggalPemesananDay;
     private EditText jumlahkos,editTextTanggalPemesananDay;
     private static final int FILE_SELECT_CODE = 1;
-    private Uri selectedFileUri = null;
+    private Uri selectedFileUri;
     private DetailViewModel detailViewModel;
     private ImageKosViewModel imageKosViewModel;
     private int counter = 1; // Counter untuk auto-increment
@@ -526,6 +526,7 @@ private void toggleTanggalVisibility(boolean isVisible) {
                 // Format tanggal yang dipilih dan set ke EditText
                 String formattedDate = String.format("%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
                 editTextTanggalPemesanan.setText(formattedDate);
+                editTextTanggalPemesananDay.setText(formattedDate);
             }
         }, year, month, day);
 
