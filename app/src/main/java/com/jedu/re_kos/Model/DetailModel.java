@@ -156,32 +156,32 @@ public class DetailModel {
                     case "wifi":
                         fasilitasList.add(new Fasilitas("WiFi", R.drawable.wifi));
                         break;
-                    case "parkir":
-                        fasilitasList.add(new Fasilitas("Parkiran", R.drawable.parkir));
+                    case "parkiran":
+                        fasilitasList.add(new Fasilitas("Parkiran", R.drawable.parkiran));
                         break;
                     case "ac":
                         fasilitasList.add(new Fasilitas("AC", R.drawable.ac));
                         break;
                     case "kamar mandi dalam":
-                        fasilitasList.add(new Fasilitas("Kamar Mandi Dalam", R.drawable.shower));
+                        fasilitasList.add(new Fasilitas("Kamar Mandi Dalam", R.drawable.kamar_mandi_dalam));
                         break;
                     case "tv":
                         fasilitasList.add(new Fasilitas("TV", R.drawable.tv));
                         break;
                     case "mesin cuci":
-                        fasilitasList.add(new Fasilitas("Mesin Cuci", R.drawable.washing));
+                        fasilitasList.add(new Fasilitas("Mesin Cuci", R.drawable.mesin_cuci));
                         break;
                     case "kulkas":
-                        fasilitasList.add(new Fasilitas("Kulkas", R.drawable.refrigerator));
+                        fasilitasList.add(new Fasilitas("Kulkas", R.drawable.kulkas));
                         break;
                     case "dapur bersama":
-                        fasilitasList.add(new Fasilitas("Dapur Bersama", R.drawable.kitchen));
+                        fasilitasList.add(new Fasilitas("Dapur Bersama", R.drawable.dapur_bersama));
                         break;
-                    case "kamar umum":
-                        fasilitasList.add(new Fasilitas("Kamar Mandi Umum", R.drawable.umum));
+                    case "kamar mandi umum":
+                        fasilitasList.add(new Fasilitas("Kamar Mandi Umum", R.drawable.kamar_mandi_umum));
                         break;
                     case "listrik dan air":
-                        fasilitasList.add(new Fasilitas("Listrik Dan Air", R.drawable.electric));
+                        fasilitasList.add(new Fasilitas("Listrik Dan Air", R.drawable.listrik_dan_air));
                         break;
 
                     // Tambahkan mapping lainnya sesuai kebutuhan
