@@ -183,6 +183,24 @@ public class DetailModel {
                     case "listrik dan air":
                         fasilitasList.add(new Fasilitas("Listrik Dan Air", R.drawable.listrik_dan_air));
                         break;
+                    case "kipas":
+                        fasilitasList.add(new Fasilitas("Kipas", R.drawable.kipas));
+                        break;
+                    case "lemari":
+                        fasilitasList.add(new Fasilitas("Lemari", R.drawable.lemari));
+                        break;
+                    case "meja":
+                        fasilitasList.add(new Fasilitas("Meja", R.drawable.meja));
+                        break;
+                    case "kasur":
+                        fasilitasList.add(new Fasilitas("Kasur", R.drawable.kasur));
+                        break;
+                    case "air hangat":
+                        fasilitasList.add(new Fasilitas("Air Hangat", R.drawable.air_hangat));
+                        break;
+                    case "bantal":
+                        fasilitasList.add(new Fasilitas("Bantal", R.drawable.bantal));
+                        break;
 
                     // Tambahkan mapping lainnya sesuai kebutuhan
                     default:
