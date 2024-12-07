@@ -44,20 +44,20 @@ public class RegisterasiActivity extends AppCompatActivity {
         SignIn = findViewById(R.id.textViewSignIn);
         buttonGoogleSignUp = findViewById(R.id.buttonGoogle);
 
-        // Mengatur Google Sign-In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)) // Gunakan Client ID untuk Google Sign-In
-                .requestEmail()
-                .build();
+//        // Mengatur Google Sign-In
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id)) // Gunakan Client ID untuk Google Sign-In
+//                .requestEmail()
+//                .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Set OnClick Listener untuk tombol Sign Up biasa
-        buttonRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(RegisterasiActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//
+//        // Set OnClick Listener untuk tombol Sign Up biasa
+//        buttonRegister.setOnClickListener(v -> {
+//            Intent intent = new Intent(RegisterasiActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        });
 
         // Set OnClick Listener untuk tombol Sign In
         SignIn.setOnClickListener(v -> {
