@@ -17,10 +17,24 @@
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
 
+<!--        <service android:name=".aatoken.NotifInstanceService">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
         <!-- Menambahkan metadata untuk Google Sign-In -->
-        <meta-data
-            android:name="com.google.android.gms.auth.api.signin.CLIENT_ID"
-            android:value="@string/default_web_client_id" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.auth.api.signin.CLIENT_ID"-->
+<!--            android:value="@string/default_web_client_id" />-->
+        <service
+            android:name=".aatoken.NotifInstanceService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
 
         <!-- Aktivitas lainnya -->
         <activity

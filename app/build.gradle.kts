@@ -61,6 +61,7 @@ dependencies {
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
     implementation("io.github.cdimascio:dotenv-java:3.0.2")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
+    implementation("com.google.firebase:firebase-auth:23.1.0")
 
     implementation ("com.tbuonomo:dotsindicator:4.3")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
