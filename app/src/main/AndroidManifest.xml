@@ -16,32 +16,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReKos"
         tools:targetApi="31">
-
-<!--        <service android:name=".aatoken.NotifInstanceService">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
-
+        <!-- <service android:name=".aatoken.NotifInstanceService"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <!-- Menambahkan metadata untuk Google Sign-In -->
-<!--        <meta-data-->
-<!--            android:name="com.google.android.gms.auth.api.signin.CLIENT_ID"-->
-<!--            android:value="@string/default_web_client_id" />-->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.auth.api.signin.CLIENT_ID" -->
+        <!-- android:value="@string/default_web_client_id" /> -->
+
         <service
-            android:name=".aatoken.NotifInstanceService"
+            android:name=".aatoken.NotificationServices"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
-
-        <!-- Aktivitas lainnya -->
+        <service
+            android:name=".aatoken.NotifInstanceService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- Aktivitas lainnya -->
         <activity
             android:name=".SemuaKosActivity"
-            android:exported="false" />
-
-       <!-- <activity -->
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Detail.DeailKosActivity" -->
         <!-- android:exported="false" /> -->
         <!-- <activity -->
@@ -79,13 +82,12 @@
             android:exported="false" />
         <activity
             android:name=".Menu.profil2"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Detail.DeailKosActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Detail.DeailKosActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Detail.DeailKosActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Detail.DeailKosActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Register_Login.RegisterasiActivity"
             android:exported="false" />
@@ -103,9 +105,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
