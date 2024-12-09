@@ -18,10 +18,18 @@ import com.google.android.gms.common.api.ApiException;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.firebase.messaging.FirebaseMessaging;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 import com.jedu.re_kos.MainActivity;
+import com.jedu.re_kos.Model.request.UpdateFcmRequest;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.network.ApiClient;
+import com.jedu.re_kos.network.ApiInterface;
 import com.jedu.re_kos.viewmodel.DataViewModel;
 import com.jedu.re_kos.Model.LoginResponse;
 
@@ -65,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
 
+
         // Login dengan email dan password
         buttonLogin.setOnClickListener(v -> {
             String email = editEmail.getText().toString().trim();
@@ -82,6 +91,20 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
 
                     Log.d("login", String.valueOf(dataModel.getId()));
+
+                    // Ambil FCM Token dan kirim ke server
+                    FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            String fcmToken = task.getResult(); // Dapatkan FCM Token
+                            Log.d("FCM Token", fcmToken);
+
+                            // Kirim FCM Token ke server
+                            sendFcmTokenToServer(idUser, fcmToken);
+                        } else {
+                            Log.e("FCM Token", "Failed to get FCM token", task.getException());
+                        }
+                    });
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -89,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
+
 
         // Konfigurasi Google Sign-In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -101,6 +125,33 @@ public class LoginActivity extends AppCompatActivity {
         // Login dengan Google
         googleSignInButton.setOnClickListener(v -> signInWithGoogle());
     }
+
+    private void sendFcmTokenToServer(int userId, String fcmToken) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        // Buat request dalam bentuk JSON
+        UpdateFcmRequest request = new UpdateFcmRequest(userId, fcmToken);
+
+        Call<Void> call = apiService.updateFcmToken(request);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Update FCM", "FCM token updated successfully.");
+                } else {
+                    Log.e("Update FCM", "Failed to update FCM token: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("Update FCM", "Error updating FCM token", t);
+            }
+        });
+    }
+
+
 
     private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
