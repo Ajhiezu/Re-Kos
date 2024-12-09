@@ -27,6 +27,8 @@ import android.widget.ImageView;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
+import com.jedu.re_kos.Detail.AjukanSewaActivity;
+import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
@@ -53,7 +55,11 @@ public class CariFragment extends Fragment {
     private OnProfileClickListener callback;
 
     private FragmentCariBinding binding;
-    private ImageView profil,notifikasi;
+    private ImageView profil;
+    private ImageView notifikasi;
+    private Button button3;
+    private Button button4;
+    private Button button5;
     String[] item_lokasi = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
     String[] item_harga = {"100-200", "500-1000"};
     AutoCompleteTextView autoCompletelokasi, getAutoCompleteharga;
@@ -117,9 +123,29 @@ public class CariFragment extends Fragment {
         // Temukan ImageView berdasarkan id
         profil = binding.imageViewProfil;
         notifikasi = binding.notifikasi;
+        button3 = binding.button3;
+        button4 = binding.button4;
+        button5 = binding.button5;
+        // Ambil id_kos dari Intent
+
+        button3.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
+            startActivity(intent);
+        });
+        button4.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            startActivity(intent);
+        });
+        button5.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            startActivity(intent);
+        });
 
         notifikasi.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
             startActivity(intent);
         });
 
