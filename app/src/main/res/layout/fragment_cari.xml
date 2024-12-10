@@ -269,8 +269,10 @@
                             android:id="@+id/button5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Button" />
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
+
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -306,8 +308,9 @@
                             android:id="@+id/button3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Button" />
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -354,8 +357,9 @@
                             android:id="@+id/button4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Button" />
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
                     </LinearLayout>
 
                     <LinearLayout
