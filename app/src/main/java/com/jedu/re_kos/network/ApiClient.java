@@ -13,7 +13,7 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://192.168.149.229/web_rekost/api/";
+    private static final String BASE_URL = "http://192.168.1.9/web_rekost/api/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
