@@ -2,6 +2,7 @@ package com.jedu.re_kos.Detail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -39,11 +40,19 @@ public class ButtonSewaActivity extends AppCompatActivity {
         // Find buttons by their IDs
         Button buttonAjukanSewa = findViewById(R.id.buttonAjukanSewa);
         Button buttonTanyaPemilik = findViewById(R.id.buttonTanyaPemilik);
+        // Ambil id_kos dari Intent
+        int idKos = getIntent().getIntExtra("id_kos", -1);
 
         // Set click listener for buttonAjukanSewa
         buttonAjukanSewa.setOnClickListener(view -> {
-            Intent intent = new Intent(ButtonSewaActivity.this, AjukanSewaActivity.class);
-            startActivity(intent);
+            if (idKos != -1) {
+                // Buka AjukanSewaActivity dengan membawa id_kos
+                Intent intent = new Intent(ButtonSewaActivity.this, AjukanSewaActivity.class);
+                intent.putExtra("id_kos", idKos);
+                startActivity(intent);
+            } else {
+                Log.e("BUTTON_SEWA", "Cannot open AjukanSewaActivity, id_kos is invalid");
+            }
         });
 
 //        // Set click listener for button2

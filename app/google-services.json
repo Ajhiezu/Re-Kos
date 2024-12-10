@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "308300377544",
+    "project_id": "rekos-demo",
+    "storage_bucket": "rekos-demo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308300377544:android:f1fe628d2bce9d38c264fd",
+        "android_client_info": {
+          "package_name": "com.jedu.re_kos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApl6RtxA4XoLI1C44oLzhUMvRAAZUcGyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

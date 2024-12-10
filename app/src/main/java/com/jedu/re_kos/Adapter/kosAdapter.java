@@ -11,10 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.jedu.re_kos.Detail.ButtonSewaActivity;
-import com.jedu.re_kos.Domain.kosDomain;
-import com.jedu.re_kos.model.KosModel;
+import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.databinding.ViewholderCardViewBinding;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -42,7 +40,7 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
     }
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-KosModel.KostData kost = kos.get(position);
+        KosModel.KostData kost = kos.get(position);
 //    binding.tagKos.setText(kost.get().);
         Log.d("TAG", "onBindViewHolder: " + kost.getNama_kos());
     binding.namakos.setText(kost.getNama_kos());
@@ -62,6 +60,7 @@ KosModel.KostData kost = kos.get(position);
         public void onClick(View v) {
             // Intent untuk pindah ke DetailActivity
             Intent intent = new Intent(context, ButtonSewaActivity.class);
+            intent.putExtra("id_kos", kost.getId_kos());
             context.startActivity(intent);
         }
     });

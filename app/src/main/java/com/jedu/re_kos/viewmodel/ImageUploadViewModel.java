@@ -2,24 +2,18 @@ package com.jedu.re_kos.viewmodel;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.jedu.re_kos.Model.ProfileImageResponse;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
-import com.jedu.re_kos.repository.ImageRepository;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -34,18 +28,18 @@ public class ImageUploadViewModel extends ViewModel {
     private MutableLiveData<Bitmap> imageData = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
     private final MutableLiveData<Boolean> uploadStatus = new MutableLiveData<>();
+    String status;
 
-//    public ImageUploadViewModel(ImageRepository repository) {
-//        this.imageRepository = repository;
-//    }
-
+    public String getStatus(){
+        return this.status;
+    }
+    
     public void fetchImage(String userId) {
         ApiService apiService = RetrofitInstance.createService(ApiService.class);
         apiService.getUserProfileImage(userId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Convert ResponseBody to Bitmap
                     Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream());
                     imageData.setValue(bitmap);  // Set the Bitmap in LiveData
                 } else {
@@ -86,14 +80,12 @@ public class ImageUploadViewModel extends ViewModel {
                     try {
                         String responseString = response.body().string();
                         JSONObject jsonResponse = new JSONObject(responseString);
-                        String status = jsonResponse.getString("status");
-                        String message = jsonResponse.getString("message");
-                        Log.d("Illham", message);
-//                        if ("success".equals(status)) {
-//                            fetchImage(userId);
-//                        } else {
-//                            Log.e("UploadError", "Failed to upload image: " + status);
-//                        }
+                        status = jsonResponse.getString("status");
+                        if ("success".equals(status)) {
+                            fetchImage(String.valueOf(userId));
+                        } else {
+                            Log.e("UploadError", "Failed to upload image: " + status);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

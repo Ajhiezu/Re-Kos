@@ -235,17 +235,14 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/imageView12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/bintang_bintang"
-                                android:layout_marginTop="5dp"
                                 android:layout_marginLeft="10dp"
+                                android:src="@drawable/bintang_bintang"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -253,15 +250,31 @@
                                 android:id="@+id/textView10"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
                                 android:fontFamily="@font/robotobold"
                                 android:text="Check what’s popular in Re-kost!"
                                 android:textColor="@color/white"
                                 android:textSize="17sp"
                                 android:layout_marginLeft="10dp"
-                                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/button2"
+                                app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
+
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -287,6 +300,20 @@
                         android:textColor="#1E1E1E"
                         android:layout_marginLeft="16dp"
                         android:fontFamily="@font/robotomedium"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -322,6 +349,20 @@
                         android:textColor="#1E1E1E"
                         android:layout_marginLeft="16dp"
                         android:fontFamily="@font/robotomedium"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat"
+                            android:layout_marginTop="16dp"
+                            android:layout_gravity="center_horizontal"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

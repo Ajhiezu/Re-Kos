@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jedu.re_kos.model.Chat;
+import com.jedu.re_kos.Model.Chat;
 import com.jedu.re_kos.R;
 
 import java.util.List;

@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -23,22 +22,19 @@ import android.widget.Toast;
 
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
-import com.jedu.re_kos.Adapter.kosAdapter;
-import com.jedu.re_kos.Domain.kosDomain;
-import com.jedu.re_kos.model.KosModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
+import com.jedu.re_kos.SemuaKosActivity;
 import com.jedu.re_kos.databinding.FragmentDashboardBinding;
-import com.jedu.re_kos.viewmodel.KosViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
-    private KosModel kosModel;
-//    private kosAdapter adapter;
-    private KosViewModel viewModel;
+    private FragmentDashboardBinding binding; // ViewBinding untuk mengelola view dengan aman
+    private Handler slideHandler = new Handler();
+    private String[] item = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
 
     public interface OnProfileClickListener {
         void onProfileClicked();
@@ -46,98 +42,92 @@ public class DashboardFragment extends Fragment {
 
     private OnProfileClickListener callback;
 
-    private @NonNull FragmentDashboardBinding binding;
-    private ImageView profil,notifikasi;
-    String[] item = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
-    AutoCompleteTextView autoCompleteTextView;
-    ArrayAdapter<String> adapterItems;
-    ViewPager2 viewPager;
-    private Handler slideHandler = new Handler();
-
     public DashboardFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
-
-        // Inflate the layout for this fragment using ViewBinding
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Gunakan ViewBinding untuk meng-inflate layout
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
-        viewPager = binding.viewPage;
+
+        // Setup komponen UI
+        setupViewPager();
+        setupButtons();
+        setupAutoCompleteTextView();
+
+        // Kembalikan root view dari binding
+        return binding.getRoot();
+    }
+
+    private void setupViewPager() {
+        ViewPager2 viewPager = binding.viewPage;
+
+        // Data dummy untuk ViewPager
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
-        slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
-        slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
 
+        // Pasang adapter untuk ViewPager
         viewPager.setAdapter(new IklanPageAdapter(slideItemIklans));
         viewPager.setClipToPadding(false);
         viewPager.setClipChildren(false);
-        viewPager.setOffscreenPageLimit(5);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
+        // Tambahkan efek transformasi halaman
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(30));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r*0.15f );
-            }
+        compositePageTransformer.addTransformer((page, position) -> {
+            float r = 1 - Math.abs(position);
+            page.setScaleY(0.85f + r * 0.15f);
         });
-
         viewPager.setPageTransformer(compositePageTransformer);
+
+        // Slider otomatis
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 slideHandler.removeCallbacks(slideRunnable);
-                slideHandler.postDelayed(slideRunnable,2000);
+                slideHandler.postDelayed(slideRunnable, 3000);
             }
         });
+    }
 
-        // Temukan ImageView berdasarkan id
-        profil = binding.imageViewProfil;
-        notifikasi = binding.notifikasi;
+    private final Runnable slideRunnable = () -> {
+        int currentItem = binding.viewPage.getCurrentItem();
+        binding.viewPage.setCurrentItem(currentItem + 1);
+    };
 
-        notifikasi.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
-            startActivity(intent);
-        });
-
-        // Set OnClickListener untuk tombol profil
-        profil.setOnClickListener(v -> {
-            // Buat instance dari ProfilFragment
+    private void setupButtons() {
+        // Tombol profil
+        binding.imageViewProfil.setOnClickListener(v -> {
             if (callback != null) {
                 callback.onProfileClicked();
             }
         });
 
-        // Inisialisasi AutoCompleteTextView
-        autoCompleteTextView = binding.autoCompleteTextView;
-        adapterItems = new ArrayAdapter<>(getContext(), R.layout.list_items, item);
-
-        // Set adapter ke AutoCompleteTextView
-        autoCompleteTextView.setAdapter(adapterItems);
-
-        // Set listener untuk AutoCompleteTextView
-        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getContext(), selectedItem, Toast.LENGTH_SHORT).show();
-            }
+        // Tombol notifikasi
+        binding.notifikasi.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            startActivity(intent);
         });
 
+        // Tombol lanjut
 
+    }
 
+    private void setupAutoCompleteTextView() {
+        AutoCompleteTextView autoCompleteTextView = binding.autoCompleteTextView;
+        ArrayAdapter<String> adapterItems = new ArrayAdapter<>(requireContext(), R.layout.list_items, item);
+        autoCompleteTextView.setAdapter(adapterItems);
 
-        initRecyclerView();
-
-        return binding.getRoot();
+        autoCompleteTextView.setOnItemClickListener((adapterView, view, position, id) -> {
+            String selectedItem = adapterView.getItemAtPosition(position).toString();
+            Toast.makeText(requireContext(), selectedItem, Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -149,14 +139,6 @@ public class DashboardFragment extends Fragment {
             throw new RuntimeException(context.toString() + " must implement OnProfileClickListener");
         }
     }
-
-
-    private Runnable slideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-        }
-    };
 
     @Override
     public void onPause() {
@@ -170,28 +152,9 @@ public class DashboardFragment extends Fragment {
         slideHandler.postDelayed(slideRunnable, 3000);
     }
 
-    private void initRecyclerView() {
-//        ArrayList<kosDomain> items = new ArrayList<>();
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-//        items.add(new kosDomain("gambar_kos", "Kos Putri", "Kos Asiyap", "Blindungan, Bondowoso", "Kamar Mandi Dalam", 3.0, 500000));
-
-        // Atur layoutManager dan adapter untuk RecyclerView
-//        binding.kosView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        binding.kosView.setAdapter(new kosAdapter(items));
-
-        // Atur layoutManager dan adapter untuk RecyclerView Favorit
-//        binding.kosFavorit.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-//        binding.kosFavorit.setAdapter(new kosAdapter(items));
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;  // Hindari kebocoran memori dengan melepaskan binding saat fragment dihancurkan
+        binding = null; // Hindari memory leaks
     }
 }

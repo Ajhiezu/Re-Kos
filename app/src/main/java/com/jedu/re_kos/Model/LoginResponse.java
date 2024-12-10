@@ -1,7 +1,5 @@
 package com.jedu.re_kos.Model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class LoginResponse {
     private String status;
     private String message;
