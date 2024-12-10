@@ -4,11 +4,14 @@ import com.jedu.re_kos.Model.ImageKosResponse;
 import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Model.LoginRequest;
 import com.jedu.re_kos.Model.LoginResponse;
+import com.jedu.re_kos.Model.Notifikasi;
 import com.jedu.re_kos.Model.request.UpdateRequest;
 import com.jedu.re_kos.Model.response.DetailResponse;
 import com.jedu.re_kos.Model.response.PembayaranResponse;
 import com.jedu.re_kos.Model.response.UpdateRespon;
 import com.jedu.re_kos.Model.response.UserResponse;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,7 +41,10 @@ public interface ApiService {
     @POST("update")
     Call<UpdateRespon> updateUser(@Body UpdateRequest updateRequest);
 
-//    @Headers({"Accept: application/json", "Content-Type: multipart/form-data"})
+    @GET("Notifikasi/{id_user}")
+    Call<List<Notifikasi>> getNotifikasi(@Path("id_user") int userId);
+
+    //    @Headers({"Accept: application/json", "Content-Type: multipart/form-data"})
     @Multipart
     @POST("pembayaran")
     Call<PembayaranResponse> konfirmPay(
