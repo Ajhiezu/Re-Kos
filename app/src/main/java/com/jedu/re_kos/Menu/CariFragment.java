@@ -28,8 +28,11 @@ import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
+import com.jedu.re_kos.Detail.AjukanSewaActivity;
+import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.Domain.kosDomain;
 import com.jedu.re_kos.Model.KosModel;
+import com.jedu.re_kos.Model.UserModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.SemuaKosActivity;
@@ -38,6 +41,7 @@ import com.jedu.re_kos.databinding.FragmentCariBinding;
 import com.jedu.re_kos.repository.KosRepository;
 import com.jedu.re_kos.viewmodel.KosViewModel;
 import com.jedu.re_kos.Model.DataModel;
+import com.jedu.re_kos.viewmodel.UserViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +59,12 @@ public class CariFragment extends Fragment {
     private OnProfileClickListener callback;
 
     private FragmentCariBinding binding;
-    private ImageView profil,notifikasi;
-    String[] item_lokasi = {"Bondowoso", "Tamanan", "Tapen", "Sempol", "Wonosari"};
+    private ImageView profil;
+    private ImageView notifikasi;
+    private Button button3;
+    private Button button4;
+    private Button button5;
+    String[] item_lokasi = {"Jember", "Bondowoso"};
     String[] item_harga = {"100-200", "500-1000"};
     AutoCompleteTextView autoCompletelokasi, getAutoCompleteharga;
 
@@ -82,6 +90,15 @@ public class CariFragment extends Fragment {
         dataModel.setId(userId);
 
         viewPager = binding.viewPage;
+        UserViewModel  userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        TextView username = binding.getRoot().findViewById(R.id.NamaUsername);
+
+        userViewModel.getData(userId).observe(getViewLifecycleOwner(), userResponse -> {
+            if(userResponse.getStatus().equals("success")){
+                UserModel userModel = userResponse.getUserModel();
+                username.setText(userModel.getNama());
+            }
+        });
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
@@ -119,9 +136,29 @@ public class CariFragment extends Fragment {
         // Temukan ImageView berdasarkan id
         profil = binding.imageViewProfil;
         notifikasi = binding.notifikasi;
+        button3 = binding.button3;
+        button4 = binding.button4;
+        button5 = binding.button5;
+        // Ambil id_kos dari Intent
+
+        button3.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
+            startActivity(intent);
+        });
+        button4.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            startActivity(intent);
+        });
+        button5.setOnClickListener(view -> {
+            // Buka SemuaKosActivity tanpa memerlukan id_kos
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            startActivity(intent);
+        });
 
         notifikasi.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
+            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
             startActivity(intent);
         });
 
@@ -166,6 +203,7 @@ public class CariFragment extends Fragment {
         recyclerView.setAdapter(adapterPopular);
         kosViewModel.getKosLiveData().observe(getViewLifecycleOwner(), data -> {
             if (data != null) {
+                Log.d("Test",new Gson().toJson(data));
                 adapterPopular.setKostList(data);
             }
         });

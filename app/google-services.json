@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "336224234060",
-    "project_id": "re-kos",
-    "storage_bucket": "re-kos.firebasestorage.app"
+    "project_number": "308300377544",
+    "project_id": "rekos-demo",
+    "storage_bucket": "rekos-demo.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:336224234060:android:8f4475ca17e677b9bee2e9",
+        "mobilesdk_app_id": "1:308300377544:android:f1fe628d2bce9d38c264fd",
         "android_client_info": {
           "package_name": "com.jedu.re_kos"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "336224234060-kehcclfpq0siidf1cond3f67doec84kg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBxsJGuVxD-uZDuun1ieudo0Uxh6GkrXrM"
+          "current_key": "AIzaSyApl6RtxA4XoLI1C44oLzhUMvRAAZUcGyY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "336224234060-h83ectml6n9cf21f990gik5sd6bva5t8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

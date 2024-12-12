@@ -25,11 +25,14 @@ public class DetailViewModel extends ViewModel {
             RequestBody idUser,
             RequestBody idKamar,
             RequestBody idKos,
+            RequestBody totalKamar,
+            RequestBody durasi,
             RequestBody harga,
+            RequestBody tanggalPenyewaan,
             RequestBody waktuSewa,
             MultipartBody.Part buktiPembayaran
     ) {
-        return detailRepository.konfirmPay(idUser, idKamar,idKos, harga, waktuSewa, buktiPembayaran);
+        return detailRepository.konfirmPay(idUser,idKamar, idKos,totalKamar, durasi,harga,tanggalPenyewaan, waktuSewa, buktiPembayaran);
     }
 
 }
