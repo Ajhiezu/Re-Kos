@@ -260,20 +260,23 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
+                        <Button
+                            android:id="@+id/buttonCheck"
+                            android:layout_width="93dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:background="#2196F3"
+                            android:text="Lihat"
+                            android:textAlignment="viewEnd"
+                            android:textColor="#FFFFFF" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/button5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lihat"
-                            android:layout_marginTop="16dp"
-                            android:layout_gravity="center_horizontal"/>
 
                     </LinearLayout>
 
@@ -307,7 +310,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/buttonBest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lihat"
@@ -356,7 +359,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/buttonKos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lihat"

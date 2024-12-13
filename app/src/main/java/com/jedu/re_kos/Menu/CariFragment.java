@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -23,7 +24,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
 import com.jedu.re_kos.Adapter.SlideItemIklan;
 import com.jedu.re_kos.Adapter.kosAdapter;
@@ -35,6 +38,7 @@ import com.jedu.re_kos.Model.UserModel;
 import com.jedu.re_kos.Notifikasi.NotifikasiActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.SemuaKosActivity;
+import com.jedu.re_kos.SemuaKosActivity1;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
 //import com.jedu.re_kos.factory.ViewModelFactory;
 import com.jedu.re_kos.viewmodel.KosViewModel;
@@ -134,29 +138,9 @@ public class CariFragment extends Fragment {
         // Temukan ImageView berdasarkan id
         profil = binding.imageViewProfil;
         notifikasi = binding.notifikasi;
-        button3 = binding.button3;
-        button4 = binding.button4;
-        button5 = binding.button5;
-        // Ambil id_kos dari Intent
-
-        button3.setOnClickListener(view -> {
-            // Buka SemuaKosActivity tanpa memerlukan id_kos
-            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
-            startActivity(intent);
-        });
-        button4.setOnClickListener(view -> {
-            // Buka SemuaKosActivity tanpa memerlukan id_kos
-            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
-            startActivity(intent);
-        });
-        button5.setOnClickListener(view -> {
-            // Buka SemuaKosActivity tanpa memerlukan id_kos
-            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
-            startActivity(intent);
-        });
 
         notifikasi.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), SemuaKosActivity.class);
+            Intent intent = new Intent(requireContext(), NotifikasiActivity.class);
             startActivity(intent);
         });
 
@@ -223,6 +207,7 @@ public class CariFragment extends Fragment {
                 adapterBest.setKostList(data);
             }
         });
+
         Button button = binding.getRoot().findViewById(R.id.button);
         AutoCompleteTextView lokasi = binding.getRoot().findViewById(R.id.autoCompleteTextViewLokasi);
         AutoCompleteTextView harga = binding.getRoot().findViewById(R.id.autoCompleteTextViewHarga);
@@ -231,6 +216,25 @@ public class CariFragment extends Fragment {
             Intent search = new Intent(getContext(), SemuaKosActivity.class);
             search.putExtra("lokasi", selectedItemLokasi);
             search.putExtra("harga", selectedItemHarga);
+            search.putExtra("Status", "Filter");
+            startActivity(search);
+        });
+        Button buttonBest = binding.getRoot().findViewById(R.id.buttonBest);
+        buttonBest.setOnClickListener(e ->  {
+            Intent search = new Intent(getContext(), SemuaKosActivity.class);
+            search.putExtra("Status", "Best");
+            startActivity(search);
+        });
+        Button buttonCheck = binding.getRoot().findViewById(R.id.buttonCheck);
+        buttonCheck.setOnClickListener(e ->  {
+            Intent search = new Intent(getContext(), SemuaKosActivity.class);
+            search.putExtra("Status", "Check");
+            startActivity(search);
+        });
+        Button buttonKos = binding.getRoot().findViewById(R.id.buttonKos);
+        buttonKos.setOnClickListener(e ->  {
+            Intent search = new Intent(getContext(), SemuaKosActivity.class);
+            search.putExtra("Status", "Terdekat");
             startActivity(search);
         });
         lokasi.setOnItemClickListener((parent, view, position, id) -> {

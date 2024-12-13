@@ -47,6 +47,9 @@
         <!-- Aktivitas lainnya -->
         <activity
             android:name=".SemuaKosActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SemuaKosActivity1"
             android:exported="false"/> <!-- <activity -->
         <!-- android:name=".Detail.DeailKosActivity" -->
         <!-- android:exported="false" /> -->
