@@ -36,6 +36,8 @@ import com.jedu.re_kos.Model.UserModel;
 import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+import com.bumptech.glide.Glide;
 public class ProfilFragment extends Fragment {
     private DataModel dataModel;
     private UserModel userModel;
@@ -44,8 +46,8 @@ public class ProfilFragment extends Fragment {
     private ImageView imageView;
     private static final String PREFS_NAME = "UserProfile";
     private static final String PROFILE_IMAGE_URI_KEY = "profileImageUri";
-    private Button lanjut,logout;
-    private TextView namaLengkap,email,jenisKelamin,tanggalLahir,pekerjaan,instansi,alamat,notelephone;
+    private Button lanjut, logout;
+    private TextView namaLengkap, email, jenisKelamin, tanggalLahir, pekerjaan, instansi, alamat, notelephone;
     private static final int REQUEST_CODE_PICK_IMAGE = 1;
     private ProgressBar progressBar;
 
@@ -88,18 +90,16 @@ public class ProfilFragment extends Fragment {
             requireActivity().finish(); // Correct method for closing the activity
         });
 
-        imageViewModel.getImageData().observe(getViewLifecycleOwner(), bitmap -> {
-            if (bitmap != null) {
-                imageView.setImageBitmap(bitmap);
-            }
-        });
-
-
-        imageViewModel.getError().observe(getViewLifecycleOwner(), errorMessage -> {
-            if (errorMessage != null) {
-                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        imageViewModel.getImageData().observe(getViewLifecycleOwner(), bitmap -> {
+//            if (bitmap != null) {
+//                imageView.setImageBitmap(bitmap);
+//            }
+//        });
+//        imageViewModel.getError().observe(getViewLifecycleOwner(), errorMessage -> {
+//            if (errorMessage != null) {
+//                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         int userId = getUserId();
         Log.d("id", String.valueOf(userId));
@@ -107,7 +107,7 @@ public class ProfilFragment extends Fragment {
 
 
         userViewModel.getData(userId).observe(getViewLifecycleOwner(), userResponse -> {
-            if(userResponse.getStatus().equals("success")){
+            if (userResponse.getStatus().equals("success")) {
                 userModel = userResponse.getUserModel();
                 namaLengkap.setText(userModel.getNama() != null ? userModel.getNama() : "");
                 email.setText(userModel.getEmail() != null ? userModel.getEmail() : "");
@@ -117,10 +117,12 @@ public class ProfilFragment extends Fragment {
                 instansi.setText(userModel.getInstansi() != null ? userModel.getInstansi() : "");
                 alamat.setText(userModel.getAlamat() != null ? userModel.getAlamat() : "");
                 notelephone.setText(userModel.getNumber_phone() != null ? userModel.getNumber_phone() : "");
-
+                Glide.with(this)
+                        .load("https://rekos.kholzt.com/public/uploads/" + userModel.getId_user() + "/" + userModel.getId_gambar())
+                        .transform(new RoundedCornersTransformation(35, 0, RoundedCornersTransformation.CornerType.TOP))
+                             .into((ImageView) root.findViewById(R.id.imageView));
             }
         });
-
 
 
         imageView.setOnClickListener(v -> showImageDialog());
@@ -161,7 +163,7 @@ public class ProfilFragment extends Fragment {
     }
 
     private String getRealPathFromURI(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = requireContext().getContentResolver().query(uri, projection, null, null, null);
         if (cursor != null) {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
@@ -176,7 +178,7 @@ public class ProfilFragment extends Fragment {
     private int getUserId() {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("user_id", 0);
-        if(userId != 0){
+        if (userId != 0) {
             return userId;
         } else {
             return 0;

@@ -67,6 +67,16 @@ public class UserModel {
     private String Instansi;
     private String alamat;
     private String number_phone;
+    private String id_gambar;
+
+    public String getId_gambar() {
+        return id_gambar;
+    }
+
+    public void setId_gambar(String id_gambar) {
+        this.id_gambar = id_gambar;
+    }
+
 
     public int getId_user() {
         return id_user;

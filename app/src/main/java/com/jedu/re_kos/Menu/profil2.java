@@ -68,7 +68,6 @@ public class profil2 extends AppCompatActivity {
         autoCompleteTextView = findViewById(R.id.gender);
         adapterItems = new ArrayAdapter<>(this,R.layout.list_items, item);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        imageViewModel = new ViewModelProvider(this).get(ImageUploadViewModel.class);
         tanggallahir = findViewById(R.id.tanggalLahir);
         Back = findViewById(R.id.button_batal);
         Simpan = findViewById(R.id.button_simpan);

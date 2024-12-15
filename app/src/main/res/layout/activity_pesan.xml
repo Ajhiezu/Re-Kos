@@ -8,9 +8,10 @@
     android:background="#EAF4FF"
     tools:context=".PesanActivity">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="413dp"
+        android:id="@+id/tollbarChats"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:background="#007BFF"
         android:minHeight="?attr/actionBarSize"
@@ -22,24 +23,47 @@
         app:title="Chats"
         app:titleTextColor="#FFFFFF" />
 
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ListPesan"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toBottomOf="@+id/tollbarChats" />
 
+    <!-- EditText -->
     <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="fill_parent"
+        android:id="@+id/message"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
+        android:hint="Masukkan pesan"
         android:inputType="text"
-        android:text="Name"
+        android:padding="10dp"
+        android:textColor="#040404"
+        android:textColorHint="#6E6E6E"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnKirim"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Button -->
+    <Button
+        android:id="@+id/btnKirim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#007BFF"
+        android:text="Kirim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

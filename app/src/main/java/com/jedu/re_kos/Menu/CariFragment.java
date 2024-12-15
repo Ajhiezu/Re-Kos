@@ -7,11 +7,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+import com.bumptech.glide.Glide;
 
 import android.os.Handler;
 import android.util.Log;
@@ -23,6 +26,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jedu.re_kos.Adapter.IklanPageAdapter;
@@ -39,6 +44,7 @@ import com.jedu.re_kos.SemuaKosActivity;
 import com.jedu.re_kos.databinding.FragmentCariBinding;
 //import com.jedu.re_kos.factory.ViewModelFactory;
 import com.jedu.re_kos.repository.KosRepository;
+import com.jedu.re_kos.viewmodel.ImageUploadViewModel;
 import com.jedu.re_kos.viewmodel.KosViewModel;
 import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.viewmodel.UserViewModel;
@@ -52,6 +58,7 @@ public class CariFragment extends Fragment {
     private KosModel kosModel;
     private String selectedItemLokasi;
     private String selectedItemHarga;
+
     public interface OnProfileClickListener {
         void onProfileClicked();
     }
@@ -80,7 +87,6 @@ public class CariFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-
         // Inflate the layout for this fragment using ViewBinding
         binding = FragmentCariBinding.inflate(inflater, container, false);
         DataModel dataModel = new DataModel();
@@ -90,15 +96,25 @@ public class CariFragment extends Fragment {
         dataModel.setId(userId);
 
         viewPager = binding.viewPage;
-        UserViewModel  userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        UserViewModel userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+           ImageUploadViewModel imageViewModel = new ViewModelProvider(this).get(ImageUploadViewModel.class);
+
         TextView username = binding.getRoot().findViewById(R.id.NamaUsername);
 
         userViewModel.getData(userId).observe(getViewLifecycleOwner(), userResponse -> {
-            if(userResponse.getStatus().equals("success")){
+            if (userResponse.getStatus().equals("success")) {
                 UserModel userModel = userResponse.getUserModel();
                 username.setText(userModel.getNama());
+                        String image = userModel.getId_gambar() != null ? "https://rekos.kholzt.com/public/uploads/" + userModel.getId_user() + "/" +userModel.getId_gambar() : "https://rekos.kholzt.com/public/img/Vektor.svg";
+
+                Glide.with(this)
+                        .load(image)
+                        .transform(new RoundedCornersTransformation(35, 0, RoundedCornersTransformation.CornerType.TOP)) // Melengkung hanya di sudut atas
+                        .into(binding.imageViewProfil);
             }
         });
+
+
         List<SlideItemIklan> slideItemIklans = new ArrayList<>();
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
         slideItemIklans.add(new SlideItemIklan(R.drawable.iklan));
@@ -118,7 +134,7 @@ public class CariFragment extends Fragment {
             @Override
             public void transformPage(@NonNull View page, float position) {
                 float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r*0.15f );
+                page.setScaleY(0.85f + r * 0.15f);
             }
         });
 
@@ -128,7 +144,7 @@ public class CariFragment extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 slideHandler.removeCallbacks(slideRunnable);
-                slideHandler.postDelayed(slideRunnable,2000);
+                slideHandler.postDelayed(slideRunnable, 2000);
             }
         });
 
@@ -184,7 +200,7 @@ public class CariFragment extends Fragment {
         autoCompletelokasi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedItemLokasi  = adapterView.getItemAtPosition(i).toString();
+                selectedItemLokasi = adapterView.getItemAtPosition(i).toString();
             }
         });
         getAutoCompleteharga.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -199,11 +215,11 @@ public class CariFragment extends Fragment {
         KosViewModel kosViewModel = new KosViewModel();
         RecyclerView recyclerView = binding.getRoot().findViewById(R.id.kos_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        kosAdapter adapterPopular  = new kosAdapter(new ArrayList<>());
+        kosAdapter adapterPopular = new kosAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapterPopular);
         kosViewModel.getKosLiveData().observe(getViewLifecycleOwner(), data -> {
             if (data != null) {
-                Log.d("Test",new Gson().toJson(data));
+                Log.d("Test", new Gson().toJson(data));
                 adapterPopular.setKostList(data);
             }
         });
@@ -229,7 +245,7 @@ public class CariFragment extends Fragment {
         AutoCompleteTextView lokasi = binding.getRoot().findViewById(R.id.autoCompleteTextViewLokasi);
         AutoCompleteTextView harga = binding.getRoot().findViewById(R.id.autoCompleteTextViewHarga);
 
-        button.setOnClickListener(e ->  {
+        button.setOnClickListener(e -> {
             Intent search = new Intent(getContext(), SemuaKosActivity.class);
             search.putExtra("lokasi", selectedItemLokasi);
             search.putExtra("harga", selectedItemHarga);
@@ -237,10 +253,10 @@ public class CariFragment extends Fragment {
         });
         lokasi.setOnItemClickListener((parent, view, position, id) -> {
             selectedItemLokasi = parent.getItemAtPosition(position).toString();
-Log.d("VALUE LOKASI",selectedItemLokasi);
+            Log.d("VALUE LOKASI", selectedItemLokasi);
         });
         harga.setOnItemClickListener((parent, view, position, id) -> {
-          selectedItemHarga  = parent.getItemAtPosition(position).toString();
+            selectedItemHarga = parent.getItemAtPosition(position).toString();
         });
 
         return binding.getRoot();
@@ -260,7 +276,7 @@ Log.d("VALUE LOKASI",selectedItemLokasi);
     private Runnable slideRunnable = new Runnable() {
         @Override
         public void run() {
-            viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
         }
     };
 

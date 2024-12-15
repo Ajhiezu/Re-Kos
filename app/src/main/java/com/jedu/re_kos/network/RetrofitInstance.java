@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://rekos.kholzt.com//api/";
+    private static final String BASE_URL = "https://rekos.kholzt.com/api/";
 
 
 

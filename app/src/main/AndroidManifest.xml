@@ -47,7 +47,12 @@
         <!-- Aktivitas lainnya -->
         <activity
             android:name=".SemuaKosActivity"
-            android:exported="false"/> <!-- <activity -->
+            android:exported="false"/>
+        <activity
+            android:windowSoftInputMode="adjustResize"
+            android:name=".PesanActivity"
+            android:exported="false"/>
+        <!-- <activity -->
         <!-- android:name=".Detail.DeailKosActivity" -->
         <!-- android:exported="false" /> -->
         <!-- <activity -->
