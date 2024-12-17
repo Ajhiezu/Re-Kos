@@ -6,7 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.Model.LoginResponse;
+import com.jedu.re_kos.Model.request.RegisRequest;
 import com.jedu.re_kos.repository.DataRepository;
+
+import okhttp3.ResponseBody;
 
 public class DataViewModel extends ViewModel {
     private final DataRepository repository;
@@ -24,4 +27,9 @@ public class DataViewModel extends ViewModel {
     public LiveData<LoginResponse> login(String email, String password) {
         return repository.login(email, password);
     }
+
+    public LiveData<ResponseBody> register(RegisRequest regisRequest){
+        return repository.register(regisRequest);
+    }
+
 }

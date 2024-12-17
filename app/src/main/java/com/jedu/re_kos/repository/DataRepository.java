@@ -2,11 +2,13 @@ package com.jedu.re_kos.repository;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.jedu.re_kos.Model.DataModel;
 import com.jedu.re_kos.Model.LoginRequest;
 import com.jedu.re_kos.Model.LoginResponse;
+import com.jedu.re_kos.Model.request.RegisRequest;
 import com.jedu.re_kos.network.ApiService;
 import com.jedu.re_kos.network.RetrofitInstance;
 
@@ -15,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +53,31 @@ public class DataRepository {
         });
 
         return loginResponse;
+    }
+
+    //register
+    public LiveData<ResponseBody> register(RegisRequest request) {
+        MutableLiveData<ResponseBody> result = new MutableLiveData<>();
+
+        // Panggil API di background thread
+        apiService.register(request).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    result.postValue(response.body()); // Set data jika sukses
+                } else {
+                    result.postValue(null); // Set null jika gagal
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                result.postValue(null); // Set null jika terjadi error
+                t.printStackTrace();
+            }
+        });
+
+        return result; // Kembalikan LiveData ke ViewModel
     }
 
     private void handleErrorResponse(Response<LoginResponse> response, MutableLiveData<LoginResponse> loginResponse) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,17 +17,24 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.jedu.re_kos.Detail.ButtonSewaActivity;
 import com.jedu.re_kos.MainActivity;
+import com.jedu.re_kos.Model.request.RegisRequest;
 import com.jedu.re_kos.R;
+import com.jedu.re_kos.viewmodel.DataViewModel;
 
 public class RegisterasiActivity extends AppCompatActivity {
 
     private Button buttonRegister;
     private TextView SignIn;
     private Button buttonGoogleSignUp;
+    private EditText username, password, number, email;
+    private DataViewModel viewModel;
+    private RegisRequest regisRequest;
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001; // Request code untuk Google Sign-In
@@ -35,6 +43,7 @@ public class RegisterasiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerasi);
+        viewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         // Warna navigasi bar
         getWindow().setStatusBarColor(ContextCompat.getColor(RegisterasiActivity.this, R.color.biru_navbar));
@@ -43,6 +52,33 @@ public class RegisterasiActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonCreateAccount);
         SignIn = findViewById(R.id.textViewSignIn);
         buttonGoogleSignUp = findViewById(R.id.buttonGoogle);
+
+        username = findViewById(R.id.editTextFullname);
+        password = findViewById(R.id.editTextpassword);
+        number = findViewById(R.id.editTextphone);
+        email = findViewById(R.id.editEmail);
+        int nomor = Integer.parseInt(number.getText().toString());
+
+        buttonRegister.setOnClickListener(v -> {
+            regisRequest = new RegisRequest(
+                    username.getText().toString(),
+                    password.getText().toString(),
+                    email.getText().toString(),
+                    nomor
+            );
+
+           viewModel.register(regisRequest).observe(this, responseBody -> {
+               if (responseBody != null) {
+                   // Registrasi sukses
+                   Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
+                   Intent intent = new Intent(RegisterasiActivity.this, LoginActivity.class);
+                   startActivity(intent);
+               } else {
+                   // Registrasi gagal
+                   Toast.makeText(this, "Registrasi gagal!", Toast.LENGTH_SHORT).show();
+               }
+           });
+        });
 
 //        // Mengatur Google Sign-In
 //        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

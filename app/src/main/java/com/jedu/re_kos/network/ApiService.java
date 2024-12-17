@@ -6,6 +6,7 @@ import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Model.LoginRequest;
 import com.jedu.re_kos.Model.LoginResponse;
 import com.jedu.re_kos.Model.Notifikasi;
+import com.jedu.re_kos.Model.request.RegisRequest;
 import com.jedu.re_kos.Model.request.UpdateRequest;
 import com.jedu.re_kos.Model.response.DetailResponse;
 import com.jedu.re_kos.Model.response.PembayaranResponse;
@@ -31,6 +32,9 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("data/{id}")
     Call<UserResponse> getDataById(@Path("id") int id);
+
+    @POST("register")
+    Call<ResponseBody> register(@Body RegisRequest regisRequest);
 
     @GET("kos")
     Call<KosModel> kos();
