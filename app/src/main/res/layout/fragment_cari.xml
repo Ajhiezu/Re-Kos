@@ -167,27 +167,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txt_lokasi"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="153dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="3dp"
-        android:hint="Pilih Lokasi"
-        android:textColorHint="#5F5F5F"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_lokasi"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="160dp"
+                            android:layout_height="57dp"
+                            android:layout_marginBottom="3dp"
+                            android:hint="Pilih Lokasi"
+                            android:textColorHint="#5F5F5F"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextViewLokasi"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/transparent"
-            android:inputType="none"
-            android:textColor="#5F5F5F" />
-    </com.google.android.material.textfield.TextInputLayout>
+                            <AutoCompleteTextView
+                                android:id="@+id/autoCompleteTextViewLokasi"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:backgroundTint="@android:color/transparent"
+                                android:inputType="none"
+                                android:textColor="#5F5F5F" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_harga"
@@ -218,7 +218,9 @@
                         android:id="@+id/button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Button" />
+                        android:backgroundTint="#007BFF"
+                        android:text="Cari"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -258,20 +260,23 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
+                        <Button
+                            android:id="@+id/buttonCheck"
+                            android:layout_width="93dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:background="#2196F3"
+                            android:text="Lihat"
+                            android:textAlignment="viewEnd"
+                            android:textColor="#FFFFFF" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/button5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Lihat"
-                            android:layout_marginTop="16dp"
-                            android:layout_gravity="center_horizontal"/>
 
                     </LinearLayout>
 
@@ -305,7 +310,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/buttonBest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lihat"
@@ -354,7 +359,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/button4"
+                            android:id="@+id/buttonKos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lihat"

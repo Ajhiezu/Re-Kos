@@ -51,7 +51,7 @@ public class kosAdapter extends RecyclerView.Adapter<kosAdapter.Viewholder> {
 //
 //    int drawableResource = holder.itemView.getResources().getIdentifier(kost.getGambar(),"drawable",holder.itemView.getContext().getPackageName());
    Glide.with(context)
-     .load("http://192.168.1.237/web_rekost/public/uploads/" + kost.getId_kos() + "/foto_depan.jpg")
+     .load("https://rekos.kholzt.com/public/uploads/" + kost.getId_kos() + "/foto_depan.jpg")
      .transform(new RoundedCornersTransformation(35, 0, RoundedCornersTransformation.CornerType.TOP)) // Melengkung hanya di sudut atas
      .into(binding.gambarkos);
         Log.d("TAG", "onBindViewHolder:"+kost.getId_kos());

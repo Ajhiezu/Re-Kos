@@ -1,10 +1,12 @@
 package com.jedu.re_kos.network;
 
+import com.jedu.re_kos.Model.ChatModel;
 import com.jedu.re_kos.Model.ImageKosResponse;
 import com.jedu.re_kos.Model.KosModel;
 import com.jedu.re_kos.Model.LoginRequest;
 import com.jedu.re_kos.Model.LoginResponse;
 import com.jedu.re_kos.Model.Notifikasi;
+import com.jedu.re_kos.Model.request.RegisRequest;
 import com.jedu.re_kos.Model.request.UpdateRequest;
 import com.jedu.re_kos.Model.response.DetailResponse;
 import com.jedu.re_kos.Model.response.PembayaranResponse;
@@ -31,9 +33,18 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("data/{id}")
     Call<UserResponse> getDataById(@Path("id") int id);
-    @GET("kos")Call<KosModel> kos();
-    @GET("best")Call<KosModel> bestkos();
-    @GET("terdekat")Call<KosModel> kosterdekat();
+
+    @POST("register")
+    Call<ResponseBody> register(@Body RegisRequest regisRequest);
+
+    @GET("kos")
+    Call<KosModel> kos();
+
+    @GET("best")
+    Call<KosModel> bestkos();
+
+    @GET("terdekat")
+    Call<KosModel> kosterdekat();
 
     @GET("getImageKos/{id}")
     Call<ImageKosResponse> getImageKos(@Path("id") String id);
@@ -63,11 +74,13 @@ public interface ApiService {
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
-    @GET("imgProfile/{userId}") // Replace with the actual endpoint
+    @GET("imgProfile/{userId}")
+        // Replace with the actual endpoint
     Call<ResponseBody> getUserProfileImage(@Path("userId") String userId);
 
     @Multipart
-    @POST("upload") // Adjust this endpoint as needed
+    @POST("upload")
+        // Adjust this endpoint as needed
     Call<ResponseBody> uploadImage(
             @Part MultipartBody.Part file,
             @Part("user_id") RequestBody userId
@@ -81,7 +94,22 @@ public interface ApiService {
 
 
     @GET("detail/{id}")
-    Call<DetailResponse>getDetailKos(@Path("id") int id);
+    Call<DetailResponse> getDetailKos(@Path("id") int id);
+
+    @GET("chats/{id}")
+    Call<ChatModel> getChatsList(@Path("id") int id);
+
+    @GET("chats/{id_sender}/{id_receiver}")
+    Call<ChatModel> getDetailChat(@Path("id_sender") int id_sender, @Path("id_receiver") int id_receiver);
+
+  @FormUrlEncoded
+@POST("chats/{id_sender}/{id_receiver}")
+Call<ChatModel> sendMessage(
+    @Path("id_sender") int id_sender,
+    @Path("id_receiver") int id_receiver,
+    @Field("message") String message
+);
+
 
     @FormUrlEncoded
     @POST("allkos")
