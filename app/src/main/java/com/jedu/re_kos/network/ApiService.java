@@ -12,6 +12,7 @@ import com.jedu.re_kos.Model.response.UpdateRespon;
 import com.jedu.re_kos.Model.response.UserResponse;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -74,6 +75,10 @@ public interface ApiService {
 
 //    @GET("kos")
 //    Call<KosModel.KostData> kos();
+    @POST("sendNotification")
+    Call<ResponseBody> sendPushNotification(@Body Map<String, String> data);
+
+
 
     @GET("detail/{id}")
     Call<DetailResponse>getDetailKos(@Path("id") int id);

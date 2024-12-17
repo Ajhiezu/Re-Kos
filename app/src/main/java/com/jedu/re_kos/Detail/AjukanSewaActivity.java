@@ -1,5 +1,7 @@
 package com.jedu.re_kos.Detail;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -28,11 +30,14 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jedu.re_kos.Adapter.FotoKosAdapter;
 import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.databinding.ActivityAjukanSewaBinding;
 import com.jedu.re_kos.Model.DetailModel;
+import com.jedu.re_kos.network.ApiService;
+import com.jedu.re_kos.network.RetrofitInstance;
 import com.jedu.re_kos.viewmodel.DetailViewModel;
 import com.jedu.re_kos.viewmodel.ImageKosViewModel;
 
@@ -45,12 +50,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AjukanSewaActivity extends AppCompatActivity {
 
@@ -337,29 +348,31 @@ public class AjukanSewaActivity extends AppCompatActivity {
 
                                 // RequestBody untuk data lainnya
                                 RequestBody idUserPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_user));
-                                Log.e("idUser", String.valueOf(id_user));
+                                Log.d("idUser", String.valueOf(id_user));
                                 RequestBody idKamarPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(idKamar));
-                                Log.e("idKamar", String.valueOf(idKamar));
+                                Log.d("idKamar", String.valueOf(idKamar));
                                 RequestBody hargaPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(hargaInt));
-                                Log.e("harga", String.valueOf(harga));
+                                Log.d("harga", String.valueOf(harga));
                                 RequestBody idKosPart = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(id_kos));
-                                Log.e("idkos", String.valueOf(id_kos));
+                                Log.d("idkos", String.valueOf(id_kos));
                                 RequestBody totalKamar = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(jumlahKamar));
-                                Log.e("totalkamar", String.valueOf(jumlahKamar));
+                                Log.d("totalkamar", String.valueOf(jumlahKamar));
                                 RequestBody durasiPart = RequestBody.create(MediaType.parse("text/plain"), durasi);
-                                Log.e("durasi", (durasi));
+                                Log.d("durasi", (durasi));
                                 RequestBody tanggalPart = RequestBody.create(MediaType.parse("text/plain"), tanggalAkhirString);
-                                Log.e("tanggalpart", (tanggalAkhirString));
+                                Log.d("tanggalpart", (tanggalAkhirString));
                                 RequestBody waktuSewaPart = RequestBody.create(MediaType.parse("text/plain"), waktu_sewa);
-                                Log.e("waktusewa", (waktu_sewa));
+                                Log.d("waktusewa", (waktu_sewa));
 
                                 // Kirim permintaan pembayaran ke server
                                 detailViewModel.konfirmPay(idUserPart, idKamarPart, idKosPart, totalKamar, durasiPart, hargaPart, tanggalPart, waktuSewaPart, buktiPembayaran)
                                         .observe(this, pembayaranResponse -> {
                                             if (pembayaranResponse != null && "success".equals(pembayaranResponse.getStatus())) {
                                                 // Tampilkan notifikasi sukses
-                                                Toast.makeText(this, "Pembayaran berhasil dikonfirmasi!", Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(this, "Pembayaran berhasil Rp " + hargaInt + " dikonfirmasi", Toast.LENGTH_SHORT).show();
                                                 // Pindah ke layar utama
+                                                sendTokenAndPriceToServer(hargaInt);
+
                                                 Intent intent = new Intent(this, MainActivity.class);
                                                 startActivity(intent);
                                             } else {
@@ -379,6 +392,8 @@ public class AjukanSewaActivity extends AppCompatActivity {
                 Toast.makeText(this, "Harap pilih dan unggah bukti pembayaran terlebih dahulu!", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
 
@@ -403,6 +418,64 @@ public class AjukanSewaActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(shareIntent, "Bagikan melalui"));
         });
     }
+
+    private void sendTokenAndPriceToServer(int harga) {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Mendapatkan token FCM
+                    String token = task.getResult();
+                    Log.d(TAG, "FCM Token: " + token);
+
+                    sendPushNotificationToServer(token, harga);
+                });
+    }
+
+    private void sendPushNotificationToServer(String token, int harga) {
+        // Siapkan data yang akan dikirim
+        Map<String, String> data = new HashMap<>();
+        data.put("token", token);
+        Log.d(TAG, token);
+        data.put("harga", String.valueOf(harga));
+
+        ApiService apiService = RetrofitInstance.createService(ApiService.class);
+        apiService.sendPushNotification(data)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            Log.d(TAG, "Token dan harga berhasil dikirim ke server");
+                        } else {
+                            Log.e(TAG, "Gagal mengirim token dan harga ke server, Response: " + response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e(TAG, "Terjadi kesalahan saat mengirim data", t);
+                    }
+                });
+    }
+
+    private void sendPushNotification(String title, String message) {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Mendapatkan token FCM
+                    String token = task.getResult();
+                    Log.d(TAG, "FCM Token: " + token);
+                });
+    }
+
+
 
 private void toggleTanggalVisibility(boolean isVisible) {
     int visibility = isVisible ? View.VISIBLE : View.INVISIBLE;
