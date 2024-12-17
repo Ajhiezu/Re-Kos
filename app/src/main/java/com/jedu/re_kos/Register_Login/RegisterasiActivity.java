@@ -57,9 +57,9 @@ public class RegisterasiActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextpassword);
         number = findViewById(R.id.editTextphone);
         email = findViewById(R.id.editEmail);
-        int nomor = Integer.parseInt(number.getText().toString());
 
         buttonRegister.setOnClickListener(v -> {
+        int nomor = Integer.parseInt(number.getText().toString());
             regisRequest = new RegisRequest(
                     username.getText().toString(),
                     password.getText().toString(),
