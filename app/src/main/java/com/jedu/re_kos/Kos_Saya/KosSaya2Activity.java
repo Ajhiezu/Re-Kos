@@ -27,5 +27,5 @@ public class KosSaya2Activity extends AppCompatActivity {
             startActivities(new Intent[]{intent});
             finish();
         });
-    }
+    }//test push
 }
