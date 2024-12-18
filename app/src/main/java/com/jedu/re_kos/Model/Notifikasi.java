@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 
 public class Notifikasi {
-    @SerializedName("id_pembayaran")
-    private int idPembayaran;
+    @SerializedName("harga")
+    private int harga;
 
     @SerializedName("id_penyewaan")
     private int idPenyewaan;
@@ -19,33 +19,30 @@ public class Notifikasi {
     @SerializedName("sisa_hari")
     private int sisaHari;
 
-    @SerializedName("total_hari")
-    private int totalHari;
-
     @SerializedName("durasi")
     private int durasi;
 
-    @SerializedName("tanggal_pembayaran")
-    private String tanggalPembayaran;
+    @SerializedName("tanggal_penyewaan")
+    private String tanggal_penyewaan;
 
     private String tipeNotifikasi;
 
     // Getter dan Setter
 
-    public int getIdPembayaran() {
-        return idPembayaran;
+    public int getHarga() {
+        return harga;
     }
 
-    public void setIdPembayaran(int idPembayaran) {
-        this.idPembayaran = idPembayaran;
+    public void setHarga(int idPembayaran) {
+        this.harga = idPembayaran;
     }
 
-    public String getTanggalPembayaran() {
-        return tanggalPembayaran;
+    public String getWaktu_penyewaan() {
+        return tanggal_penyewaan;
     }
 
-    public void setTanggalPembayaran(String tanggalPembayaran) {
-        this.tanggalPembayaran = tanggalPembayaran;
+    public void setWaktu_penyewaan(String tanggalPembayaran) {
+        this.tanggal_penyewaan = tanggalPembayaran;
     }
 
     public int getIdPenyewaan() {
@@ -80,13 +77,6 @@ public class Notifikasi {
         this.sisaHari = sisaHari;
     }
 
-    public int getTotalHari() {
-        return totalHari;
-    }
-
-    public void setTotalHari(int totalHari) {
-        this.totalHari = totalHari;
-    }
 
     public int getDurasi() {
         return durasi;

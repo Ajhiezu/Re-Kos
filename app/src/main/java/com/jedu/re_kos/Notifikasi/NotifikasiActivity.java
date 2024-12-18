@@ -111,12 +111,12 @@ public class NotifikasiActivity extends AppCompatActivity {
 
         for (Notifikasi notif : notifikasiList) {
 
-            if (notif.getJumlahPembayaran() > 0) {
+            if (notif.getHarga() > 0) {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("title", "Pembayaran Berhasil");
-                map.put("deskripsi", "Pembayaran kost sebesar Rp " + notif.getJumlahPembayaran() + " telah dikonfirmasi.");
+                map.put("deskripsi", "Pembayaran kost sebesar Rp " + notif.getHarga() + " telah dikonfirmasi.");
                 try {
-                    map.put("date", relativeDateFormat.format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(notif.getTanggalPembayaran())));
+                    map.put("date", relativeDateFormat.format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(notif.getWaktu_penyewaan())));
                 } catch (Exception e) {
                     map.put("date", "Tanggal tidak valid");
                 }
