@@ -155,20 +155,27 @@ public class DetailKosFragment extends Fragment {
     }
 
     private void updateDeskripsiProperti1() {
-        if (fullText1.isEmpty()) return;
-
-        String shortText1 = fullText1.length() > 100 ? fullText1.substring(0, 100) + "..." : fullText1;
-        textViewDeskripsiProperti1.setText(isExpanded1 ? fullText1 : shortText1);
-        textViewLihatSemua1.setText(isExpanded1 ? "Sembunyikan" : "Lihat Semua");
+        if (fullText1 == null || fullText1.isEmpty()) {
+            textViewDeskripsiProperti1.setText(""); // Atur menjadi teks kosong jika tidak ada data
+            textViewLihatSemua1.setVisibility(View.GONE); // Sembunyikan tombol "Lihat Semua"
+        } else {
+            String shortText1 = fullText1.length() > 100 ? fullText1.substring(0, 100) + "..." : fullText1;
+            textViewDeskripsiProperti1.setText(isExpanded1 ? fullText1 : shortText1);
+            textViewLihatSemua1.setText(isExpanded1 ? "Sembunyikan" : "Lihat Semua");
+        }
     }
 
     private void updateDeskripsiProperti2() {
-        if (fullText2.isEmpty()) return;
-
-        String shortText2 = fullText2.length() > 100 ? fullText2.substring(0, 100) + "..." : fullText2;
-        textViewDeskripsiProperti2.setText(isExpanded2 ? fullText2 : shortText2);
-        textViewLihatSemua2.setText(isExpanded2 ? "Sembunyikan" : "Lihat Semua");
+        if (fullText2 == null || fullText2.isEmpty()) {
+            textViewDeskripsiProperti2.setText(""); // Atur menjadi teks kosong jika tidak ada data
+            textViewLihatSemua2.setVisibility(View.GONE); // Sembunyikan tombol "Lihat Semua"
+        } else {
+            String shortText2 = fullText2.length() > 100 ? fullText2.substring(0, 100) + "..." : fullText2;
+            textViewDeskripsiProperti2.setText(isExpanded2 ? fullText2 : shortText2);
+            textViewLihatSemua2.setText(isExpanded2 ? "Sembunyikan" : "Lihat Semua");
+        }
     }
+
 
     private void updateFasilitasList() {
         if (fasilitasList == null || fasilitasList.isEmpty()) return;
@@ -195,4 +202,5 @@ public class DetailKosFragment extends Fragment {
 
         }
     };
+
 }

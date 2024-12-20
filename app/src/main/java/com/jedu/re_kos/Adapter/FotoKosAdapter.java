@@ -2,6 +2,7 @@ package com.jedu.re_kos.Adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class FotoKosAdapter extends PagerAdapter {
         // Gunakan Glide untuk memuat gambar
         Glide.with(context)
                 .load(imageUrl)
+                .error(R.drawable.gambar_kos2)
                 .into(slideImage);
 
         container.addView(view);
