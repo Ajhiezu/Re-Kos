@@ -35,6 +35,7 @@ public class DetailRepository {
             public void onResponse(Call<DetailResponse> call, Response<DetailResponse> response) {
                 if(response.isSuccessful()){
                     detailResponse.setValue(response.body());
+                    Log.d("API_Response", "Response JSON: " + response.body());
                 }else {
                     handleErrorResponse(response, detailResponse);
                 }

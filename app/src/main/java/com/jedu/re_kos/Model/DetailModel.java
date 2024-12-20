@@ -21,6 +21,16 @@ public class DetailModel {
     private String fasilitas_kos;
     private String kos_deskripsi;
 
+    public int getId_pemilik() {
+        return id_pemilik;
+    }
+
+    public void setId_pemilik(int id_pemilik) {
+        this.id_pemilik = id_pemilik;
+    }
+
+    private int id_pemilik;
+
     private int id_kamar;
 
     public int getId_kamar() {
