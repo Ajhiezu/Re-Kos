@@ -6,6 +6,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiInterface {
-    @POST("updateFcmToken") // Endpoint untuk memperbarui FCM token
+    @POST("updateFcmToken")
     Call<Void> updateFcmToken(@Body UpdateFcmRequest request);
 }

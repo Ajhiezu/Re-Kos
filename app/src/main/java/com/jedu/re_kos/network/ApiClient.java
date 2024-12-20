@@ -13,14 +13,14 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://192.168.24.8/web_rekost/api/";
+    private static final String BASE_URL = "https://wstif23.myhost.id/kelas_bws/web_rekost/api/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create()) // Konverter JSON
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
