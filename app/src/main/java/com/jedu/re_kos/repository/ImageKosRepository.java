@@ -1,6 +1,7 @@
 package com.jedu.re_kos.repository;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -25,9 +26,11 @@ public class ImageKosRepository {
         apiService.getImageKos(id).enqueue(new Callback<ImageKosResponse>() {
             @Override
             public void onResponse(Call<ImageKosResponse> call, Response<ImageKosResponse> response) {
-                if (response.isSuccessful() && response.body() != null){
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d("ImageURL", "Response body: " + response.body());
                     imageData.setValue(response.body());
-                }else{
+                } else {
+                    Log.d("ImageURL", "Response failed or empty body");
                     imageData.setValue(null);
                 }
             }

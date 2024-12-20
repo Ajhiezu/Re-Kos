@@ -46,6 +46,7 @@ public class DetailKosFragment extends Fragment {
     private DetailViewModel detailViewModel;
     private ImageKosViewModel imageKosViewModel;
     ViewPager SlideViewPager;
+    private ImageView callback;
 
     private String fullText1 = ""; // Menyimpan teks deskripsi properti 1 penuh
     private String fullText2 = ""; // Menyimpan teks deskripsi properti 2 penuh
@@ -72,6 +73,7 @@ public class DetailKosFragment extends Fragment {
         tersedia = view.findViewById(R.id.textView16);
         harga = view.findViewById(R.id.textView17);
         waktuPenyewaan = view.findViewById(R.id.textView18);
+        callback = view.findViewById(R.id.imageViewBack);
 
         textViewDeskripsiProperti1 = view.findViewById(R.id.textViewDeskripsiProperti);
         textViewLihatSemua1 = view.findViewById(R.id.textViewLihatSemua);
@@ -104,11 +106,13 @@ public class DetailKosFragment extends Fragment {
 
                         // Siapkan daftar gambar dari detail kos
                         List<String> kosImageUrls = new ArrayList<>();
+                        Log.d("ImageURL", "URLs: " + kosImageUrls);
                         imageKosViewModel.getImageKos(String.valueOf(idKos)).observe(getViewLifecycleOwner(), response -> {
                             if (response != null && response.isSuccess()) {
                                 kosImageUrls.clear();
                                 if (response.getImages() != null && !response.getImages().isEmpty()) {
                                     kosImageUrls.addAll(response.getImages());
+                                    Log.d("ImageURL", "Added Images: " + kosImageUrls);
 
                                     // Set adapter untuk ViewPager
                                     FotoKosAdapter fotoKosAdapter = new FotoKosAdapter(requireActivity(), kosImageUrls);
@@ -121,6 +125,8 @@ public class DetailKosFragment extends Fragment {
                                     Log.d("ImageURL", "No images found in response");
                                 }
                             } else {
+                                Log.d("ImageURL", "Found images: " + response.getImages());
+                                Log.d("ImageURL", "Failed to load images");
                                 Toast.makeText(requireActivity(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -149,6 +155,10 @@ public class DetailKosFragment extends Fragment {
             isExpanded3 = !isExpanded3;
             textViewLihatSemua.setText(isExpanded3 ? "Sembunyikan" : "Lihat Semua");
             updateFasilitasList();
+        });
+
+        callback.setOnClickListener(v ->{
+            requireActivity().onBackPressed();
         });
 
         return view;
