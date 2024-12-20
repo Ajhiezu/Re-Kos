@@ -1,6 +1,8 @@
 package com.jedu.re_kos.Splash_Screen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.jedu.re_kos.Adapter.ViewPageAdapter;
+import com.jedu.re_kos.MainActivity;
 import com.jedu.re_kos.R;
 import com.jedu.re_kos.Register_Login.LoginActivity;
 
@@ -29,6 +32,14 @@ public class OnBoardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_boarding);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE);
+
+        // Cek apakah user sudah login
+        int userId = sharedPreferences.getInt("user_id", 0);
+        if (userId != 0) {
+            Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         //warna navigasi bar
         getWindow().setStatusBarColor(ContextCompat.getColor(OnBoardingActivity.this, R.color.biru_navbar));

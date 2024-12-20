@@ -101,21 +101,24 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
+<!--             <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity> <!-- <activity -->
         <!-- android:name=".MainActivity" -->
         <!-- android:exported="false" /> -->
         <!-- android:name=".Splash_Screen.Splash_Screen" -->
         <activity
-            android:name=".Splash_Screen.Splash_Screen"
+            android:name=".Register_Login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".Register_Login.LoginActivity"
+            android:name=".Splash_Screen.OnBoardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Splash_Screen.Splash_Screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
