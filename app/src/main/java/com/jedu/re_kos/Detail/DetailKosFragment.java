@@ -195,4 +195,40 @@ public class DetailKosFragment extends Fragment {
 
         }
     };
+    Button btnAjukanSewa;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_detail_kos, container, false);
+
+        btnAjukanSewa = view.findViewById(R.id.btnAjukanSewa);
+
+        // Ambil ID pemilik kost dari DetailModel (asumsikan data sudah tersedia)
+        detailViewModel.getDetail(idKos).observe(getViewLifecycleOwner(), detailResponse -> {
+            if (detailResponse != null && "success".equals(detailResponse.getStatus())) {
+                DetailModel detailModel = detailResponse.getDetailModel();
+                if (detailModel != null) {
+                    int pemilikKosId = detailModel.getPemilikId(); // Asumsikan ada pemilik ID di detail model
+
+                    // Klik tombol Ajukan Sewa
+                    btnAjukanSewa.setOnClickListener(v -> {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("pemilik_kos_id", pemilikKosId);
+
+                        // Navigasi ke ChatFragment dengan argumen
+                        ChatFragment chatFragment = new ChatFragment();
+                        chatFragment.setArguments(bundle);
+
+                        requireActivity().getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container, chatFragment) // Sesuaikan dengan container fragment
+                                .addToBackStack(null)
+                                .commit();
+                    });
+                }
+            }
+        });
+
+        return view;
+    }
+
 }
