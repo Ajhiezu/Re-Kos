@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">wstif23.myhost.id/kelas_bws/web_rekost</domain>
+        <domain includeSubdomains="true">http://wstif23.myhost.id/kelas_bws/web_rekost</domain>
 
     </domain-config>
 </network-security-config>

@@ -46,7 +46,6 @@ public class DetailKosFragment extends Fragment {
     private DetailViewModel detailViewModel;
     private ImageKosViewModel imageKosViewModel;
     ViewPager SlideViewPager;
-    private ImageView callback;
 
     private String fullText1 = ""; // Menyimpan teks deskripsi properti 1 penuh
     private String fullText2 = ""; // Menyimpan teks deskripsi properti 2 penuh
@@ -73,7 +72,6 @@ public class DetailKosFragment extends Fragment {
         tersedia = view.findViewById(R.id.textView16);
         harga = view.findViewById(R.id.textView17);
         waktuPenyewaan = view.findViewById(R.id.textView18);
-        callback = view.findViewById(R.id.imageViewBack);
 
         textViewDeskripsiProperti1 = view.findViewById(R.id.textViewDeskripsiProperti);
         textViewLihatSemua1 = view.findViewById(R.id.textViewLihatSemua);
@@ -106,13 +104,11 @@ public class DetailKosFragment extends Fragment {
 
                         // Siapkan daftar gambar dari detail kos
                         List<String> kosImageUrls = new ArrayList<>();
-                        Log.d("ImageURL", "URLs: " + kosImageUrls);
                         imageKosViewModel.getImageKos(String.valueOf(idKos)).observe(getViewLifecycleOwner(), response -> {
                             if (response != null && response.isSuccess()) {
                                 kosImageUrls.clear();
                                 if (response.getImages() != null && !response.getImages().isEmpty()) {
                                     kosImageUrls.addAll(response.getImages());
-                                    Log.d("ImageURL", "Added Images: " + kosImageUrls);
 
                                     // Set adapter untuk ViewPager
                                     FotoKosAdapter fotoKosAdapter = new FotoKosAdapter(requireActivity(), kosImageUrls);
@@ -125,8 +121,6 @@ public class DetailKosFragment extends Fragment {
                                     Log.d("ImageURL", "No images found in response");
                                 }
                             } else {
-                                Log.d("ImageURL", "Found images: " + response.getImages());
-                                Log.d("ImageURL", "Failed to load images");
                                 Toast.makeText(requireActivity(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -157,28 +151,31 @@ public class DetailKosFragment extends Fragment {
             updateFasilitasList();
         });
 
-        callback.setOnClickListener(v ->{
-            requireActivity().onBackPressed();
-        });
-
         return view;
     }
 
     private void updateDeskripsiProperti1() {
-        if (fullText1.isEmpty()) return;
-
-        String shortText1 = fullText1.length() > 100 ? fullText1.substring(0, 100) + "..." : fullText1;
-        textViewDeskripsiProperti1.setText(isExpanded1 ? fullText1 : shortText1);
-        textViewLihatSemua1.setText(isExpanded1 ? "Sembunyikan" : "Lihat Semua");
+        if (fullText1 == null || fullText1.isEmpty()) {
+            textViewDeskripsiProperti1.setText(""); // Atur menjadi teks kosong jika tidak ada data
+            textViewLihatSemua1.setVisibility(View.GONE); // Sembunyikan tombol "Lihat Semua"
+        } else {
+            String shortText1 = fullText1.length() > 100 ? fullText1.substring(0, 100) + "..." : fullText1;
+            textViewDeskripsiProperti1.setText(isExpanded1 ? fullText1 : shortText1);
+            textViewLihatSemua1.setText(isExpanded1 ? "Sembunyikan" : "Lihat Semua");
+        }
     }
 
     private void updateDeskripsiProperti2() {
-        if (fullText2.isEmpty()) return;
-
-        String shortText2 = fullText2.length() > 100 ? fullText2.substring(0, 100) + "..." : fullText2;
-        textViewDeskripsiProperti2.setText(isExpanded2 ? fullText2 : shortText2);
-        textViewLihatSemua2.setText(isExpanded2 ? "Sembunyikan" : "Lihat Semua");
+        if (fullText2 == null || fullText2.isEmpty()) {
+            textViewDeskripsiProperti2.setText(""); // Atur menjadi teks kosong jika tidak ada data
+            textViewLihatSemua2.setVisibility(View.GONE); // Sembunyikan tombol "Lihat Semua"
+        } else {
+            String shortText2 = fullText2.length() > 100 ? fullText2.substring(0, 100) + "..." : fullText2;
+            textViewDeskripsiProperti2.setText(isExpanded2 ? fullText2 : shortText2);
+            textViewLihatSemua2.setText(isExpanded2 ? "Sembunyikan" : "Lihat Semua");
+        }
     }
+
 
     private void updateFasilitasList() {
         if (fasilitasList == null || fasilitasList.isEmpty()) return;
@@ -205,4 +202,5 @@ public class DetailKosFragment extends Fragment {
 
         }
     };
+
 }
