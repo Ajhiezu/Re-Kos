@@ -128,6 +128,7 @@ public class AjukanSewaActivity extends AppCompatActivity {
                             namakos.setText(detailModel.getNama_kos() != null ? detailModel.getNama_kos() : "");
                             alamat.setText(detailModel.getAlamat() != null ? detailModel.getAlamat() : "");
                             rating.setText(detailModel.getRating_kamar() != null ? String.valueOf(detailModel.getRating_kamar()) : "");
+                            harga.setText(detailModel.getHarga_bulan() > 0 ? "RP. " + detailModel.getHarga_bulan() : "(No Harga)");
                             if (detailModel != null) {
                                 int jumlahRating = detailModel.getJumlah_rating();
                                 review.setText(jumlahRating > 0 ? "(" + jumlahRating + " review)" : "(No reviews)");
@@ -136,67 +137,57 @@ public class AjukanSewaActivity extends AppCompatActivity {
                             }
                             if (detailModel != null) {
                                 int Tersedia = detailModel.getKamar_tersedia();
-                                tersedia.setText(Tersedia > 0 ? Tersedia + " Tersedia" : "(No reviews)");
+                                tersedia.setText(Tersedia > 0 ? Tersedia + " Tersedia" : "(Tidak Tersedia Kamar)");
                             } else {
                                 tersedia.setText("(Tidak Tersedia)");
                             }
-                            final int[] value = {1}; // Gunakan array untuk menyimpan nilai, default 1
+                            // Inisialisasi nilai awal
+                            final int[] value = {1}; // Default jumlah kamar
+                            final int[] hargaSatuan = {detailModel.getHarga_bulan()}; // Harga default bulanan
 
-                            final int hargaSatuan = detailModel != null ? detailModel.getHarga_bulan() : 0; // Harga satuan
+                            // Listener untuk perubahan durasi sewa
+                            durasiSewa.setOnItemClickListener((parent, view, position, id) -> {
+                                String selectedDuration = durasiSewa.getText().toString();
+                                switch (selectedDuration.toLowerCase()) {
+                                    case "harian":
+                                        hargaSatuan[0] = detailModel.getHarga_hari();
+                                        break;
+                                    case "mingguan":
+                                        hargaSatuan[0] = detailModel.getHarga_minggu();
+                                        break;
+                                    case "bulanan":
+                                        hargaSatuan[0] = detailModel.getHarga_bulan();
+                                        break;
+                                    default:
+                                        hargaSatuan[0] = 0;
+                                        break;
+                                }
+                                updateHarga(value[0], hargaSatuan[0]);
+                            });
 
                             // Set nilai awal di TextView
-                            jumlahkos.setText(String.valueOf(value[0])); // Set jumlah kamar ke 1
+                            jumlahkos.setText(String.valueOf(value[0]));
                             jumlahkos.setFocusable(false);
                             jumlahkos.setClickable(true);
-                            int totalHargaAwal = value[0] * hargaSatuan; // Hitung total harga awal
-                            int feeAwal = (int) (totalHargaAwal * 0.1); // Biaya tambahan awal (10%)
-                            rincianharga.setText("Rp" + String.format("%,d", totalHargaAwal).replace(",", ".")); // Update rincian harga awal
-                            fee.setText("Rp " + feeAwal); // Update fee awal
-                            total.setText("Rp " + (totalHargaAwal + feeAwal)); // Update total awal (harga + fee)
 
                             // Event Listener untuk tombol Add
-                            add.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    value[0]++; // Tambahkan nilai
-                                    jumlahkos.setText(String.valueOf(value[0])); // Update TextView jumlah kamar
-                                    int totalHarga = value[0] * hargaSatuan; // Hitung total harga
-                                    int feeAmount = (int) (totalHarga * 0.1); // Hitung biaya tambahan
-                                    rincianharga.setText("Rp" + String.format("%,d", totalHarga).replace(",", ".")); // Update rincian harga
-                                    fee.setText("Rp " + feeAmount); // Update fee
-                                    total.setText("Rp " + (totalHarga + feeAmount)); // Update total
-                                }
+                            add.setOnClickListener(v -> {
+                                value[0]++;
+                                jumlahkos.setText(String.valueOf(value[0]));
+                                updateHarga(value[0], hargaSatuan[0]);
                             });
 
                             // Event Listener untuk tombol Remove
-                            remove.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (value[0] > 1) { // Cegah nilai menjadi kurang dari 1
-                                        value[0]--; // Kurangi nilai
-                                        jumlahkos.setText(String.valueOf(value[0])); // Update TextView jumlah kamar
-                                        int totalHarga = value[0] * hargaSatuan; // Hitung total harga
-                                        int feeAmount = (int) (totalHarga * 0.1); // Hitung biaya tambahan
-                                        rincianharga.setText("Rp" + String.format("%,d", totalHarga).replace(",", ".")); // Update rincian harga
-                                        fee.setText("Rp " + feeAmount); // Update fee
-                                        total.setText("Rp " + (totalHarga + feeAmount)); // Update total
-                                    }
+                            remove.setOnClickListener(v -> {
+                                if (value[0] > 1) {
+                                    value[0]--;
+                                    jumlahkos.setText(String.valueOf(value[0]));
+                                    updateHarga(value[0], hargaSatuan[0]);
                                 }
                             });
 
-
-                            // Jika detailModel tidak null, inisialisasi tampilan awal
-                            if (detailModel != null) {
-                                int Harga = detailModel.getHarga_bulan();
-                                harga.setText(Harga > 0 ? "Rp " + Harga : "Rp -");
-                                rincianharga.setText(Harga > 0 ? "Rp " + Harga : "Rp -");
-                                int amount = (int) (Harga * 0.1);
-                                fee.setText("Rp " + amount);
-                                int totalharga = Harga + amount;
-                                total.setText("Rp " + totalharga);
-                            } else {
-                                harga.setText("Rp 0");
-                            }
+                            // Inisialisasi harga awal
+                            updateHarga(value[0], hargaSatuan[0]);
 
                             waktuPenyewaan.setText(detailModel.getWaktu_penyewaan() != null ? detailModel.getWaktu_penyewaan() : "");
                             // Siapkan daftar gambar dari detail kos
@@ -398,7 +389,7 @@ public class AjukanSewaActivity extends AppCompatActivity {
 
 
         // Temukan ImageView berdasarkan id
-        ImageView imageViewShare = binding.imageViewShare;
+//        ImageView imageViewShare = binding.imageViewShare;
         ImageView imageViewBack = binding.imageViewBack;
 
         // Set OnClickListener kembali
@@ -407,16 +398,25 @@ public class AjukanSewaActivity extends AppCompatActivity {
         });
 
         // Set OnClickListener pada ImageView untuk share
-        imageViewShare.setOnClickListener(view -> {
-            // Buat intent untuk share
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Bagikan ini");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Ini adalah konten yang akan dibagikan");
+//        imageViewShare.setOnClickListener(view -> {
+//            // Buat intent untuk share
+//            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//            shareIntent.setType("text/plain");
+//            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Bagikan ini");
+//            shareIntent.putExtra(Intent.EXTRA_TEXT, "Ini adalah konten yang akan dibagikan");
+//
+//            // Memulai activity share
+//            startActivity(Intent.createChooser(shareIntent, "Bagikan melalui"));
+//        });
+    }
 
-            // Memulai activity share
-            startActivity(Intent.createChooser(shareIntent, "Bagikan melalui"));
-        });
+    // Fungsi untuk memperbarui rincian harga
+    private void updateHarga(int jumlahKamar, int hargaSatuan) {
+        int totalHarga = jumlahKamar * hargaSatuan;
+        int feeAmount = (int) (totalHarga * 0.1);
+        rincianharga.setText("Rp" + String.format("%,d", totalHarga).replace(",", "."));
+        fee.setText("Rp " + String.format("%,d", feeAmount).replace(",", "."));
+        total.setText("Rp " + String.format("%,d", totalHarga + feeAmount).replace(",", "."));
     }
 
     private void sendTokenAndPriceToServer(int harga) {
