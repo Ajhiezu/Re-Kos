@@ -129,7 +129,6 @@ public class LoginActivity extends AppCompatActivity {
     private void sendFcmTokenToServer(int userId, String fcmToken) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        // Buat request dalam bentuk JSON
         UpdateFcmRequest request = new UpdateFcmRequest(userId, fcmToken);
 
         Call<Void> call = apiService.updateFcmToken(request);
